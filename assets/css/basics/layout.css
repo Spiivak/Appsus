@@ -1,0 +1,19 @@
+
+.main-layout {
+  display: grid;
+  grid-template-columns: 72px 1fr 56px;
+  grid-template-rows: auto 1fr;
+  height: 100dvh;
+}
+
+.main-layout{
+  grid-column: 2;
+}
+
+.main-layout .full {
+  grid-column: 1 / -1;
+}
+
+.app-aside-nav {
+  grid-column: 2;
+}

@@ -1,0 +1,19 @@
+
+
+.app-aside-tool-bar {
+    grid-column: 1;
+    grid-row: 2 / 4;
+    justify-content: start;
+    padding: 20px 0;
+
+    background: var(--main-clr);
+}
+
+.app-aside-tool-bar button {
+    height: 2rem;
+    width: 2rem;
+}
+
+.app-aside-tool-bar button:hover {
+    height: 2rem;
+}

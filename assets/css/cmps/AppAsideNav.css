@@ -1,0 +1,23 @@
+
+
+.app-aside-nav {
+    /* background: var(--main-clr); */
+    grid-column: 3;
+    grid-row: 2 / 4;
+    display: grid;
+    align-content: stretch;
+    align-items: start;
+    padding: 20px 0;
+
+    background: var(--main-clr);
+}
+
+.app-aside-nav nav {
+    display: grid;
+}
+
+/* nav a.active {
+    color: darkblue;
+    font-weight: bold;
+    text-decoration: overline;
+} */

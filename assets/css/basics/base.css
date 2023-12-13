@@ -1,5 +1,15 @@
 body {
     margin: 0;
+    background: var(--main-clr);
+}
+
+main {
+    grid-column: 2;
+    display: grid;
+    align-content: stretch;
+    background-color: white;
+    border-radius: 16px;
+    margin-bottom: 16px;
 }
 
 h1,
@@ -19,5 +29,17 @@ a {
 img {
     height: 100%;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
+}
+
+.btn {
+    all: unset;
+    cursor: pointer;
+    text-align: center;
+    color: #444746;
+}
+
+.btn:hover {
+    background-color: #3c40431e;
+    border-radius: 1000px;
 }
