@@ -17,7 +17,7 @@ export function AppHeader() {
             <button className="btn btn-about"><i className="fa-regular fa-circle-question"></i></button>
             <button className="btn btn-settings"><i className="fa-solid fa-gear"></i></button>
             {/* <button><img src="" alt="" /></button> */}
-            <button className="btn btn-user"><i class="fa-regular fa-circle-user"></i></button>
+            <button className="btn btn-user"><i className="fa-regular fa-circle-user"></i></button>
         </div>
         {/* <nav>
             <NavLink to="/">Home</NavLink>
