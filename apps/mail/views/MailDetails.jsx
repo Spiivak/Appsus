@@ -33,6 +33,18 @@ export function MailDetails() {
     //         .then(setPrevMailId)
     // }
 
+    function onRemoveMail() {
+        mailService.remove(params.mailId)
+            .then(() => {
+                navigate('/mail')
+                // showSuccessMsg(`Mail successfully removed!`)
+            })
+            .catch(err => {
+                // showErrorMsg(`Error removing Mail: ${mailId}`)
+                console.log('err:', err)
+            })
+    }
+
     function onBack() {
         navigate('/mail')
     }
@@ -45,6 +57,7 @@ export function MailDetails() {
             <section className="actions-section">
                 <section>
                     <button className="btn-back" onClick={onBack}>Back</button>
+                    <button className="btn-back" onClick={onRemoveMail}>Remove</button>
                     <button className="btn-unRead">UnRead</button>
                     <button className="btn-createNote">createNote</button>
                 </section>
