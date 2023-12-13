@@ -5,6 +5,10 @@ import { showSuccessMsg } from '../../../services/event-bus.service.js'
 import { noteService } from '../services/note.service.js'
 
 export function AddNote({ onAddNote }) {
+  const empty = noteService.getEmptyNote()
+  console.log('empty:', empty)
+  const emptyInfo = noteService.getEmptyNote().info
+  console.log('emptyInfo:', emptyInfo)
   const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
   const [infoToEdit, setInfoToEdit] = useState(noteService.getEmptyNote().info)
   const {isExpand, setIsExpand} = useState(false)
@@ -43,12 +47,12 @@ export function AddNote({ onAddNote }) {
 		}
 
     setInfoToEdit(prevInfo => ({...prevInfo, [field]: value}))
-		setNoteToEdit(prevNote => ({ ...prevNote, [prevNote.info]: infoToEdit }))
+		setNoteToEdit(prevNote => ({ ...prevNote, ['info']: infoToEdit }))
 	}
 
   function onSaveNote(ev) {
 		ev.preventDefault()
-
+    console.log('noteToEdit - sent:', noteToEdit)
     onAddNote(noteToEdit)
 	}
 

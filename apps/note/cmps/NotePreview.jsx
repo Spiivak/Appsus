@@ -2,7 +2,7 @@ const { useState } = React
 const { Link } = ReactRouterDOM
 
 export function NotePreview({ note, onRemoveNote }) {
-	console.log('NotePreview  note:', note)
+	// console.log('NotePreview  note:', note)
 
   // const {txt, title} = note
 	return (

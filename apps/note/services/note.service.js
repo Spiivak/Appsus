@@ -19,7 +19,7 @@ export const noteService = {
 
 function query() {
   return storageService.query(NOTE_KEY)
-    .then(notes => notes)
+    // .then(notes => notes)
 }
 
 function get(noteId) {
@@ -65,8 +65,8 @@ function getEmptyNote(title = '', txt = '') {
 }
 
 function _createNotes() {
-  // console.log('Loaded notes from storage:', notes);
-  // if(!notes || !notes.length) {
+  let notes = localStorageService.loadFromStorage(NOTE_KEY)
+  if(!notes || !notes.length) {
 
     const notes = [
       {
@@ -177,8 +177,8 @@ function _createNotes() {
     // notes.push(_createNote({ id: '3', title: 'Exercise', txt: 'Go for a run.' }))
     // notes.push(_createNote({ id: '4', title: 'Book', txt: 'Read a chapter.' }))
     // notes.push(_createNote({ id: '5', title: 'Project', txt: 'Work on project tasks.' }))
-      localStorageService.saveToStorage(NOTE_KEY, notes)
-
+    localStorageService.saveToStorage(NOTE_KEY, notes)
+  }
 }
 
 function _createNote({ id, title, txt }) {

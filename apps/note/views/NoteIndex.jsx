@@ -35,6 +35,7 @@ export function NoteIndex() {
         .save(noteToEdit)
         .then(() => {
             showSuccessMsg(`Note successfully Added! ${noteToEdit.id}`)
+            loadNotes()
         })
         .catch((err) => console.log('err:', err))
     }
