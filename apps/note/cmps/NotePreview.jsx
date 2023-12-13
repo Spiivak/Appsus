@@ -1,3 +1,6 @@
+import { NotesImage } from "./NotePreviews/NotesImage.jsx"
+import { NotesTxt } from "./NotePreviews/NotesTxt.jsx"
+
 const { useState } = React
 const { Link } = ReactRouterDOM
 
@@ -23,9 +26,9 @@ function renderNoteContent(note) {
 
   switch (type) {
     case 'txt':
-      return <NoteTxt />
+      return <NotesTxt note={note} />
     case 'img':
-      return <NoteImg />
+      return <NotesImage note={note}/>
     case 'video':
       return <NoteVideo/>
     case 'todos':

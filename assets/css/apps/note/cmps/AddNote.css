@@ -1,4 +1,27 @@
-.add-note {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .add-note {
   display: flex;
   justify-content: center;
   padding: 32px;
@@ -7,7 +30,6 @@
 .add-note-actions {
   width: 600px;
   max-height: 646px;
-  /* background-color: red; */
 }
 
 .add-note input[name="title"] {
@@ -19,14 +41,11 @@
   border: 0;
   border-radius: 50px;
 
-  /* margin: aut; */
 }
 
 textarea {
-  /* width: 100%; */
   padding: 0 24px;
   resize: none;
-  /* overflow: hidden; */
 
   width: 92%;
   height: 46px;
@@ -39,4 +58,4 @@ textarea {
   font-size: 16px;
   font-weight: 400;
   letter-spacing: 0.02em;
-}
+} */
