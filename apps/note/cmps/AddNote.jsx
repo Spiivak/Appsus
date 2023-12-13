@@ -6,6 +6,7 @@ import { noteService } from '../services/note.service.js'
 
 export function AddNote() {
   const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
+  const [infoToEdit, setInfoToEdit] = useState(noteService.getEmptyNote().info)
   const {isExpand, setIsExpand} = useState(false)
 
   const navigate = useNavigate()
@@ -43,10 +44,12 @@ export function AddNote() {
 				break
 		}
 
-		setNoteToEdit(prevNote => ({ ...prevNote.info, [field]: value }))
+    setInfoToEdit(prevInfo => ({...prevInfo, [field]: value}))
+		setNoteToEdit(prevNote => ({ ...prevNote, [prevNote.info]: infoToEdit }))
 	}
 
   function onSaveNote(ev) {
+    console.log('noteToEdit:', noteToEdit)
 		ev.preventDefault()
 
 		noteService
@@ -85,7 +88,7 @@ export function AddNote() {
       name="txt"
       id='txt'
       />
-      <button className="btn btn-notes-actions btn-close" disabled={!noteToEdit.title}>Close</button>
+      <button className="btn btn-notes-actions btn-close" >Close</button>
       </form>
       <div className="actions">
         {/* <button className="btn btn-notes-actions btn-bgc-options"><i className="ri-palette-line"></i></button>
