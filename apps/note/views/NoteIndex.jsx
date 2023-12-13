@@ -3,6 +3,8 @@ import { AddNote } from "../cmps/AddNote.jsx";
 // import { AddNote } from "../cmps/AddNote.jsx";
 import { NoteList } from "../cmps/NoteList.jsx";
 import { noteService } from "../services/note.service.js";
+import { showSuccessMsg } from '../../../services/event-bus.service.js'
+
 
 export function NoteIndex() {
 	const [notes, setNotes] = useState(null)
@@ -27,11 +29,20 @@ export function NoteIndex() {
 			.catch((err) => console.log('err:', err))
 	}
 
+    function onAddNote(noteToEdit) {
+        noteService
+        .save(noteToEdit)
+        .then(() => {
+            showSuccessMsg(`Note successfully Added! ${noteToEdit.id}`)
+        })
+        .catch((err) => console.log('err:', err))
+    }
+
     if(!notes) return <div>Loading...</div>
     return (
         <section className="note-index">
             <React.Fragment>
-            <AddNote />
+            <AddNote onAddNote={onAddNote} />
             <NoteList notes={notes} onRemoveNote={onRemoveNote} />
             </React.Fragment>
         </section>

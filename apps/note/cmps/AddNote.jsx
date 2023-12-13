@@ -4,7 +4,7 @@ const { useNavigate, useParams } = ReactRouterDOM
 import { showSuccessMsg } from '../../../services/event-bus.service.js'
 import { noteService } from '../services/note.service.js'
 
-export function AddNote() {
+export function AddNote({ onAddNote }) {
   const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
   const {isExpand, setIsExpand} = useState(false)
 
@@ -43,19 +43,19 @@ export function AddNote() {
 				break
 		}
 
+  
+    // info: {
+    //   url: '',
+    //   title,
+    //   txt,
+
 		setNoteToEdit(prevNote => ({ ...prevNote.info, [field]: value }))
 	}
 
   function onSaveNote(ev) {
 		ev.preventDefault()
 
-		noteService
-			.save(noteToEdit)
-			.then(() => {
-				navigate('/note')
-				showSuccessMsg(`Note successfully Added! ${noteToEdit.id}`)
-			})
-			.catch((err) => console.log('err:', err))
+    onAddNote(noteToEdit)
 	}
 
   function onSetCollapse() {
@@ -85,7 +85,7 @@ export function AddNote() {
       name="txt"
       id='txt'
       />
-      <button className="btn btn-notes-actions btn-close" disabled={!noteToEdit.title}>Close</button>
+      <button className="btn btn-notes-actions btn-close">Close</button>
       </form>
       <div className="actions">
         {/* <button className="btn btn-notes-actions btn-bgc-options"><i className="ri-palette-line"></i></button>
