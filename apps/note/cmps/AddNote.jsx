@@ -6,12 +6,11 @@ import { noteService } from '../services/note.service.js'
 
 export function AddNote({ onAddNote }) {
   const empty = noteService.getEmptyNote()
-  console.log('empty:', empty)
   const emptyInfo = noteService.getEmptyNote().info
-  console.log('emptyInfo:', emptyInfo)
+
   const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
   const [infoToEdit, setInfoToEdit] = useState(noteService.getEmptyNote().info)
-  const {isExpand, setIsExpand} = useState(false)
+  const [isExpanded, setExpanded] = useState(false)
 
   const navigate = useNavigate()
   const params = useParams()
@@ -56,8 +55,8 @@ export function AddNote({ onAddNote }) {
     onAddNote(noteToEdit)
 	}
 
-  function onSetCollapse() {
-    setIsExpand(isExpand => !isExpand)
+  function handleExpanded() {
+    setExpanded(isExpanded => !isExpanded)
   }
   
   // const { title, txt } = noteToEdit.info
@@ -65,6 +64,7 @@ export function AddNote({ onAddNote }) {
   return (
     <section className="add-note">
       <form onSubmit={onSaveNote}>
+      {isExpanded && (
       <input
       onChange={handleChange}
       type="text"
@@ -73,9 +73,11 @@ export function AddNote({ onAddNote }) {
       name="title"
       id="title"
       />
+      )}
 
       <input
       onChange={handleChange}
+      onClick={handleExpanded}
       type="text"
       value={noteToEdit.txt}
       placeholder="Take a note..."
