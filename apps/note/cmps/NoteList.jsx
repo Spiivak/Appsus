@@ -5,9 +5,9 @@ const { Link } = ReactRouterDOM
 export function NoteList({ notes, onRemoveNote }) {
     // if(!notes) return <div>Loading...</div>
 	return (
-		<ul className="note-list clean-list flex">
+		<ul className="note-list clean-list">
 			{notes.map((note) => (
-            <li key={note.id}>
+            <li className="note-preview-wrapper" key={note.id}>
 					<NotePreview note={note} onRemoveNote={onRemoveNote} />
 			</li>
                 )
@@ -15,3 +15,4 @@ export function NoteList({ notes, onRemoveNote }) {
 		</ul>
 	)
 }
+

@@ -3,6 +3,7 @@ const { useNavigate, useParams } = ReactRouterDOM
 
 import { showSuccessMsg } from '../../../services/event-bus.service.js'
 import { noteService } from '../services/note.service.js'
+import { NoteTxt } from './NoteTxt.jsx'
 
 export function AddNote({ onAddNote }) {
   const empty = noteService.getEmptyNote()
@@ -10,7 +11,8 @@ export function AddNote({ onAddNote }) {
 
   const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
   const [infoToEdit, setInfoToEdit] = useState(noteService.getEmptyNote().info)
-  const [isExpanded, setExpanded] = useState(false)
+  // const [isExpanded, setExpanded] = useState(false)
+  const [type, setType] = useState(noteService.getEmptyNote().type)
 
   const navigate = useNavigate()
   const params = useParams()
@@ -59,41 +61,47 @@ export function AddNote({ onAddNote }) {
     setExpanded(isExpanded => !isExpanded)
   }
   
-  // const { title, txt } = noteToEdit.info
-
   return (
-    <section className="add-note">
-      <form onSubmit={onSaveNote}>
-      {isExpanded && (
-      <input
-      onChange={handleChange}
-      type="text"
-      value={noteToEdit.title}
-      placeholder="Title"
-      name="title"
-      id="title"
-      />
-      )}
+    <React.Fragment>
+      <section>
+        <div className="title"></div>
+        <div className="add-note"></div>
+        <div className="notes-actions"></div>
+      </section>
 
-      <input
-      onChange={handleChange}
-      onClick={handleExpanded}
-      type="text"
-      value={noteToEdit.txt}
-      placeholder="Take a note..."
-      name="txt"
-      id='txt'
-      />
-      <button className="btn btn-notes-actions btn-close">Close</button>
-      </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section className="add-note">
+      <div className="add-note-actions">
+      <NoteTxt noteToEdit={noteToEdit} onSaveNote={onSaveNote} handleChange={handleChange} type={type} setType={setType} />
       <div className="actions">
-        {/* <button className="btn btn-notes-actions btn-bgc-options"><i className="ri-palette-line"></i></button>
+        <button className="btn btn-notes-actions btn-bgc-options"><i className="ri-palette-line"></i></button>
         <button className="btn btn-notes-actions btn-add-image"><i className="ri-image-add-line"></i></button>
         <button className="btn btn-notes-actions  btn-archive"><i className="ri-inbox-archive-line"></i></button>
         <button className="btn btn-notes-actions btn-more"><i className="ri-more-2-line"></i></button>
         <button className="btn btn-notes-actions btn-undo"><i className="ri-arrow-go-back-line"></i></button>
-        <button className="btn btn-notes-actions btn-redo"><i className="ri-arrow-go-forward-line"></i></button> */}
+        <button className="btn btn-notes-actions btn-redo"><i className="ri-arrow-go-forward-line"></i></button>
       </div>
+      </div>
+
     </section>
+    </React.Fragment>
   )
 }

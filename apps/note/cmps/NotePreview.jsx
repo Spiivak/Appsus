@@ -6,8 +6,8 @@ export function NotePreview({ note, onRemoveNote }) {
 
   // const {txt, title} = note
 	return (
-		<article className="note-preview flex column space-between">
-      <h1>{note.info.txt}</h1>
+		<article className="note-preview">
+      {renderNoteContent(note)}
 			<button
 				className="btn btn-remove-book"
 				onClick={() => onRemoveNote(note.id)}
@@ -17,3 +17,31 @@ export function NotePreview({ note, onRemoveNote }) {
 		</article>
 	)
 }
+
+function renderNoteContent(note) {
+  const { type, info } = note
+
+  switch (type) {
+    case 'txt':
+      return <NoteTxt />
+    case 'img':
+      return <NoteImg />
+    case 'video':
+      return <NoteVideo/>
+    case 'todos':
+      return (
+        <ul>
+          {info.todos.map((todo, index) => (
+            <li key={index}>
+              <input type="checkbox" checked={todo.doneAt} readOnly />
+              <span>{todo.txt}</span>
+            </li>
+          ))}
+        </ul>
+      )
+    // Add cases for other types
+    default:
+      return null
+  }
+}
+

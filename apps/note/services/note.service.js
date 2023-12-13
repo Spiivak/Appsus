@@ -45,7 +45,7 @@ function getDefaultFilter() {
 function getEmptyNote(title = '', txt = '') {
   return {
     createAt: '',
-    type: '',
+    type: 'txt',
     isPinned: '',
     style: {
       backgroundColor: '#00d'
@@ -72,7 +72,7 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         createAt: '',
-        type: '',
+        type: 'txt',
         isPinned: '',
         style: {
           backgroundColor: '#00d'
@@ -92,7 +92,7 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         createAt: '',
-        type: '',
+        type: 'txt',
         isPinned: '',
         style: {
           backgroundColor: '#00d'
@@ -112,7 +112,7 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         createAt: '',
-        type: '',
+        type: 'txt',
         isPinned: '',
         style: {
           backgroundColor: '#00d'
@@ -132,7 +132,7 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         createAt: '',
-        type: '',
+        type: 'txt',
         isPinned: '',
         style: {
           backgroundColor: '#00d'
@@ -152,7 +152,7 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         createAt: '',
-        type: '',
+        type: 'txt',
         isPinned: '',
         style: {
           backgroundColor: '#00d'
