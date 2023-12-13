@@ -14,6 +14,10 @@ header {
 nav a {
     margin: .5em;
 }
+
+nav a:first-of-type {
+    margin-block-start: 0;
+}
 /* #root > header.app-header.full > div.center > input[type=search] */
 
 .center {

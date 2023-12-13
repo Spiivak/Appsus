@@ -3,6 +3,8 @@ const { Link, NavLink } = ReactRouterDOM
 export function AppAsideToolBar() {
     return (
         <aside className="app-aside-tool-bar">
+            <button className="btn btn-bars"><i className="fa-solid fa-bars"></i></button>
+
             <div className="grid justify-center align-center">
                 <button className="btn btn-compose"><i className="fa-regular fa-pen-to-square"></i></button>
                 <button className="btn btn-inbox"><i className="fa-solid fa-inbox"></i></button>

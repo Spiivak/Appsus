@@ -22,9 +22,8 @@ export function App() {
 
     return (
     <Router>
-            <AppHeader onAppChange={handleAppChange}/>
-            <AppAsideToolBar />
-            <AppAsideNav />
+            {/* <AppHeader onAppChange={handleAppChange}/> */}
+            {/* <AppAsideToolBar /> */}
             {/* <AsideActions /> */}
             {/* <AsideApps /> */}
             <main>
@@ -37,6 +36,7 @@ export function App() {
                     <Route path="/note" element={<NoteIndex />} />
                 </Routes>
             </main>
+            <AppAsideNav />
     </Router>
     )
 }

@@ -1,12 +1,12 @@
 body {
+    /* display: grid; */
     margin: 0;
     background: var(--main-clr);
 }
 
 main {
-    grid-column: 2;
-    display: grid;
-    align-content: stretch;
+    /* display: grid; */
+    /* align-content: stretch; */
     background-color: white;
     border-radius: 16px;
     margin-bottom: 16px;

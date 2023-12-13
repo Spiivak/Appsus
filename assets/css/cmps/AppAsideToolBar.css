@@ -2,7 +2,7 @@
 
 .app-aside-tool-bar {
     grid-column: 1;
-    grid-row: 2 / 4;
+    grid-row: 1 / 4;
     justify-content: start;
     padding: 20px 0;
 
@@ -16,4 +16,8 @@
 
 .app-aside-tool-bar button:hover {
     height: 2rem;
+}
+
+.app-aside-tool-bar .btn-bars {
+    padding-block-end: 8px;
 }
