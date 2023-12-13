@@ -26,9 +26,7 @@ export function AddNote({ onAddNote }) {
   function handleChange({ target }) {
 		// console.log('handleChange  target:', target)
 		const field = target.name
-		console.log('handleChange  field:', field)
 		let value = target.value
-		console.log('handleChange  value:', value)
 
 		switch (target.type) {
 			case 'number':
@@ -49,7 +47,6 @@ export function AddNote({ onAddNote }) {
 	}
 
   function onSaveNote(ev) {
-    console.log('noteToEdit:', noteToEdit)
 		ev.preventDefault()
 
     onAddNote(noteToEdit)
@@ -60,7 +57,6 @@ export function AddNote({ onAddNote }) {
   }
   
   // const { title, txt } = noteToEdit.info
-  console.log('AddNote  noteToEdit:', noteToEdit)
 
   return (
     <section className="add-note">
@@ -82,7 +78,7 @@ export function AddNote({ onAddNote }) {
       name="txt"
       id='txt'
       />
-      <button className="btn btn-notes-actions btn-close" disabled={!noteToEdit.title}>Close</button>
+      <button className="btn btn-notes-actions btn-close">Close</button>
       </form>
       <div className="actions">
         {/* <button className="btn btn-notes-actions btn-bgc-options"><i className="ri-palette-line"></i></button>

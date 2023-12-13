@@ -30,6 +30,7 @@ export function NoteIndex() {
 	}
 
     function onAddNote(noteToEdit) {
+        console.log('onAddNote  noteToEdit:', noteToEdit)
         noteService
         .save(noteToEdit)
         .then(() => {
