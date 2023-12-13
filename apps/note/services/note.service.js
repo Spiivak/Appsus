@@ -42,7 +42,7 @@ function getDefaultFilter() {
   return { pinned: '' }
 }
 
-function getEmptyNote({ title = '', txt = ''} = {}) {
+function getEmptyNote(title = '', txt = '') {
   return {
     createAt: '',
     type: '',

@@ -6,7 +6,7 @@ export function NotePreview({ note, onRemoveNote }) {
 
   // const {txt, title} = note
 	return (
-		<article className="note-preview">
+		<article className="note-preview flex column space-between">
       <h1>{note.info.txt}</h1>
 			<button
 				className="btn btn-remove-book"

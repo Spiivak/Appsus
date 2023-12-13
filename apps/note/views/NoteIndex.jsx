@@ -1,4 +1,5 @@
 const { useState, useEffect } = React
+import { AddNote } from "../cmps/AddNote.jsx";
 // import { AddNote } from "../cmps/AddNote.jsx";
 import { NoteList } from "../cmps/NoteList.jsx";
 import { noteService } from "../services/note.service.js";
@@ -30,7 +31,7 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             <React.Fragment>
-
+            <AddNote />
             <NoteList notes={notes} onRemoveNote={onRemoveNote} />
             </React.Fragment>
         </section>
