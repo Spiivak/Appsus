@@ -1,8 +1,8 @@
 
-export function MailPreview({ mail }) {
+export function MailPreview({ mail, onRemoveMail }) {
     return (
         <article className="mail-preview">
-            <button className="">star</button>
+            <button className="btn btn-starred"><i className="fa-regular fa-star"></i></button>
             <span className="mail-from">{mail.from}</span>
             <section>
                 <span className="mail-subject">{mail.subject}</span>

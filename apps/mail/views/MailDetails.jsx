@@ -51,7 +51,7 @@ export function MailDetails() {
 
     if (!mail) return <div>Loading...</div>
 
-    console.log('mail:', mail)
+    // console.log('mail:', mail)
     return (
         <section className="mail-details">
             <section className="actions-section">
