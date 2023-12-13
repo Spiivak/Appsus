@@ -17,13 +17,13 @@ export function AppAsideToolBar() {
                 <button className="btn btn-trash"><i className="ri-delete-bin-line"></i></button>
 
                 {/* More Categories */}
-                <button className="btn btn-categories"><i class="ri-window-line"></i></button>
-                <button className="btn btn-social"><i class="ri-user-line"></i></button>
-                <button className="btn btn-updates"><i class="ri-error-warning-line"></i></button>
+                <button className="btn btn-categories"><i className="ri-window-line"></i></button>
+                <button className="btn btn-social"><i className="ri-user-line"></i></button>
+                <button className="btn btn-updates"><i className="ri-error-warning-line"></i></button>
 
                 {/* rest */}
-                <button className="btn btn-manage-labels"><i class="ri-settings-2-line"></i></button>
-                <button className="btn btn-create-label"><i class="ri-add-line"></i></button>
+                <button className="btn btn-manage-labels"><i className="ri-settings-2-line"></i></button>
+                <button className="btn btn-create-label"><i className="ri-add-line"></i></button>
             </div>
         </aside>
     )
