@@ -1,0 +1,39 @@
+.mail-preview:hover {
+    box-shadow: 0px 0px 2px 0px
+}
+
+.mail-preview {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: auto 200px 1fr auto;
+    align-items: center;
+}
+
+.mail-preview > * {
+    padding: 10px;
+}
+
+.mail-preview button {
+    height: 20px;
+    width: 20px;
+    margin-inline-start: 10px;
+}
+
+.mail-preview .mail-sentAt {
+    justify-self: end;
+    padding-inline-end: 20px;
+}
+
+.mail-preview .mail-subject {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+.mail-preview .mail-body {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    /* display: inline-block; */
+    /* max-width: 100%; */
+}

@@ -1,5 +1,7 @@
 import { mailService } from '../services/mail.service.js'
 import { MailList } from "../cmps/MailList.jsx"
+import { MailAsideToolBar } from "../cmps/MailAsideToolBar.jsx"
+import { MailHeader } from '../cmps/MailHeader.jsx'
 
 const { Link, useNavigate, useSearchParams } = ReactRouterDOM
 
@@ -50,6 +52,8 @@ export function MailIndex() {
 
     return (
         <section className="mail-index">
+            {/* <MailHeader/> */}
+            {/* <MailAsideToolBar/> */}
             <MailList mails={mails} onRemoveMail={onRemoveMail} onOpenDetails={onOpenDetails}/>
         </section>
     )
