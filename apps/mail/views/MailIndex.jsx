@@ -1,11 +1,15 @@
 import { mailService } from '../services/mail.service.js'
 import { MailList } from "../cmps/MailList.jsx"
 
-const { Link, useSearchParams } = ReactRouterDOM
+const { Link, useNavigate, useSearchParams } = ReactRouterDOM
+
 const { useState, useEffect } = React
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
+    const [searchParams, setSearchParams] = useSearchParams()
+    const navigate = useNavigate()
+
     // const [filterBy, setFilterBy] = useState(bookService.getFilterFromQueryString(searchParams))
 
     useEffect(() => {
@@ -38,12 +42,15 @@ export function MailIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    function onOpenDetails(mailId) {
+        navigate(`/mail/${mailId}`)
+    }
+
     if (!mails) return <div>Loading...</div>
 
     return (
         <section className="mail-index">
-            <h1>Welcome to Mail index!</h1>
-            <MailList mails={mails} onRemoveMail={onRemoveMail}/>
+            <MailList mails={mails} onRemoveMail={onRemoveMail} onOpenDetails={onOpenDetails}/>
         </section>
     )
 }
