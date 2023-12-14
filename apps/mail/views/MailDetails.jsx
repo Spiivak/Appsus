@@ -19,7 +19,10 @@ export function MailDetails() {
     function loadMail() {
         // mailService.get(mailId)
         mailService.get(params.mailId)
-            .then(mail => setMail(mail))
+            .then(mail => {
+                setMail(mail)
+                setMailIsRead(mail)
+            })
             .catch(error => {
                 console.log('error:', error)
                 navigate('/mail')
@@ -47,6 +50,12 @@ export function MailDetails() {
 
     function onBack() {
         navigate('/mail')
+    }
+
+    function setMailIsRead(mail) {
+        if (mail.isRead) return
+        mail.isRead = !mail.isRead
+        mailService.save(mail)
     }
 
     if (!mail) return <div>Loading...</div>

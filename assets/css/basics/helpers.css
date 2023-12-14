@@ -22,6 +22,9 @@
     display: grid;
 }
 
+.grid.column {
+    grid-auto-flow: column;
+}
 
 /* LIST */
 

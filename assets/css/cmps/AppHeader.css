@@ -20,26 +20,7 @@ nav a:first-of-type {
 }
 /* #root > header.app-header.full > div.center > input[type=search] */
 
-.center {
-    background-color: #EAF1FB;
-    height: 48px;
-    width: 720px;
-    border-radius: 50px;
 
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-
-}
-.center > input[type=search] {
-    background-color: #EAF1FB;
-    width: 580px;
-    height: 20px;
-    border-radius: 50px;
-    border: 0;
-
-    padding: 16px;
-}
 
 .btn-search {
     width: 48px;

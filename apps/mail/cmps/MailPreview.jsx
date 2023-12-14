@@ -13,13 +13,14 @@ export function MailPreview({ mail, onRemoveMail, isSent }) {
         formattedSentAt = utilService.getFormattedDate(sentDate)
     }
 
-    const dynClass = (!mail.isRead) ? 'un-read' : ''
+    const dynClassTxt = (!mail.isRead) ? 'un-read-txt' : ''
+    const dynClassBgc = (!mail.isRead) ? 'un-read-bgc' : ''
 
     return (
-        <article className="mail-preview">
+        <article className={`mail-preview ${dynClassBgc}`}>
             <button className="btn btn-starred"><i className="fa-regular fa-star"></i></button>
             {!isSent &&
-                <span className={`mail-from ${dynClass}`}>
+                <span className={`mail-from ${dynClassTxt}`}>
                     {mail.from}
                 </span>
             }
@@ -27,12 +28,12 @@ export function MailPreview({ mail, onRemoveMail, isSent }) {
                 <span className="mail-from">{`To: ${mail.to}`}</span>
             }
             <section>
-                <span className={`mail-subject ${dynClass}`}>
+                <span className={`mail-subject ${dynClassTxt}`}>
                     {`${mail.subject} `}
                 </span>
                 <span className="mail-body">{mail.body}</span>
             </section>
-            <span className="mail-sentAt">{formattedSentAt}</span>
+            <span className={`mail-sentAt ${dynClassTxt}`}>{formattedSentAt}</span>
         </article >
     )
 }
