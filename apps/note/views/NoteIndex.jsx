@@ -3,17 +3,25 @@ import { AddNote } from "../cmps/AddNote.jsx";
 // import { AddNote } from "../cmps/AddNote.jsx";
 import { NoteList } from "../cmps/NoteList.jsx";
 import { noteService } from "../services/note.service.js";
-import { showSuccessMsg } from '../../../services/event-bus.service.js'
+import { eventBusService, showSuccessMsg } from '../../../services/event-bus.service.js'
 import { NoteAsideToolBar } from "../cmps/NoteAsideToolBar.jsx";
 import { NoteHeader } from "../cmps/NoteHeader.jsx";
 
 
 export function NoteIndex() {
     const [notes, setNotes] = useState(null)
+    const [filterBy, setFilterBy] = useState(null)
+
+    useEffect(() => {
+        const unsubscribe = eventBusService.on('load-notes', loadNotes)
+        return () => {
+            unsubscribe()
+        } 
+    },[])
 
     useEffect(() => {
         loadNotes()
-    }, [])
+    }, [filterBy])
 
     function loadNotes() {
         noteService.query()

@@ -4,6 +4,7 @@ const { Link } = ReactRouterDOM
 
 export function NoteList({ notes, onRemoveNote }) {
     // if(!notes) return <div>Loading...</div>
+		if(!notes || !notes.length) return <h2 className="loading-msg">Loading...</h2>
 	return (
 		<ul className="note-list clean-list">
 			{notes.map((note) => (
