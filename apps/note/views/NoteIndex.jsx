@@ -48,8 +48,10 @@ export function NoteIndex() {
             <React.Fragment>
                 <NoteHeader />
                 <NoteAsideToolBar />
-                <AddNote onAddNote={onAddNote} />
-                <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+                <section>
+                    <AddNote onAddNote={onAddNote} />
+                    <NoteList notes={notes} onRemoveNote={onRemoveNote} />
+                </section>
             </React.Fragment>
         </section>
     )
