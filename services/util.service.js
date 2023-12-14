@@ -6,6 +6,11 @@ export const utilService = {
     padNum,
     getDayName,
     getMonthName,
+    getFormattedDate,
+    getFormattedTime,
+    getFormattedDayMpnth,
+    isSameDay, 
+    isSameYear,
 }
 
 function makeId(length = 6) {
@@ -60,3 +65,38 @@ function getMonthName(date) {
     ]
     return monthNames[date.getMonth()]
 }
+
+function getFormattedDate(timestamp) {
+    const dateFormatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: '2-digit', year: '2-digit' })
+    return dateFormatter.format(timestamp)
+}
+
+function getFormattedTime(timestamp) {
+    const dateFormatter = new Intl.DateTimeFormat('en-GB', { hour: 'numeric', minute: 'numeric' })
+    return dateFormatter.format(timestamp)
+}
+
+function getFormattedDayMpnth(timestamp) {
+    const dateFormatter = new Intl.DateTimeFormat('en-GB', { day: '2-digit', month: 'short' })
+    return dateFormatter.format(timestamp)
+}
+
+function isSameDay(date1, date2) {
+    const date1Date = new Date(date1)
+    const date2Date = new Date(date2)
+    return (
+        date1Date.getFullYear() === date2Date.getFullYear() &&
+        date1Date.getMonth() === date2Date.getMonth() &&
+        date1Date.getDate() === date2Date.getDate()
+    )
+}
+
+function isSameYear (date1, date2) {
+    const date1Date = new Date(date1)
+    const date2Date = new Date(date2)
+
+    return date1Date.getFullYear() === date2Date.getFullYear()
+}
+
+
+// getFormattedDate(new Date())

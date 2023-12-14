@@ -78,7 +78,7 @@ function _createMails() {
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
-                sentAt: 1551133930594,
+                sentAt: 1702534778460,
                 removedAt: null,
                 from: 'momo@momo.com',
                 to: 'user@appsus.com'
@@ -88,7 +88,7 @@ function _createMails() {
                 subject: 'Hello you!',
                 body: 'How have you been?',
                 isRead: false,
-                sentAt: 1551533930594,
+                sentAt: 1701532778460,
                 removedAt: null,
                 from: 'popo@momo.com',
                 to: 'user@appsus.com'
