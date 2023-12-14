@@ -1,9 +1,14 @@
-
-export function NotesImage({ note, file }) {
+export function NoteImg({note}) {
 	return (
-		<React.Fragment>
-			<h1>{note.info.title}</h1>
-			<img src={file}/>
-		</React.Fragment>
+		<article 
+		className="note-img"
+		style={
+			{backgroundColor: note.style.backgroundColor}
+		}
+		>
+			{note.info.title && <p className="note-title">{note.info.title}</p>}
+				<img className="note-content" src={note.info.url} />
+		</article>
 	)
 }
+
