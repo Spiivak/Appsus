@@ -171,13 +171,7 @@ function _createNotes() {
       },
       
     ]
-    // notes.push(_createNote({ id: '0', title: 'Home', txt: 'Take a walk.' }))
-    // notes.push(_createNote({ id: '1', title: 'Meeting', txt: 'Prepare agenda.' }))
-    // notes.push(_createNote({ id: '2', title: 'Shopping', txt: 'Buy groceries.' }))
-    // notes.push(_createNote({ id: '3', title: 'Exercise', txt: 'Go for a run.' }))
-    // notes.push(_createNote({ id: '4', title: 'Book', txt: 'Read a chapter.' }))
-    // notes.push(_createNote({ id: '5', title: 'Project', txt: 'Work on project tasks.' }))
-    localStorageService.saveToStorage(NOTE_KEY, notes)
+        localStorageService.saveToStorage(NOTE_KEY, notes)
   }
 }
 
