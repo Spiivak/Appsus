@@ -7,7 +7,7 @@ import { MailAsideToolBar } from "../cmps/MailAsideToolBar.jsx"
 import { MailHeader } from '../cmps/MailHeader.jsx'
 import { MailAdd } from "../cmps/MailAdd.jsx"
 
-const { useNavigate, useSearchParams } = ReactRouterDOM
+const { useNavigate, useSearchParams, useParams, Outlet } = ReactRouterDOM
 const { useState, useEffect } = React
 
 export function MailIndex() {
@@ -16,11 +16,12 @@ export function MailIndex() {
 
     const [isAdd, setIsAdd] = useState(false)
     const [isSent, setIsSent] = useState(false)
-    const [isPreview, setIsPreview] = useState(false)
+    // const [isPreview, setIsPreview] = useState(false)
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromQueryString(searchParams))
     const navigate = useNavigate()
+    const params = useParams()
 
     useEffect(() => {
         loadMails()
@@ -92,7 +93,7 @@ export function MailIndex() {
 
     function onOpenDetails(mailId) {
         setIsSent(false)
-        setIsPreview(true)
+        // setIsPreview(true)
         setMailId(mailId)
         navigate(`/mail/${mailId}`)
     }
@@ -131,7 +132,7 @@ export function MailIndex() {
                 onChangeToSentMails={onChangeToSentMails}
             />
 
-            {!isSent && !isPreview &&
+            {!isSent && !params.mailId && 
                 <MailList
                     mails={mails}
                     onRemoveMail={onRemoveMail}
@@ -139,15 +140,15 @@ export function MailIndex() {
                     onOpenDetails={onOpenDetails}
                     onSetReadFilter={onSetReadFilter}
                 />}
-            {isSent && !isPreview &&
+            {isSent &&
                 <MailSent
                     mails={mails}
                     onRemoveMail={onRemoveMail}
                     onOpenDetails={onOpenDetails}
                     onChangeToSentMails
                 />}
-            {isPreview && !isSent && mailId &&
-                <MailDetails mailId={mailId} />
+            {!isSent && params.mailId &&
+                <Outlet />
             }
             {isAdd &&
                 <MailAdd

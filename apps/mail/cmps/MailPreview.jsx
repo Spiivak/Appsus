@@ -73,10 +73,10 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMarkRead }) {
                 <span className="mail-from">{`To: ${mail.to}`}</span>
             }
             <section>
-                <span className={`mail-subject ${dynClassTxt}`}>
+                <p className={`mail-subject ${dynClassTxt}`}>
                     {`${mail.subject} `}
-                </span>
-                <span className="mail-body">{mail.body}</span>
+                </p>
+                <p className="mail-body">{mail.body}</p>
             </section>
             <span className={`mail-sentAt ${dynClassTxt}`}>{displayedContent}</span>
             {/* <span className={`mail-sentAt ${dynClassTxt}`}>{formattedSentAt}</span> */}

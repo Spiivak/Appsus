@@ -109,7 +109,7 @@ function _createMails() {
         const mails = [
             {
                 id: 'e101',
-                subject: 'Coding Rocks!',
+                subject: 'Coding Rocks! Coding Rocks! Coding Rocks!',
                 body: utilService.makeLorem(10),
                 isRead: false,
                 sentAt: 1702534778460,
@@ -132,7 +132,7 @@ function _createMails() {
                 subject: 'Need you help!',
                 body: utilService.makeLorem(10),
                 isRead: false,
-                sentAt: 1551133830594,
+                sentAt: 1701232778460,
                 removedAt: null,
                 from: 'koko@momo.com',
                 to: 'user@appsus.com'
@@ -152,7 +152,7 @@ function _createMails() {
                 subject: 'We are going to have the best project!',
                 body: 'Eden and Noam are going to have the best project',
                 isRead: true,
-                sentAt: 1531133930594,
+                sentAt: 1701332778460,
                 removedAt: null,
                 from: 'kiki@momo.com',
                 to: 'user@appsus.com'
@@ -192,7 +192,7 @@ function _createMails() {
                 subject: 'We Rock!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
-                sentAt: 1541133930594,
+                sentAt: 1651332778460,
                 removedAt: null,
                 from: 'nono@momo.com',
                 to: 'user@appsus.com'
@@ -202,7 +202,7 @@ function _createMails() {
                 subject: 'We are going to Vienna!',
                 body: 'Eden and Noam are going to have the best project',
                 isRead: false,
-                sentAt: 1531133930594,
+                sentAt: 1671332778460,
                 removedAt: null,
                 from: 'kiki@momo.com',
                 to: 'user@appsus.com'
@@ -212,7 +212,7 @@ function _createMails() {
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
-                sentAt: 1702534778460,
+                sentAt: 1681332778460,
                 removedAt: null,
                 from: 'momo@momo.com',
                 to: 'user@appsus.com'
@@ -222,7 +222,7 @@ function _createMails() {
                 subject: 'Hello you!',
                 body: utilService.makeLorem(11),
                 isRead: false,
-                sentAt: 1701532778460,
+                sentAt: 1691332778460,
                 removedAt: null,
                 from: 'popo@momo.com',
                 to: 'user@appsus.com'
@@ -232,7 +232,7 @@ function _createMails() {
                 subject: 'Need you help!',
                 body: 'Would love to catch up sometimes',
                 isRead: true,
-                sentAt: 1551233830594,
+                sentAt: 1655332778460,
                 removedAt: null,
                 from: 'koko@momo.com',
                 to: 'user@appsus.com'
@@ -242,7 +242,7 @@ function _createMails() {
                 subject: 'We Rock!',
                 body: 'Would love to catch up sometimes',
                 isRead: false,
-                sentAt: 1521133930594,
+                sentAt: 1657332778460,
                 removedAt: null,
                 from: 'nono@momo.com',
                 to: 'user@appsus.com'
