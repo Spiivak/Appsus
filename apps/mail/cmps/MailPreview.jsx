@@ -1,27 +1,38 @@
 import { utilService } from '../../../services/util.service.js'
 const { useState } = React
 
-export function MailPreview({ mail, onRemoveMail, isSent }) {
+export function MailPreview({ mail, onRemoveMail, isSent, onMarkRead }) {
     const [isHovered, setIsHovered] = useState(false)
 
     const sentDate = new Date(mail.sentAt)
-    let formattedSentAt
+    // let formattedSentAt
     let displayedContent
 
     if (isHovered) {
         displayedContent = (
-            <div>
-                <button className="btn" onClick={() => handleButtonClick1()}><i className="ri-delete-bin-line"></i></button>
-                <button className="btn" onClick={() => handleButtonClick2()}>Button 2</button>
+            <div className="actions-container">
+                <button 
+                    className="btn"
+                    onClick={onDeleteBtn}
+                    >
+                    <i className=" ri-delete-bin-line"></i>
+                </button>
+                <button 
+                    className="btn"
+                    onClick={onMarkReadBtn}
+                    >
+                    <i className=" fa-solid fa-envelope-circle-check"></i>
+                </button>
+
             </div>
         )
     } else {
         if (utilService.isSameDay(Date.now(), sentDate)) {
-            formattedSentAt = utilService.getFormattedTime(sentDate)
+            displayedContent = utilService.getFormattedTime(sentDate)
         } else if (utilService.isSameYear(Date.now(), sentDate)) {
-            formattedSentAt = utilService.getFormattedDayMpnth(sentDate)
+            displayedContent = utilService.getFormattedDayMpnth(sentDate)
         } else {
-            formattedSentAt = utilService.getFormattedDate(sentDate)
+            displayedContent = utilService.getFormattedDate(sentDate)
         }
     }
 
@@ -36,12 +47,14 @@ export function MailPreview({ mail, onRemoveMail, isSent }) {
         setIsHovered(false)
     }
 
-    const handleButtonClick1 = () => {
-        // Handle button 1 click
+    function onDeleteBtn(ev)  {
+        ev.stopPropagation()
+        onRemoveMail(mail.id)
     }
 
-    const handleButtonClick2 = () => {
-        // Handle button 2 click
+    function onMarkReadBtn(ev)  {
+        ev.stopPropagation()
+        onMarkRead(mail.id)
     }
 
     return (
@@ -65,8 +78,8 @@ export function MailPreview({ mail, onRemoveMail, isSent }) {
                 </span>
                 <span className="mail-body">{mail.body}</span>
             </section>
-            {/* <span className={`mail-sentAt ${dynClassTxt}`}>{displayContent}</span> */}
-            <span className={`mail-sentAt ${dynClassTxt}`}>{formattedSentAt}</span>
+            <span className={`mail-sentAt ${dynClassTxt}`}>{displayedContent}</span>
+            {/* <span className={`mail-sentAt ${dynClassTxt}`}>{formattedSentAt}</span> */}
         </article >
     )
 }

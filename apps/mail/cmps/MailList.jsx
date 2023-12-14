@@ -3,7 +3,7 @@ import { MailPreview } from "./MailPreview.jsx"
 const { Link } = ReactRouterDOM
 
 
-export function MailList({ mails, onRemoveMail, onOpenDetails }) {
+export function MailList({ mails, onRemoveMail, onOpenDetails, onMarkRead }) {
     // console.log('mails:', mails)
     const sortedMails = [...mails].sort((a, b) => b.sentAt - a.sentAt)
 
@@ -15,7 +15,7 @@ export function MailList({ mails, onRemoveMail, onOpenDetails }) {
             {/* <section className="mails-container"> */}
                 {sortedMails.map((mail) =>
                     <article key={mail.id} className="mail-item" onClick={() => onOpenDetails(mail.id)}>
-                        <MailPreview mail={mail} onRemoveMail={onRemoveMail} isSent={false} />
+                        <MailPreview mail={mail} onRemoveMail={onRemoveMail} isSent={false} onMarkRead={onMarkRead}/>
                     </article>
                 )}
             {/* </section> */}
