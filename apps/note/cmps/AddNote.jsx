@@ -68,7 +68,7 @@ export function AddNote({ onAddNote }) {
 	}
 
 	return (
-		<React.Fragment>
+		<section className="add-note">
 			<section className="txt-container flex column justify-center align-center">
           <h2>Add Text Notes</h2>
 				<div className="title-input">
@@ -152,6 +152,6 @@ export function AddNote({ onAddNote }) {
 					</div>
 				</div>
 			</section>
-		</React.Fragment>
+		</section>
 	)
 }

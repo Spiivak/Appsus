@@ -38,4 +38,5 @@
 
 @import url('./apps/note/cmps/AddNote.css');
 @import url('./apps/note/cmps/NoteList.css');
+@import url('./apps/note/cmps/NoteHeader.css');
 @import url('./apps/note/cmps/NotePreview.css');
