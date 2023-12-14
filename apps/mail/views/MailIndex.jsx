@@ -4,7 +4,7 @@ import { utilService } from '../../../services/util.service.js'
 import { MailList } from "../cmps/MailList.jsx"
 import { MailSent } from "../cmps/MailSent.jsx"
 import { MailDetails } from "../cmps/MailSent.jsx"
-import { MailAsideToolBar } from "../views/MailAsideToolBar.jsx"
+import { MailAsideToolBar } from "../cmps/MailAsideToolBar.jsx"
 import { MailHeader } from '../cmps/MailHeader.jsx'
 import { MailAdd } from "../cmps/MailAdd.jsx"
 
