@@ -7,6 +7,12 @@
     grid-auto-flow: column;
     grid-template-columns: auto 200px 1fr auto;
     align-items: center;
+    background-color: #f2f6fc;
+    box-shadow: rgba(100, 121, 143, 0.12) 0px -1px 0px 0px inset;
+}
+
+.mail-preview.un-read-bgc {
+    background-color: #fff;
 }
 
 .mail-preview > * {
@@ -42,11 +48,10 @@
 .mail-preview .mail-body {
     white-space: nowrap;
     overflow-x: hidden;
-    text-overflow: ellipsis;
-    /* display: inline-block; */
-    /* max-width: 100%; */
+    text-overflow: ellipsis; 
 }
 
-.mail-preview .un-read {
+
+.mail-preview .un-read-txt {
     font-weight: 700;
 }

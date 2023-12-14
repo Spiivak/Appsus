@@ -22,18 +22,23 @@ export const mailService = {
 function query(filterBy) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
-            if (filterBy && filterBy.to) {
+            if (filterBy.to) {
                 mails = mails.filter(mail => mail.to === filterBy.to)
-            } else if (filterBy && filterBy.from) {
+            } else if (filterBy.from) {
                 mails = mails.filter(mail => mail.from === filterBy.from)
             }
 
-            if (filterBy && filterBy.subject) {
-                const regex = new RegExp(filterBy.subject, 'i')
-                mails = mails.filter(mail => regex.test(mail.subject))
+            if (filterBy.filterBy.search) {
+                const regex = new RegExp(filterBy.filterBy.search, 'i')
+                mails = mails.filter(mail => (
+                    regex.test(mail.subject) ||
+                    regex.test(mail.from) ||
+                    regex.test(mail.to) ||
+                    regex.test(mail.body)
+                ))
             }
 
-            if (filterBy && filterBy.isRead !== undefined) {
+            if (filterBy.isRead !== undefined) {
                 mails = mails.filter(mail => mail.isRead === filterBy.isRead)
             }
 
@@ -41,12 +46,12 @@ function query(filterBy) {
         })
 }
 
-function getInboxMails(email) {
-    return query({ to: email });
+function getInboxMails({ filterBy, email }) {
+    return query({ filterBy, to: email });
 }
 
-function getSentMails(email) {
-    return query({ from: email });
+function getSentMails({ filterBy, email }) {
+    return query({ filterBy, from: email });
 }
 
 function get(mailId) {
@@ -78,14 +83,14 @@ function getEmptyMail(from = '', sentAt = null) {
 }
 
 function getDefaultFilter() {
-    return { subject: '', isRead: false }
+    return { search: '', isRead: false }
 }
 
 function getFilterFromQueryString(searchParams) {
-    const subject = searchParams.get('subject') || ''
+    const search = searchParams.get('search') || ''
     const isRead = searchParams.get('isRead') || ''
 
-    return { subject, isRead }
+    return { search, isRead }
 }
 
 function getLoggedInUser() {

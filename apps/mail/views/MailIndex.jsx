@@ -14,24 +14,25 @@ export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [isAdd, setIsAdd] = useState(false)
     const [isSent, setIsSent] = useState(false)
+    const [isPreview, setIsPreview] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
+    const [filterBy, setFilterBy] = useState(mailService.getFilterFromQueryString(searchParams))
     const navigate = useNavigate()
-    // const [filterBy, setFilterBy] = useState(mailService.getFilterFromQueryString(searchParams))
 
     useEffect(() => {
         loadMails()
-        // setSearchParams(filterBy)
-    }, [isSent])
-    // }, [filterBy])
+        setSearchParams(filterBy)
+    // }, [isSent])
+    }, [isSent, filterBy])
 
     function loadMails() {
         const { email } = mailService.getLoggedInUser()
         if (!isSent) {
-            mailService.getInboxMails(email)
+            mailService.getInboxMails({filterBy, email})
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
         } else {
-            mailService.getSentMails(email)
+            mailService.getSentMails({filterBy, email})
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
         }
@@ -53,9 +54,11 @@ export function MailIndex() {
 
     function onSetFilter(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
+        console.log('filterBy:', filterBy)
     }
 
     function onOpenDetails(mailId) {
+        setIsSent(false)
         navigate(`/mail/${mailId}`)
     }
 
@@ -85,25 +88,26 @@ export function MailIndex() {
 
     return (
         <section className="mail-index">
-            <MailHeader />
+            <MailHeader filterBy={filterBy} onSetFilter={onSetFilter}/>
             <MailAsideToolBar
                 onToggleAddMail={onToggleAddMail}
                 onChangeToInboxMails={onChangeToInboxMails}
                 onChangeToSentMails={onChangeToSentMails}
             />
-            {!isSent &&
+            {!isSent && !isPreview &&
                 <MailList
                     mails={mails}
                     onRemoveMail={onRemoveMail}
                     onOpenDetails={onOpenDetails}
                 />}
-            {isSent &&
+            {isSent && 
                 <MailSent
                     mails={mails}
                     onRemoveMail={onRemoveMail}
                     onOpenDetails={onOpenDetails}
                     onChangeToSentMails
                 />}
+            {isPreview}
             {isAdd &&
                 <MailAdd
                     onAddMail={onAddMail}

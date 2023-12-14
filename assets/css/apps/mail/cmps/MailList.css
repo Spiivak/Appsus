@@ -6,6 +6,10 @@
     grid-row: 2;
 }
 
+/* .mail-list .mails-container {
+    border: .2px solid black;
+} */
+
 .mail-list .mail-list-actions {
     height: 48px;
     border-radius: 16px;
