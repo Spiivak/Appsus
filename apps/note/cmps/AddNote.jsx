@@ -68,27 +68,55 @@ export function AddNote({ onAddNote }) {
 	}
 
 	return (
-		<section className="add-note">
+		// <section className="add-notes flex justify-center">
+		// 	<section>
+		// 		<div className="add-notes flex">
+		// 			<div className="txt-note" onClick={() => <AddTxtNote/>}>
+		// 			<p>Write a note...</p>
+		// 			</div>
+		// 			<button onClick={() => <AddTodosNote />}><i className="ri-checkbox-line"></i></button>
+		// 			<button onClick={() => <AddCanvasNote />}><i className="ri-brush-line"></i></button>
+		// 			<button onClick={() => <AddImageNote />}><i className="ri-image-add-line"></i></button>
+		// 		</div>
+		// 	</section>
+
+		<section className="add-note-container flex justify-center">
 			<section className="txt-container flex column justify-center align-center">
-          <h2>Add Text Notes</h2>
-				<div className="title-input">
+				<h2>Add Text Notes</h2>
+				<form onSubmit={onSaveNote} className="main-input flex justify-center align-center column">
+					<div className="title-section">
+
 					<AddTitleNote
 						noteToEdit={noteToEdit}
 						onSaveNote={onSaveNote}
 						handleChange={handleChange}
 						setType={setType}
-					/>
-				</div>
-				<div className="txt-inpurt">
+						/>
+						<button className='btn'><i class="ri-pushpin-2-line"></i></button>
+						</div>
 					<AddTxtNote
 						noteToEdit={noteToEdit}
 						onSaveNote={onSaveNote}
 						handleChange={handleChange}
 						setType={setType}
 					/>
+				<div className="notes-actions flex space-between align-center">
+					<div className="actions">
+					<button title="Background Options" className="btn"><i className="ri-palette-line"></i></button>
+					<button title="Add Image" className="btn"><i className="ri-image-add-line"></i></button>
+					<button title="Arvhice" className="btn"><i className="ri-inbox-archive-line"></i></button>
+					<button title="More" className="btn"><i className="ri-more-2-fill"></i></button>
+					<button title="Undo" className="btn"><i className="ri-arrow-go-back-line"></i></button>
+					<button title="Redo" className="btn"><i className="ri-arrow-go-forward-line"></i></button>
+					</div>
+					<div className="submit-btn">
+					<button className="btn">Submit</button>
+					</div>
 				</div>
-				<div className="notes-actions"></div>
+				</form>
 			</section>
+
+			{/* 
 
 			<section className="todos-container flex justify-center align-center column">
         <h2>Add Todos</h2>
@@ -138,20 +166,8 @@ export function AddNote({ onAddNote }) {
         <AddImageNote 
         />
         </div>
-      </section>
-
-			<section className="add-note">
-				<div className="add-note-actions">
-					<div className="actions">
-						{/* <button className="btn btn-notes-actions btn-bgc-options"><i className="ri-palette-line"></i></button>
-        <button className="btn btn-notes-actions btn-add-image"><i className="ri-image-add-line"></i></button>
-        <button className="btn btn-notes-actions  btn-archive"><i className="ri-inbox-archive-line"></i></button>
-        <button className="btn btn-notes-actions btn-more"><i className="ri-more-2-line"></i></button>
-        <button className="btn btn-notes-actions btn-undo"><i className="ri-arrow-go-back-line"></i></button>
-        <button className="btn btn-notes-actions btn-redo"><i className="ri-arrow-go-forward-line"></i></button> */}
-					</div>
-				</div>
-			</section>
+      </section> */}
 		</section>
+		// </section>
 	)
 }
