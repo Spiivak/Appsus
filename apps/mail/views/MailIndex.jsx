@@ -1,9 +1,8 @@
 import { mailService } from '../services/mail.service.js'
-import { utilService } from '../../../services/util.service.js'
 
 import { MailList } from "../cmps/MailList.jsx"
 import { MailSent } from "../cmps/MailSent.jsx"
-import { MailDetails } from "../cmps/MailSent.jsx"
+import { MailDetails } from "../views/MailDetails.jsx"
 import { MailAsideToolBar } from "../cmps/MailAsideToolBar.jsx"
 import { MailHeader } from '../cmps/MailHeader.jsx'
 import { MailAdd } from "../cmps/MailAdd.jsx"
@@ -13,9 +12,12 @@ const { useState, useEffect } = React
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
+    const [mailId, setMailId] = useState(null)
+
     const [isAdd, setIsAdd] = useState(false)
     const [isSent, setIsSent] = useState(false)
     const [isPreview, setIsPreview] = useState(false)
+
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromQueryString(searchParams))
     const navigate = useNavigate()
@@ -60,6 +62,8 @@ export function MailIndex() {
 
     function onOpenDetails(mailId) {
         setIsSent(false)
+        setIsPreview(true)
+        setMailId(mailId)
         navigate(`/mail/${mailId}`)
     }
 
@@ -85,8 +89,9 @@ export function MailIndex() {
     }
 
     if (!mails) return <div>Loading...</div>
-
-
+    // console.log('isPreview:', isPreview)
+    // console.log('isSent:', isSent)
+    // console.log('isAdd:', isAdd)
     return (
         <section className="mail-index">
             <MailHeader filterBy={filterBy} onSetFilter={onSetFilter}/>
@@ -95,6 +100,7 @@ export function MailIndex() {
                 onChangeToInboxMails={onChangeToInboxMails}
                 onChangeToSentMails={onChangeToSentMails}
             />
+            
             {!isSent && !isPreview &&
                 <MailList
                     mails={mails}
@@ -108,8 +114,8 @@ export function MailIndex() {
                     onOpenDetails={onOpenDetails}
                     onChangeToSentMails
                 />}
-            {isPreview && !isSent &&
-                <MailDetails />
+            {isPreview && !isSent && mailId &&
+                <MailDetails mailId={mailId}/>
             }
             {isAdd &&
                 <MailAdd

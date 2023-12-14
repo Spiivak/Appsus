@@ -1,10 +1,6 @@
 const { Route, Routes } = ReactRouterDOM
 const Router = ReactRouterDOM.HashRouter
 
-const { useState } = React
-
-import { AppHeader } from "./cmps/AppHeader.jsx"
-import { AppAsideToolBar } from "./cmps/AppAsideToolBar.jsx"
 import { AppAsideNav } from "./cmps/AppAsideNav.jsx"
 import { About } from "./views/About.jsx"
 import { Home } from "./views/Home.jsx"
@@ -14,14 +10,8 @@ import { MailAdd } from "./apps/mail/cmps/MailAdd.jsx"
 import { NoteIndex } from "./apps/note/views/NoteIndex.jsx"
 
 export function App() {
-    const { selectedApp, setSelectedApp } = useState('home')
-
-    function handleAppChange(app) {
-        setSelectedApp(app)
-    }
-
     return (
-    <Router>
+        <Router>
             {/* <AppHeader onAppChange={handleAppChange}/> */}
             {/* <AppAsideToolBar /> */}
             {/* <AsideActions /> */}
@@ -37,6 +27,6 @@ export function App() {
                 </Routes>
             </main>
             <AppAsideNav />
-    </Router>
+        </Router>
     )
 }

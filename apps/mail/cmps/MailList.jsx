@@ -5,13 +5,15 @@ const { Link } = ReactRouterDOM
 
 export function MailList({ mails, onRemoveMail, onOpenDetails }) {
     // console.log('mails:', mails)
+    const sortedMails = [...mails].sort((a, b) => b.sentAt - a.sentAt)
+
     return (
         <section className="mail-list">
             <section className="mail-list-actions">
                 actions
             </section>
             {/* <section className="mails-container"> */}
-                {mails.map((mail) =>
+                {sortedMails.map((mail) =>
                     <article key={mail.id} className="mail-item" onClick={() => onOpenDetails(mail.id)}>
                         <MailPreview mail={mail} onRemoveMail={onRemoveMail} isSent={false} />
                     </article>

@@ -106,8 +106,8 @@ function _createMails() {
         const mails = [
             {
                 id: 'e101',
-                subject: 'Miss you!',
-                body: 'Would love to catch up sometimes',
+                subject: 'Coding Rocks!',
+                body: utilService.makeLorem(10),
                 isRead: false,
                 sentAt: 1702534778460,
                 removedAt: null,
@@ -117,8 +117,8 @@ function _createMails() {
             {
                 id: 'e102',
                 subject: 'Hello you!',
-                body: 'How have you been?',
-                isRead: false,
+                body: utilService.makeLorem(10),
+                isRead: true,
                 sentAt: 1701532778460,
                 removedAt: null,
                 from: 'popo@momo.com',
@@ -127,8 +127,8 @@ function _createMails() {
             {
                 id: 'e103',
                 subject: 'Need you help!',
-                body: 'Would love to catch up sometimes',
-                isRead: true,
+                body: utilService.makeLorem(10),
+                isRead: false,
                 sentAt: 1551133830594,
                 removedAt: null,
                 from: 'koko@momo.com',
@@ -137,8 +137,8 @@ function _createMails() {
             {
                 id: 'e104',
                 subject: 'We Rock!',
-                body: 'Would love to catch up sometimes',
-                isRead: false,
+                body: utilService.makeLorem(10),
+                isRead: true,
                 sentAt: 1541133930594,
                 removedAt: null,
                 from: 'nono@momo.com',
@@ -150,6 +150,146 @@ function _createMails() {
                 body: 'Eden and Noam are going to have the best project',
                 isRead: true,
                 sentAt: 1531133930594,
+                removedAt: null,
+                from: 'kiki@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e106',
+                subject: 'Miss you!',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                sentAt: 1702534778460,
+                removedAt: null,
+                from: 'momo@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e107',
+                subject: 'Miss you!',
+                body: utilService.makeLorem(6),
+                isRead: false,
+                sentAt: 1701532778460,
+                removedAt: null,
+                from: 'popo@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e108',
+                subject: 'Need you help!',
+                body: utilService.makeLorem(6),
+                isRead: true,
+                sentAt: 1551133830594,
+                removedAt: null,
+                from: 'koko@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e109',
+                subject: 'We Rock!',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                sentAt: 1541133930594,
+                removedAt: null,
+                from: 'nono@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e110',
+                subject: 'We are going to Vienna!',
+                body: 'Eden and Noam are going to have the best project',
+                isRead: false,
+                sentAt: 1531133930594,
+                removedAt: null,
+                from: 'kiki@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e111',
+                subject: 'Miss you!',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                sentAt: 1702534778460,
+                removedAt: null,
+                from: 'momo@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e112',
+                subject: 'Hello you!',
+                body: utilService.makeLorem(11),
+                isRead: false,
+                sentAt: 1701532778460,
+                removedAt: null,
+                from: 'popo@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e113',
+                subject: 'Need you help!',
+                body: 'Would love to catch up sometimes',
+                isRead: true,
+                sentAt: 1551233830594,
+                removedAt: null,
+                from: 'koko@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e114',
+                subject: 'We Rock!',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                sentAt: 1521133930594,
+                removedAt: null,
+                from: 'nono@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e115',
+                subject: 'We are going to have the best project!',
+                body: 'Eden and Noam are going to have the best project Eden and Noam are going to have the best project',
+                isRead: true,
+                sentAt: 1531133230594,
+                removedAt: null,
+                from: 'kiki@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e116',
+                subject: 'Hello you!',
+                body: 'How have you been?',
+                isRead: false,
+                sentAt: 1231133930594,
+                removedAt: null,
+                from: 'popo@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e117',
+                subject: 'Need you help!',
+                body: 'Would love to catch up sometimes',
+                isRead: true,
+                sentAt: 1551123830594,
+                removedAt: null,
+                from: 'koko@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e118',
+                subject: 'We Rock!',
+                body: 'Would love to catch up sometimes',
+                isRead: true,
+                sentAt: 1552133830594,
+                removedAt: null,
+                from: 'nono@momo.com',
+                to: 'user@appsus.com'
+            },
+            {
+                id: 'e119s',
+                subject: 'We are going to have the best project!',
+                body: 'Eden and Noam are going to have the best project',
+                isRead: false,
+                sentAt: 1521133930594,
                 removedAt: null,
                 from: 'kiki@momo.com',
                 to: 'user@appsus.com'

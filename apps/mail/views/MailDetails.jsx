@@ -1,6 +1,6 @@
 import { mailService } from '../services/mail.service.js'
 
-const { useParams, useNavigate, Link } = ReactRouterDOM
+const { useParams, useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
 
 // ROUTING
@@ -8,16 +8,12 @@ export function MailDetails() {
     const params = useParams()
     const navigate = useNavigate()
     const [mail, setMail] = useState(null)
-    // const [nextBookId, setNextBookId] = useState(null)
-    // const [prevBookId, setPrevBookId] = useState(null)
 
     useEffect(() => {
         loadMail()
-        // }, [mailId])
     }, [params.mailId])
 
     function loadMail() {
-        // mailService.get(mailId)
         mailService.get(params.mailId)
             .then(mail => {
                 setMail(mail)
