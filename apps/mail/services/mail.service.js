@@ -20,7 +20,7 @@ export const mailService = {
 }
 
 function query(filterBy) {
-    console.log('filterBy query:', filterBy)
+    // console.log('filterBy query:', filterBy)
     return storageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy.to) {
@@ -296,6 +296,96 @@ function _createMails() {
                 removedAt: null,
                 from: 'kiki@momo.com',
                 to: 'user@appsus.com'
+            },
+            {
+                id: 'e111',
+                subject: 'Miss you!',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                sentAt: 1681332778460,
+                removedAt: null,
+                from: 'user@appsus.com',
+                to: 'momo@momo.com'
+            },
+            {
+                id: 'e112',
+                subject: 'Hello you!',
+                body: utilService.makeLorem(11),
+                isRead: false,
+                sentAt: 1691332778460,
+                removedAt: null,
+                from: 'user@appsus.com',
+                to: 'momo@momo.com'
+            },
+            {
+                id: 'e113',
+                subject: 'Need you help!',
+                body: 'Would love to catch up sometimes',
+                isRead: true,
+                sentAt: 1655332778460,
+                removedAt: null,
+                from: 'user@appsus.com',
+                to: 'momo@momo.com'
+            },
+            {
+                id: 'e114',
+                subject: 'We Rock!',
+                body: 'Would love to catch up sometimes',
+                isRead: false,
+                sentAt: 1657332778460,
+                removedAt: null,
+                from: 'user@appsus.com',
+                to: 'netflix@momo.com'
+            },
+            {
+                id: 'e115',
+                subject: 'We are going to have the best project!',
+                body: 'Eden and Noam are going to have the best project Eden and Noam are going to have the best project',
+                isRead: true,
+                sentAt: 1531133230594,
+                removedAt: null,
+                from: 'user@appsus.com',
+                to: 'service@momo.com'
+            },
+            {
+                id: 'e116',
+                subject: 'Hello you!',
+                body: 'How have you been?',
+                isRead: false,
+                sentAt: 1231133930594,
+                removedAt: null,
+                from: 'user@appsus.com',
+                to: 'help@momo.com'
+            },
+            {
+                id: 'e117',
+                subject: 'Need you help!',
+                body: 'Would love to catch up sometimes',
+                isRead: true,
+                sentAt: 1551123830594,
+                removedAt: null,
+                from: 'user@appsus.com',
+                to: 'coding@fun.com'
+            },
+            {
+                id: 'e118',
+                subject: 'We Rock!',
+                body: 'Would love to catch up sometimes',
+                isRead: true,
+                sentAt: 1552133830594,
+                removedAt: null,
+                from: 'user@appsus.com',
+                to: 'popo@coding.com'
+            },
+            {
+                id: 'e119s',
+                subject: 'We are going to have the best project!',
+                body: 'Eden and Noam are going to have the best project',
+                isRead: false,
+                sentAt: 1521133930594,
+                removedAt: null,
+                from: 'user@appsus.com',
+                to: 'kiki@koko.com'
             },
         ]
         localStorageService.saveToStorage(MAIL_KEY, mails)

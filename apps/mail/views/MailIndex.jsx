@@ -33,7 +33,7 @@ export function MailIndex() {
     function loadMails() {
         const { email } = mailService.getLoggedInUser()
         if (!isSent) {
-            console.log('filterBy:', filterBy)
+            // console.log('filterBy:', filterBy)
             mailService.getInboxMails({ filterBy, email })
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))

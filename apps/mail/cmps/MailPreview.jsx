@@ -1,28 +1,38 @@
 import { utilService } from '../../../services/util.service.js'
-const { useState } = React
+const { useState, useEffect } = React
 
 export function MailPreview({ mail, onRemoveMail, isSent, onMarkRead }) {
     const [isHovered, setIsHovered] = useState(false)
 
     const sentDate = new Date(mail.sentAt)
-    // let formattedSentAt
+    const isRead = mail.isRead
     let displayedContent
 
     if (isHovered) {
         displayedContent = (
-            <div className="actions-container">
-                <button 
+            <div className="actions-container flex align-center">
+                <button
                     className="btn"
                     onClick={onDeleteBtn}
-                    >
+                >
                     <i className=" ri-delete-bin-line"></i>
                 </button>
-                <button 
-                    className="btn"
-                    onClick={onMarkReadBtn}
+                {isRead &&
+                    <button
+                        className="btn"
+                        onClick={onMarkReadBtn}
                     >
-                    <i className=" fa-solid fa-envelope-circle-check"></i>
-                </button>
+                        <i className="ri-mail-unread-line"></i>
+                    </button>
+                }
+                {!isRead &&
+                    <button
+                        className="btn"
+                        onClick={onMarkReadBtn}
+                    >
+                        <i className="ri-mail-open-line"></i>
+                    </button>
+                }
 
             </div>
         )
@@ -47,12 +57,12 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMarkRead }) {
         setIsHovered(false)
     }
 
-    function onDeleteBtn(ev)  {
+    function onDeleteBtn(ev) {
         ev.stopPropagation()
         onRemoveMail(mail.id)
     }
 
-    function onMarkReadBtn(ev)  {
+    function onMarkReadBtn(ev) {
         ev.stopPropagation()
         onMarkRead(mail.id)
     }
