@@ -45,10 +45,10 @@ function getDefaultFilter() {
 function getEmptyNote(title = '', txt = '') {
   return {
     createAt: '',
-    type: 'txt',
+    type: 'NoteTxt',
     isPinned: '',
     style: {
-      backgroundColor: '#00d'
+      backgroundColor: 'white'
     },
     info: {
       url: '',
@@ -72,10 +72,10 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         createAt: '',
-        type: 'txt',
+        type: 'NoteTxt',
         isPinned: '',
         style: {
-          backgroundColor: '#00d'
+          backgroundColor: '#fff'
         },
         info: {
           url: '',
@@ -92,10 +92,10 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         createAt: '',
-        type: 'txt',
+        type: 'NoteTxt',
         isPinned: '',
         style: {
-          backgroundColor: '#00d'
+          backgroundColor: '#fff'
         },
         info: {
           url: '',
@@ -112,10 +112,10 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         createAt: '',
-        type: 'txt',
+        type: 'NoteTxt',
         isPinned: '',
         style: {
-          backgroundColor: '#00d'
+          backgroundColor: '#fff'
         },
         info: {
           url: '',
@@ -132,10 +132,10 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         createAt: '',
-        type: 'txt',
+        type: 'NoteTxt',
         isPinned: '',
         style: {
-          backgroundColor: '#00d'
+          backgroundColor: '#fff'
         },
         info: {
           url: '',
@@ -152,10 +152,10 @@ function _createNotes() {
       {
         id: utilService.makeId(),
         createAt: '',
-        type: 'txt',
+        type: 'NoteTxt',
         isPinned: '',
         style: {
-          backgroundColor: '#00d'
+          backgroundColor: '#fff'
         },
         info: {
           url: '',

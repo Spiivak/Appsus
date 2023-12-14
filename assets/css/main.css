@@ -37,7 +37,10 @@
 
 /* CMPS NOTES */
 
-@import url('./apps/note/cmps/AddNote.css');
-@import url('./apps/note/cmps/NoteList.css');
+@import url('./apps/note/cmps/add-note.css');
+@import url('./apps/note/cmps/AppAsideToolBar.css');
+@import url('./apps/note/cmps/color-picker.css');
+@import url('./apps/note/cmps/note-list.css');
+@import url('./apps/note/cmps/note-preview.css');
+@import url('./apps/note/cmps/note-todos.css');
 @import url('./apps/note/cmps/NoteHeader.css');
-@import url('./apps/note/cmps/NotePreview.css');

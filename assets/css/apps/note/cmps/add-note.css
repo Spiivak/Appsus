@@ -1,0 +1,68 @@
+.add-note {
+  /* position: relative; */
+  /* display: flex; */
+  /* flex-direction: column; */
+  width: 600px;
+  height: 140px;
+  margin-block-end: 40px;
+  padding-block: 10px 5px;
+  padding-inline: 20px;
+  border-radius: 10px;
+  border: 1px solid #3a3a3a38;
+  transition: 0.2s;
+}
+
+.add-note .close-btn {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  font-size: 20px;
+  color: var(--action-btn);
+  cursor: pointer;
+}
+
+.add-note .close-btn:hover {
+  filter: brightness(60%);
+}
+
+.add-note-form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-note .add-note-form input {
+  border: unset;
+  padding-block: 5px;
+  background-color: transparent;
+}
+
+.add-note .add-note-form input:focus-visible {
+  outline: unset;
+}
+
+.add-note .add-note-form .pin-img {
+  position: absolute;
+  right: 0;
+  width: 23px;
+  cursor: pointer;
+}
+
+.add-note .add-note-form .tool-bar {
+  display: flex;
+  align-items: center;
+  margin-block-start: 15px;
+  padding-block: 15px;
+}
+
+.add-note .add-note-form .add-btn {
+  position: absolute;
+  right: 0;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.add-note .add-note-form .add-btn:hover {
+  background-color: #dcdcdc72;
+}

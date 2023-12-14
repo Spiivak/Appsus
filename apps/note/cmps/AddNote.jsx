@@ -1,173 +1,141 @@
-const { useState, useEffect } = React
-const { useNavigate, useParams } = ReactRouterDOM
-
-import { showSuccessMsg } from '../../../services/event-bus.service.js'
 import { noteService } from '../services/note.service.js'
-import { NoteTxt } from '../cmps/NotePreviews/NoteTxt.jsx'
-import { AddTxtNote } from './AddNote/AddTxtNote.jsx'
-import { AddTitleNote } from './AddNote/AddTitleNote.jsx'
-import { AddTodosNote } from './AddNote/AddTodosNote.jsx'
-import { AddImageNote } from './AddNote/AddImageNote.jsx'
+import { ColorPicker } from './ColorPicker.jsx'
+import { EditButtons } from './EditButtons.jsx'
+const { useState, useEffect, useRef, Fragment } = React
 
-export function AddNote({ onAddNote }) {
-	const empty = noteService.getEmptyNote()
-	const emptyInfo = noteService.getEmptyNote().info
+export function AddNote({ onAdd, noteToEdit, isOpen, onClose }) {
+  const [note, setNote] = useState(noteService.getEmptyNote())
+  const [isAddOpen, setIsAddOpen] = useState(isOpen)
+  const [isColorOpen, setIsColorOpen] = useState(false)
+  const addNoteRef = useRef()
 
-	const [noteToEdit, setNoteToEdit] = useState(noteService.getEmptyNote())
-	const [infoToEdit, setInfoToEdit] = useState(
-		noteService.getEmptyNote().info
-	)
-	// const [isExpanded, setExpanded] = useState(false)
-	const [type, setType] = useState(noteService.getEmptyNote().type)
+  useEffect(() => {
+    window.addEventListener('click', onCloseAdd)
 
-	const navigate = useNavigate()
-	const params = useParams()
+    return () => {
+      window.removeEventListener('click', onCloseAdd)
+    }
+  }, [])
 
-	useEffect(() => {
-		if (params.noteId) loadNote()
-	}, [params.noteId])
+  useEffect(() => {
+    if (noteToEdit) {
+      setNote(noteToEdit)
+    }
+  }, [noteToEdit])
 
-	function loadNote() {
-		noteService
-			.get(params.noteId)
-			.then(setNoteToEdit)
-			.catch((err) => console.log('err:', err))
-	}
+  function onOpenAdd() {
+    if (!isAddOpen) setIsAddOpen(true)
+  }
 
-	function handleChange({ target }) {
-		// console.log('handleChange  target:', target)
-		const field = target.name
-		let value = target.value
+  function onCloseAdd() {
+    if (onClose) {
+      onClose()
+      return
+    }
+    setIsAddOpen(false)
+    setNote(noteService.getEmptyNote())
+  }
 
-		switch (target.type) {
-			case 'number':
-			case 'range':
-				value = +value || ''
-				break
+  function handleNoteChange({ target }) {
+    var field = target.name
+    let value = target.value
 
-			case 'checkbox':
-				value = target.checked
-				break
+    switch (target.type) {
+      case 'number':
+      case 'range':
+        value = +value
+        break
 
-			default:
-				break
-		}
+      case 'checkbox':
+        value = target.checked
+        break
+    }
 
-		setInfoToEdit((prevInfo) => ({ ...prevInfo, [field]: value }))
-		setNoteToEdit((prevNote) => ({ ...prevNote, ['info']: infoToEdit }))
-	}
+    if (field === 'txt' || field === 'title') {
+      handleInfoChange(field, value)
+      return
+    }
 
-	function onSaveNote(ev) {
-		ev.preventDefault()
-		console.log('noteToEdit - sent:', noteToEdit)
-		onAddNote(noteToEdit)
-	}
+    refactorNote(field, value)
+  }
 
-	function handleExpanded() {
-		setExpanded((isExpanded) => !isExpanded)
-	}
+  function refactorNote(field, val) {
+    setNote((prevNote) => {
+      return { ...prevNote, [field]: val }
+    })
+  }
 
-	return (
-		// <section className="add-notes flex justify-center">
-		// 	<section>
-		// 		<div className="add-notes flex">
-		// 			<div className="txt-note" onClick={() => <AddTxtNote/>}>
-		// 			<p>Write a note...</p>
-		// 			</div>
-		// 			<button onClick={() => <AddTodosNote />}><i className="ri-checkbox-line"></i></button>
-		// 			<button onClick={() => <AddCanvasNote />}><i className="ri-brush-line"></i></button>
-		// 			<button onClick={() => <AddImageNote />}><i className="ri-image-add-line"></i></button>
-		// 		</div>
-		// 	</section>
+  function handleInfoChange(field, value) {
+    setNote((prevNote) => {
+      const newInfo = { ...prevNote.info, [field]: value }
+      return { ...prevNote, info: newInfo }
+    })
+  }
 
-		<section className="add-note-container flex justify-center">
-			<section className="txt-container flex column justify-center align-center">
-				<h2>Add Text Notes</h2>
-				<form onSubmit={onSaveNote} className="main-input flex justify-center align-center column">
-					<div className="title-section">
+  function handleStyleChange(val) {
+    setNote((prevNote) => {
+      return { ...prevNote, style: { ...prevNote.style, backgroundColor: val } }
+    })
+  }
 
-					<AddTitleNote
-						noteToEdit={noteToEdit}
-						onSaveNote={onSaveNote}
-						handleChange={handleChange}
-						setType={setType}
-						/>
-						<button className='btn'><i class="ri-pushpin-2-line"></i></button>
-						</div>
-					<AddTxtNote
-						noteToEdit={noteToEdit}
-						onSaveNote={onSaveNote}
-						handleChange={handleChange}
-						setType={setType}
-					/>
-				<div className="notes-actions flex space-between align-center">
-					<div className="actions">
-					<button title="Background Options" className="btn"><i className="ri-palette-line"></i></button>
-					<button title="Add Image" className="btn"><i className="ri-image-add-line"></i></button>
-					<button title="Arvhice" className="btn"><i className="ri-inbox-archive-line"></i></button>
-					<button title="More" className="btn"><i className="ri-more-2-fill"></i></button>
-					<button title="Undo" className="btn"><i className="ri-arrow-go-back-line"></i></button>
-					<button title="Redo" className="btn"><i className="ri-arrow-go-forward-line"></i></button>
-					</div>
-					<div className="submit-btn">
-					<button className="btn">Submit</button>
-					</div>
-				</div>
-				</form>
-			</section>
+  function onAddNote(ev) {
+    ev.preventDefault()
+    noteService.save(note).then((note) => {
+      onCloseAdd()
+      onAdd()
+    })
+  }
 
-			{/* 
+  function onPalletteClick(ev) {
+    setIsColorOpen((colorOpen) => !colorOpen)
+  }
 
-			<section className="todos-container flex justify-center align-center column">
-        <h2>Add Todos</h2>
-				<div className="title-input">
-					<AddTitleNote
-						noteToEdit={noteToEdit}
-						onSaveNote={onSaveNote}
-						handleChange={handleChange}
-						setType={setType}
-					/>
-				</div>
-
-				<div className="todos-list flex">
-					<div className="todo-input">
-						<AddTodosNote
-							noteToEdit={noteToEdit}
-							onSaveNote={onSaveNote}
-							handleChange={handleChange}
-							setType={setType}
-						/>
-					</div>
-
-					<div className="txt-input">
-						<AddTxtNote
-							noteToEdit={noteToEdit}
-							onSaveNote={onSaveNote}
-							handleChange={handleChange}
-							setType={setType}
-						/>
-					</div>
-				</div>
-			</section>
-
-      <section className="image-container flex column justify-center align-center">
-        <h2>Add Image Note</h2>
-      <div className="title-input">
-					<AddTitleNote
-						noteToEdit={noteToEdit}
-						onSaveNote={onSaveNote}
-						handleChange={handleChange}
-						setType={setType}
-					/>
-				</div>
-
-        <div className="image-input">
-
-        <AddImageNote 
-        />
-        </div>
-      </section> */}
-		</section>
-		// </section>
-	)
+  return (
+    <section
+      style={note.style ? { backgroundColor: note.style.backgroundColor } : {}}
+      className="add-note"
+    >
+      <section ref={addNoteRef} onClick={(ev) => ev.stopPropagation()}>
+        <form onSubmit={onAddNote} className="add-note-form">
+          {isAddOpen && (
+            <Fragment>
+							<button  onClick={() => refactorNote('isPinned', !note.isPinned)} className={"btn pin-img " + `${note.isPinned ? 'pinned' : 'unpinned'}`}><i className="ri-pushpin-2-line"></i></button>
+              <input
+                value={note.info.title}
+                onChange={handleNoteChange}
+                name="title"
+                type="text"
+                placeholder="Title"
+              />
+            </Fragment>
+          )}
+          <input
+            value={note.info.txt}
+            onChange={handleNoteChange}
+            onClick={onOpenAdd}
+            name="txt"
+            type="text"
+            placeholder="Take a note..."
+          />
+          {isAddOpen && (
+            <div className="tool-bar">
+              <EditButtons
+                handleStyleChange={handleStyleChange}
+                isColorOpen={isColorOpen}
+                note={note}
+                onPalletteClick={onPalletteClick}
+              />
+              <button
+                className="add-btn"
+                disabled={!note.info.txt}
+                onClick={onAddNote}
+              >
+                Add
+              </button>
+            </div>
+          )}
+        </form>
+      </section>
+    </section>
+  )
 }
