@@ -24,6 +24,15 @@
     padding-inline-end: 20px;
 }
 
+.mail-preview .mail-subject, .mail-from {
+    color: #202124
+}
+
+.mail-preview .mail-body {
+    font-weight: 300;
+    color: #5f6368;
+}
+
 .mail-preview .mail-subject {
     white-space: nowrap;
     overflow-x: hidden;
@@ -36,4 +45,8 @@
     text-overflow: ellipsis;
     /* display: inline-block; */
     /* max-width: 100%; */
+}
+
+.mail-preview .un-read {
+    font-weight: 700;
 }
