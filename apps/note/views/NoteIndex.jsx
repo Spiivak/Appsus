@@ -4,6 +4,8 @@ import { AddNote } from "../cmps/AddNote.jsx";
 import { NoteList } from "../cmps/NoteList.jsx";
 import { noteService } from "../services/note.service.js";
 import { showSuccessMsg } from '../../../services/event-bus.service.js'
+import { NoteAsideToolBar } from "../cmps/NoteAsideToolBar.jsx";
+import { NoteHeader } from "../cmps/NoteHeader.jsx";
 
 
 export function NoteIndex() {
@@ -44,6 +46,8 @@ export function NoteIndex() {
     return (
         <section className="note-index">
             <React.Fragment>
+            <NoteHeader />
+            <NoteAsideToolBar />
             <AddNote onAddNote={onAddNote} />
             <NoteList notes={notes} onRemoveNote={onRemoveNote} />
             </React.Fragment>
