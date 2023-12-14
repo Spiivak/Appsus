@@ -1,4 +1,18 @@
 .mail-details{
+    position: relative;
     grid-column: 2;
     grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 60px 1fr 60px;
+    grid-template-rows: 48px 84px 60px 1fr;
+}
+
+.mail-details > * {
+    grid-column: 2;
+}
+
+.mail-details .btn-back {
+    position: absolute;
+    left: 0;
 }
