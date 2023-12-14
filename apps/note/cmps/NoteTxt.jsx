@@ -4,7 +4,6 @@ import { noteService } from '../services/note.service.js'
 const { useState, useEffect, useRef, Fragment } = React
 
 export function NoteTxt({ note, onChangeNote }) {
-  console.log('NoteTxt  note:', note)
   const [displayedNote, setDisplayedNote] = useState(note)
   const [isColorOpen, setIsColorOpen] = useState(false)
 
@@ -20,7 +19,6 @@ export function NoteTxt({ note, onChangeNote }) {
       }
     })
   }
-  console.log(note)
   return (
     <article className="note-txt">
       {note.info.title && <p className="note-title">{note.info.title}</p>}

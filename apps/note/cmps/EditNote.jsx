@@ -12,12 +12,13 @@ export function EditNote() {
 
   useEffect(()=>{
     if(params.noteId) loadNote()
-  }, [])
+  }, [params.noteId])
 
   function loadNote() {
-    noteService.get(params.noteId)
+    noteService
+      .get(params.noteId)
       .then(setNote)
-      .catch(err=>console.log('err:', err))
+      .catch(err => console.error('Error loading note:', err))
   }
 
   function onSaveNote() {

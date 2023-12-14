@@ -16,10 +16,10 @@ export function NoteList({ notes, onChangeNote }) {
     noteService
       .save(newNote)
       .then(onChangeNote)
-      .catch((err) => console.log('err', err))
+      .catch((err) => console.log('Error saving note:', err))
   }
 
-  function onPalletteClick(ev) {
+  function onPaletteClick(ev) {
     setIsColorOpen((colorOpen) => !colorOpen)
   }
 
@@ -27,41 +27,35 @@ export function NoteList({ notes, onChangeNote }) {
     noteService
       .remove(noteId)
       .then(onChangeNote)
-      .catch((err) => console.log('err', err))
+      .catch((err) => console.log('Error deleting note:', err))
   }
 
-  if (!notes || !notes.length)
-    return <h2 className="loading-msg">Loading...</h2>
   return (
-    <section className="note-list">
-      {notes.map((note) => {
-        return (
+    <section className="note-list" onClick={() => setIsColorOpen(false)}>
+      {notes && notes.length ? (
+        notes.map((note) => (
           <article
             className="note-list-item"
-            style={
-              note.style ? { backgroundColor: note.style.backgroundColor } : {}
-            }
+            style={note.style ? { backgroundColor: note.style.backgroundColor } : {}}
             onMouseEnter={() => setNoteHoverId(note.id)}
-            onMouseLeave={() => {
-              setIsColorOpen(false)
-              setNoteHoverId(null)
-            }}
+            onMouseLeave={() => setNoteHoverId(null)}
             key={note.id}
           >
             <NotePreview note={note} onChangeNote={onChangeNote} />
-
             {noteHoverId === note.id && (
               <EditButtons
                 note={note}
                 handleStyleChange={handleStyleChange}
                 isColorOpen={isColorOpen}
-                onPalletteClick={onPalletteClick}
+                onPaletteClick={onPaletteClick}
                 onDeleteNote={onDeleteNote}
               />
             )}
           </article>
-        )
-      })}
+        ))
+      ) : (
+        <h2 className="loading-msg">Loading...</h2>
+      )}
     </section>
   )
 }

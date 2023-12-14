@@ -11,3 +11,13 @@
   justify-content: space-between;
   padding: 8px;
 }
+
+.note-list {
+  display: grid;
+  grid-column: 2;
+}
+
+.add-note {
+  display: grid;
+  grid-column: 2;
+}

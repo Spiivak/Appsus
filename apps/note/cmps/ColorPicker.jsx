@@ -14,22 +14,21 @@ export function ColorPicker({ onChangeColor, pickedColor }) {
     '#efeff1',
   ]
 
-  function onColorPickerClick(ev, color) {
+  const onColorPickerClick = (ev, color) => {
     ev.stopPropagation()
-    if (!color) return
-    onChangeColor(color)
+    if (color) onChangeColor(color)
   }
 
   return (
     <div className="color-picker">
-      {colors.map((color) => {
+      {colors.map((color, index) => {
         return (
           <div
             style={{
               backgroundColor: color,
               border: pickedColor === color ? '2px solid black' : '',
             }}
-            key={color}
+            key={index}
             onClick={(ev) => onColorPickerClick(ev, color)}
           ></div>
         )

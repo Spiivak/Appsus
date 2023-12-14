@@ -6,7 +6,6 @@ import { NoteVideo } from './NoteVideo.jsx'
 const { Link } = ReactRouterDOM
 
 export function NotePreview({ note, onChangeNote }) {
-  console.log('NotePreview  note:', note)
   return (
     <article onClick={(ev) => ev.stopPropagation()} className="note-preview">
       <Link to={`/note/edit/${note.id}`}>
@@ -16,16 +15,17 @@ export function NotePreview({ note, onChangeNote }) {
   )
 }
 
-function DynamicCmp(props) {
-  console.log('DynamicCmp  props:', props)
-  switch (props.note.type) {
+function DynamicCmp({ note, onChangeNote}) {
+  switch (note.type) {
     case 'NoteTxt':
-      return <NoteTxt note={props.note} onChangeNote={props.onChangeNote} />
+      return <NoteTxt note={note} onChangeNote={onChangeNote} />
     case 'NoteImg':
-      return <NoteImage note={props.note} onChangeNote={props.onChangeNote} />
+      return <NoteImage note={note} onChangeNote={onChangeNote} />
     case 'NoteVideo':
-      return <NoteVideo note={props.note} onChangeNote={props.onChangeNote} />
+      return <NoteVideo note={note} onChangeNote={onChangeNote} />
     case 'NoteTodos':
-      return <NoteTodos note={props.note} onChangeNote={props.onChangeNote} />
+      return <NoteTodos note={note} onChangeNote={onChangeNote} />
+    default:
+      throw new Error(`Unsupported note type: ${note.type}`);
   }
 }

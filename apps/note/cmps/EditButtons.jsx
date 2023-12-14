@@ -9,10 +9,7 @@ export function EditButtons({
 }) {
   return (
     <div className="edit-btns" onClick={(ev) => ev.stopPropagation()}>
-      <div
-        className="edit-btn-container"
-        onClick={(ev) => ev.stopPropagation()}
-      >
+      <div lassName="edit-btn-container">
         <div className="btn-display-container">
         <button className='btn' onClick={onPalletteClick}><i className="ri-palette-line"></i></button>
         </div>
@@ -25,14 +22,8 @@ export function EditButtons({
         )}
       </div>
       {note.id && (
-        <div
-          className="edit-btn-container"
-          onClick={(ev) => ev.stopPropagation()}
-        >
-          <div
-            onClick={() => onDeleteNote(note.id)}
-            className="btn-display-container"
-          >
+        <div className="edit-btn-container">
+          <div onClick={() => onDeleteNote(note.id)} className="btn-display-container">
             <i className="ri-delete-bin-line" aria-hidden="true"></i>
           </div>
         </div>
