@@ -2,6 +2,7 @@ import { mailService } from '../services/mail.service.js'
 import { utilService } from '../../../services/util.service.js'
 
 import { MailList } from "../cmps/MailList.jsx"
+import { MailSent } from "../cmps/MailSent.jsx"
 import { MailAsideToolBar } from "../cmps/MailAsideToolBar.jsx"
 import { MailHeader } from '../cmps/MailHeader.jsx'
 import { MailAdd } from "../cmps/MailAdd.jsx"
@@ -12,6 +13,7 @@ const { useState, useEffect } = React
 export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [isAdd, setIsAdd] = useState(false)
+    const [isSent, setIsSent] = useState(false)
     const [searchParams, setSearchParams] = useSearchParams()
     const navigate = useNavigate()
     // const [filterBy, setFilterBy] = useState(mailService.getFilterFromQueryString(searchParams))
@@ -19,15 +21,20 @@ export function MailIndex() {
     useEffect(() => {
         loadMails()
         // setSearchParams(filterBy)
-    }, [])
+    }, [isSent])
     // }, [filterBy])
 
     function loadMails() {
         const { email } = mailService.getLoggedInUser()
-
-        mailService.getInboxMails(email)
-            .then(mails => setMails(mails))
-            .catch(err => console.log('err:', err))
+        if (!isSent) {
+            mailService.getInboxMails(email)
+                .then(mails => setMails(mails))
+                .catch(err => console.log('err:', err))
+        } else {
+            mailService.getSentMails(email)
+                .then(mails => setMails(mails))
+                .catch(err => console.log('err:', err))
+        }
     }
 
     function onRemoveMail(mailId) {
@@ -65,15 +72,43 @@ export function MailIndex() {
         setIsAdd(isAdd => !isAdd)
     }
 
+    const onChangeToSentMails = () => {
+        setIsSent(isSent => setIsSent(true))
+    }
+
+    const onChangeToInboxMails = () => {
+        setIsSent(isSent => setIsSent(false))
+    }
+
     if (!mails) return <div>Loading...</div>
 
-    
+
     return (
         <section className="mail-index">
             <MailHeader />
-            <MailAsideToolBar onToggleAddMail={onToggleAddMail} />
-            <MailList mails={mails} onRemoveMail={onRemoveMail} onOpenDetails={onOpenDetails} />
-            {isAdd && <MailAdd onAddMail={onAddMail} onToggleAddMail={onToggleAddMail} />}
+            <MailAsideToolBar
+                onToggleAddMail={onToggleAddMail}
+                onChangeToInboxMails={onChangeToInboxMails}
+                onChangeToSentMails={onChangeToSentMails}
+            />
+            {!isSent &&
+                <MailList
+                    mails={mails}
+                    onRemoveMail={onRemoveMail}
+                    onOpenDetails={onOpenDetails}
+                />}
+            {isSent &&
+                <MailSent
+                    mails={mails}
+                    onRemoveMail={onRemoveMail}
+                    onOpenDetails={onOpenDetails}
+                    onChangeToSentMails
+                />}
+            {isAdd &&
+                <MailAdd
+                    onAddMail={onAddMail}
+                    onToggleAddMail={onToggleAddMail}
+                />}
         </section>
     )
 }

@@ -1,9 +1,6 @@
 import { MailPreview } from "./MailPreview.jsx"
 
-const { Link } = ReactRouterDOM
-
-
-export function MailList({ mails, onRemoveMail, onOpenDetails }) {
+export function MailSent({ mails, onRemoveMail, onOpenDetails }) {
     console.log('mails:', mails)
     return (
         <section className="mail-list">
@@ -12,7 +9,7 @@ export function MailList({ mails, onRemoveMail, onOpenDetails }) {
             </section>
             {mails.map((mail) =>
                 <article key={mail.id} className="mail-item" onClick={() => onOpenDetails(mail.id)}>
-                    <MailPreview mail={mail} onRemoveMail={onRemoveMail} isSent={false}/>
+                    <MailPreview mail={mail} onRemoveMail={onRemoveMail} isSent={true}/>
                 </article>
             )}
         </section>

@@ -45,7 +45,7 @@ function getInboxMails(email) {
     return query({ to: email });
 }
 
-function getSentMails() {
+function getSentMails(email) {
     return query({ from: email });
 }
 
