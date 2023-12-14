@@ -1,18 +1,14 @@
 
 const { useState, useEffect } = React
 
-export function MailFilter({ filterBy, onSetFilter }) {
-    // console.log('filterBy:', filterBy)
+export function MailFilter({ filterBy, onSetSearchFilter }) {
     const [isActive, setIsActive] = useState(false)
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
     useEffect(() => {
-        onSetFilter(filterByToEdit)
+        onSetSearchFilter(filterByToEdit)
     }, [filterByToEdit])
 
-    // function onSetFilterBy() {
-    //     onSetFilter(filterByToEdit)
-    // }
 
     function handleChange({ target }) {
         const field = target.name

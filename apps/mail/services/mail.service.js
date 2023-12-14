@@ -20,6 +20,7 @@ export const mailService = {
 }
 
 function query(filterBy) {
+    console.log('filterBy query:', filterBy)
     return storageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy.to) {
@@ -38,9 +39,11 @@ function query(filterBy) {
                 ))
             }
 
-            if (filterBy.isRead !== undefined) {
-                mails = mails.filter(mail => mail.isRead === filterBy.isRead)
-            }
+            if (filterBy.filterBy.isRead === true) {
+                mails = mails.filter(mail => mail.isRead === true)
+            } else if (filterBy.filterBy.isRead === false) {
+                mails = mails.filter(mail => mail.isRead === false)
+            } 
 
             return mails
         })

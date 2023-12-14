@@ -25,12 +25,14 @@ export function MailIndex() {
     useEffect(() => {
         loadMails()
         setSearchParams(filterBy)
+        // console.log('activated:')
         // }, [isSent])
     }, [isSent, filterBy])
 
     function loadMails() {
         const { email } = mailService.getLoggedInUser()
         if (!isSent) {
+            console.log('filterBy:', filterBy)
             mailService.getInboxMails({ filterBy, email })
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
@@ -78,9 +80,14 @@ export function MailIndex() {
             })
     }
 
-    function onSetFilter(filterBy) {
+    function onSetSearchFilter(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
-        console.log('filterBy:', filterBy)
+        // console.log('filterBy:', filterBy)
+    }
+
+    function onSetReadFilter(filterBy) {
+        console.log('filterBy change:', filterBy)
+        setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
     function onOpenDetails(mailId) {
@@ -117,7 +124,7 @@ export function MailIndex() {
     // console.log('isAdd:', isAdd)
     return (
         <section className="mail-index">
-            <MailHeader filterBy={filterBy} onSetFilter={onSetFilter} />
+            <MailHeader filterBy={filterBy} onSetSearchFilter={onSetSearchFilter} />
             <MailAsideToolBar
                 onToggleAddMail={onToggleAddMail}
                 onChangeToInboxMails={onChangeToInboxMails}
@@ -130,6 +137,7 @@ export function MailIndex() {
                     onRemoveMail={onRemoveMail}
                     onMarkRead={onMarkRead}
                     onOpenDetails={onOpenDetails}
+                    onSetReadFilter={onSetReadFilter}
                 />}
             {isSent && !isPreview &&
                 <MailSent
