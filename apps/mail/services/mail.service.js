@@ -8,9 +8,12 @@ _createMails()
 
 export const mailService = {
     query,
-    get, 
-    remove, 
+    get,
+    remove,
     save,
+    getLoggedInUser,
+    getInboxMails,
+    getSentMails,
     getEmptyMail,
     getDefaultFilter,
     getFilterFromQueryString,
@@ -18,16 +21,32 @@ export const mailService = {
 
 function query(filterBy) {
     return storageService.query(MAIL_KEY)
-        // .then(books => {
-        //     if (filterBy.title) {
-        //         const regex = new RegExp(filterBy.title, 'i')
-        //         books = books.filter(book => regex.test(book.title))
-        //     }
-        //     if (filterBy.price) {
-        //         books = books.filter(book => book.listPrice.amount <= filterBy.price)
-        //     }
-        //     return books
-        // })
+        .then(mails => {
+            if (filterBy && filterBy.to) {
+                mails = mails.filter(mail => mail.to === filterBy.to)
+            } else if (filterBy && filterBy.from) {
+                mails = mails.filter(mail => mail.from === filterBy.from)
+            }
+
+            if (filterBy && filterBy.subject) {
+                const regex = new RegExp(filterBy.subject, 'i')
+                mails = mails.filter(mail => regex.test(mail.subject))
+            }
+
+            if (filterBy && filterBy.isRead !== undefined) {
+                mails = mails.filter(mail => mail.isRead === filterBy.isRead)
+            }
+
+            return mails
+        })
+}
+
+function getInboxMails(email) {
+    return query({ to: email });
+}
+
+function getSentMails() {
+    return query({ from: email });
 }
 
 function get(mailId) {
@@ -46,14 +65,14 @@ function save(mail) {
     }
 }
 
-function getEmptyMail() {
+function getEmptyMail(from = '', sentAt = null) {
     return {
         subject: '',
         body: '',
         isRead: false,
-        sentAt: null,
+        sentAt,
         removedAt: null,
-        from: '',
+        from,
         to: '',
     }
 }
@@ -67,6 +86,13 @@ function getFilterFromQueryString(searchParams) {
     const isRead = searchParams.get('isRead') || ''
 
     return { subject, isRead }
+}
+
+function getLoggedInUser() {
+    return {
+        email: 'user@appsus.com',
+        fullname: 'Mahatma Appsus'
+    }
 }
 
 function _createMails() {

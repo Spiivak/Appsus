@@ -1,8 +1,10 @@
 import { MailPreview } from "./MailPreview.jsx"
+
 const { Link } = ReactRouterDOM
 
 
 export function MailList({ mails, onRemoveMail, onOpenDetails }) {
+    console.log('mails:', mails)
     return (
         <section className="mail-list">
             <section className="mail-list-actions">

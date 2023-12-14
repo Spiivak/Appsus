@@ -2,7 +2,7 @@ import { mailService } from '../services/mail.service.js'
 const { useState } = React
 
 export function MailAdd({ onAddMail, onToggleAddMail }) {
-    const emptyMail = mailService.getEmptyMail()
+    const emptyMail = mailService.getEmptyMail('user@appsus.com', Date.now())
     const [newMail, setNewMail] = useState(emptyMail)
 
     // console.log('onAddMail:', onAddMail)

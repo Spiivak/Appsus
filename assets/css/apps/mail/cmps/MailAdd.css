@@ -55,6 +55,7 @@
 }
 
 .mail-add input, textarea {
+    padding-block: 10px;
     border: none;
     outline: none;
 }
