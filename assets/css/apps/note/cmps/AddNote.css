@@ -1,40 +1,68 @@
 
-/* .add-note {
+ .add-note {
   display: flex;
   justify-content: center;
   padding: 32px;
-}
-
-.add-note-actions {
-  width: 600px;
-  max-height: 646px;
-}
-
-.add-note input[name="title"] {
-  width: 92%;
-  height: 46px;
-  background-color: #202124;
-  color: #e8eaed;
-  text-indent: 16px;
-  border: 0;
-  border-radius: 50px;
 
 }
 
-.add-note textarea {
+.txt-container {
+  margin-top: 32px;
+  box-shadow: 0px 0px 4px 1px #00000026;
+  border-radius: 8px;
+  padding: 16px;
+  /* background: red; */
+}
+
+.title-section {
   width: 100%;
-  padding: 0 24px;
-  resize: none;
+}
 
-  width: 92%;
-  height: 46px;
-  background-color: #202124;
-  color: #e8eaed;
-  border: 0;
-  border-radius: 50px;
+.title-section button {
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+}
 
-  outline: none;
+.txt-container input[name="title"] {
+  /* background-color: blue; */
+  width: 560px;
+  height: 44px;
+  margin-bottom: 16px;
+  /* margin-right: 8px; */
+  text-indent: 16px;
+  border: none;
+  border: 1px solid #00000026;
+
+}
+.txt-container input[name="txt"] {
+  /* background-color: green; */
+  width: 600px;
+  height: 44px;
+  margin-bottom: 16px;
+  text-indent: 16px;
+
+  border: none;
+  border: 1px solid #00000026;
+
+
+
+}
+
+.notes-actions {
   font-size: 16px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-} */
+  width: 600px;
+  height: 36px;
+}
+
+.notes-actions button {
+  width: 32px;
+  height: 32px;
+}
+
+.submit-btn button {
+  width: 86px;
+  height: 36px;
+  padding: 8px;
+  /* background-color: red; */
+}
