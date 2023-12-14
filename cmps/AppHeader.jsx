@@ -3,7 +3,6 @@ const { Link, NavLink } = ReactRouterDOM
 export function AppHeader() {
     return <header className="app-header flex justify-center align-center full">
         <div className="left-side flex">
-        <button className="btn btn-bars"><i className="fa-solid fa-bars"></i></button>
         <Link to="/">
             <img src="../assets/img/gmail.png" alt="" />
         </Link>

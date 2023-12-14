@@ -54,7 +54,7 @@ function getEmptyMail() {
         sentAt: null,
         removedAt: null,
         from: '',
-        to: 'user@appsus.com',
+        to: '',
     }
 }
 
