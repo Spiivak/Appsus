@@ -15,6 +15,8 @@ export const mailService = {
     getLoggedInUser,
     getInboxMails,
     getSentMails,
+    getStarredMails,
+    getDeletedMails,
     getEmptyMail,
     getDefaultFilter,
     getFilterFromQueryString,
@@ -28,6 +30,14 @@ function query(filterBy) {
                 mails = mails.filter(mail => mail.to === filterBy.to)
             } else if (filterBy.from) {
                 mails = mails.filter(mail => mail.from === filterBy.from)
+            }
+
+            if (filterBy.starred) {
+                mails = mails.filter(mail => mail.isStarred === true)
+            }
+
+            if (filterBy.isDeleted) {
+                mails = mails.filter(mail => mail.removedAt !== null)
             }
 
             if (filterBy.filterBy.search) {
@@ -65,6 +75,14 @@ function getSentMails({ filterBy, email }) {
     return query({ filterBy, from: email });
 }
 
+function getStarredMails({ filterBy, starred }) {
+    return query({ filterBy, starred})
+}
+
+function getDeletedMails({ filterBy, isDeleted }) {
+    return query({ filterBy, isDeleted})
+}
+
 function get(mailId) {
     return storageService.get(MAIL_KEY, mailId)
 }
@@ -88,6 +106,7 @@ function getEmptyMail(from = '', sentAt = null) {
         isRead: false,
         sentAt,
         removedAt: null,
+        isStarred: false,
         from,
         to: '',
     }
@@ -122,6 +141,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1702534778460,
                 removedAt: null,
+                isStarred: true,
                 from: 'momo@momo.com',
                 to: 'user@appsus.com'
             },
@@ -132,6 +152,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1701532778460,
                 removedAt: null,
+                isStarred: true,
                 from: 'popo@momo.com',
                 to: 'user@appsus.com'
             },
@@ -142,6 +163,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1701232778460,
                 removedAt: null,
+                isStarred: true,
                 from: 'koko@momo.com',
                 to: 'user@appsus.com'
             },
@@ -152,6 +174,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1541133930594,
                 removedAt: null,
+                isStarred: false,
                 from: 'nono@momo.com',
                 to: 'user@appsus.com'
             },
@@ -162,6 +185,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1701332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'kiki@momo.com',
                 to: 'user@appsus.com'
             },
@@ -172,6 +196,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1702534778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'momo@momo.com',
                 to: 'user@appsus.com'
             },
@@ -182,6 +207,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1701532778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'popo@momo.com',
                 to: 'user@appsus.com'
             },
@@ -192,6 +218,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1551133830594,
                 removedAt: null,
+                isStarred: false,
                 from: 'koko@momo.com',
                 to: 'user@appsus.com'
             },
@@ -202,6 +229,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1651332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'nono@momo.com',
                 to: 'user@appsus.com'
             },
@@ -212,6 +240,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1671332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'kiki@momo.com',
                 to: 'user@appsus.com'
             },
@@ -222,6 +251,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1681332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'momo@momo.com',
                 to: 'user@appsus.com'
             },
@@ -232,6 +262,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1691332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'popo@momo.com',
                 to: 'user@appsus.com'
             },
@@ -242,6 +273,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1655332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'koko@momo.com',
                 to: 'user@appsus.com'
             },
@@ -252,6 +284,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1657332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'nono@momo.com',
                 to: 'user@appsus.com'
             },
@@ -262,6 +295,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1531133230594,
                 removedAt: null,
+                isStarred: false,
                 from: 'kiki@momo.com',
                 to: 'user@appsus.com'
             },
@@ -272,6 +306,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1231133930594,
                 removedAt: null,
+                isStarred: false,
                 from: 'popo@momo.com',
                 to: 'user@appsus.com'
             },
@@ -282,6 +317,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1551123830594,
                 removedAt: null,
+                isStarred: false,
                 from: 'koko@momo.com',
                 to: 'user@appsus.com'
             },
@@ -292,6 +328,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1552133830594,
                 removedAt: null,
+                isStarred: false,
                 from: 'nono@momo.com',
                 to: 'user@appsus.com'
             },
@@ -302,6 +339,7 @@ function _createMails() {
                 isRead: false,
                 sentAt: 1521133930594,
                 removedAt: null,
+                isStarred: false,
                 from: 'kiki@momo.com',
                 to: 'user@appsus.com'
             },
@@ -312,6 +350,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1681332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'user@appsus.com',
                 to: 'momo@momo.com'
             },
@@ -322,6 +361,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1691332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'user@appsus.com',
                 to: 'momo@momo.com'
             },
@@ -332,6 +372,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1655332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'user@appsus.com',
                 to: 'momo@momo.com'
             },
@@ -342,6 +383,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1657332778460,
                 removedAt: null,
+                isStarred: false,
                 from: 'user@appsus.com',
                 to: 'netflix@momo.com'
             },
@@ -352,6 +394,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1531133230594,
                 removedAt: null,
+                isStarred: false,
                 from: 'user@appsus.com',
                 to: 'service@momo.com'
             },
@@ -362,6 +405,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1231133930594,
                 removedAt: null,
+                isStarred: false,
                 from: 'user@appsus.com',
                 to: 'help@momo.com'
             },
@@ -372,6 +416,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1551123830594,
                 removedAt: null,
+                isStarred: false,
                 from: 'user@appsus.com',
                 to: 'coding@fun.com'
             },
@@ -382,6 +427,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1552133830594,
                 removedAt: null,
+                isStarred: false,
                 from: 'user@appsus.com',
                 to: 'popo@coding.com'
             },
@@ -392,6 +438,7 @@ function _createMails() {
                 isRead: true,
                 sentAt: 1521133930594,
                 removedAt: null,
+                isStarred: false,
                 from: 'user@appsus.com',
                 to: 'kiki@koko.com'
             },
