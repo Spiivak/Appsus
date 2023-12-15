@@ -39,6 +39,8 @@ img {
     cursor: pointer;
     text-align: center;
     color: #444746;
+    width: 32px;
+    height: 32px;
 }
 
 .btn:hover {

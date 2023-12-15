@@ -169,6 +169,50 @@ function _createNotes() {
           ],
         }
       },
+      {
+        id: utilService.makeId(),
+        createAt: '',
+        type: 'NoteImg',
+        isPinned: '',
+        style: {
+          backgroundColor: '#fff'
+        },
+        info: {
+          url: '../../../assets/img/gmail.png',
+          title: 'img',
+          txt: '',
+          todos: [
+            {
+              txt: '',
+              doneAt: '',
+            }
+          ],
+        }
+      },
+      {
+        id: utilService.makeId(),
+        createAt: '',
+        type: 'NoteTodos',
+        isPinned: '',
+        style: {
+          backgroundColor: '#fff'
+        },
+        info: {
+          url: '',
+          title: 'Todos List',
+          txt: '',
+          todos: [
+            {
+              txt: 'Todo 1.',
+              doneAt: '',
+            },
+            {
+              txt: 'Task 2.',
+              doneAt: '',
+            }
+          ],
+        }
+      },
       
     ]
         localStorageService.saveToStorage(NOTE_KEY, notes)

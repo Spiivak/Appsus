@@ -6,15 +6,17 @@ import { NoteVideo } from './NoteVideo.jsx'
 const { Link } = ReactRouterDOM
 
 export function NotePreview({ note, onChangeNote }) {
+  // console.log('note', note)
   return (
     <article onClick={(ev) => ev.stopPropagation()} className="note-preview">
-      <Link to={`/note/edit/${note.id}`}>
+      <Link to={`/notes/edit/${note.id}`}>
         <DynamicCmp note={note} onChangeNote={onChangeNote} />
       </Link>
     </article>
   )
 }
 
+// console.log('note:', note)
 function DynamicCmp({ note, onChangeNote}) {
   switch (note.type) {
     case 'NoteTxt':

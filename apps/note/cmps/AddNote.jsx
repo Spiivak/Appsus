@@ -5,11 +5,12 @@ const { useState, useEffect, useRef, Fragment } = React
 
 export function AddNote({ onAdd, noteToEdit, isOpen, onClose }) {
   const [note, setNote] = useState(noteService.getEmptyNote())
+  const [noteType, setNoteType] = useState('NoteTxt')
   const [isAddOpen, setIsAddOpen] = useState(isOpen)
   const [isColorOpen, setIsColorOpen] = useState(false)
   const addNoteRef = useRef()
 
-  useEffect(() => {
+  useEffect(() => {  
     window.addEventListener('click', onCloseAdd)
 
     return () => {
@@ -108,15 +109,25 @@ export function AddNote({ onAdd, noteToEdit, isOpen, onClose }) {
                 placeholder="Title"
               />
             </Fragment>
-          )}
-          <input
+          )}     
+          {/* <input
             value={note.info.txt}
             onChange={handleNoteChange}
             onClick={onOpenAdd}
             name="txt"
             type="text"
             placeholder="Take a note..."
-          />
+          /> */}
+          
+          {/* <DynamicCmp noteType={noteType}/> */}
+
+          {/* buttons */}
+          <section className="add-notes-btns">
+            <button className='btn' onClick={() => setNoteType('NoteTxt')}><i className="ri-text"></i></button>
+            <button className='btn' onClick={() => setNoteType('NoteImage')}><i className="ri-image-add-line"></i></button>
+            <button className='btn' onClick={() => setNoteType('NoteTodos')}><i className="ri-checkbox-line"></i></button>
+            <button className='btn' onClick={() => setNoteType('NoteVideo')}><i className="ri-video-line"></i></button>
+          </section>
           {isAddOpen && (
             <div className="tool-bar">
               <EditButtons
@@ -138,4 +149,19 @@ export function AddNote({ onAdd, noteToEdit, isOpen, onClose }) {
       </section>
     </section>
   )
+}
+
+function DynamicCmp({ note, onChangeNote}) {
+  switch (note.type) {
+    case 'NoteTxt':
+      return <NoteTxt note={note} onChangeNote={onChangeNote} />
+    case 'NoteImg':
+      return <NoteImage note={note} onChangeNote={onChangeNote} />
+    case 'NoteVideo':
+      return <NoteVideo note={note} onChangeNote={onChangeNote} />
+    case 'NoteTodos':
+      return <NoteTodos note={note} onChangeNote={onChangeNote} />
+    default:
+      throw new Error(`Unsupported note type: ${note.type}`);
+  }
 }
