@@ -2,6 +2,7 @@ import { utilService } from '../../../services/util.service.js'
 const { useState, useEffect } = React
 
 export function MailPreview({ mail, onRemoveMail, isSent, onMark }) {
+    const bgColors = ['#4285F4', '#34A853', '#FBBC05', '#EA4335', '#673AB7']
     const [isHovered, setIsHovered] = useState(false)
     const [isStarred, setIsStarred] = useState(mail.isStarred ? true : false)
 
@@ -65,7 +66,7 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMark }) {
         onMark(mail.id, 'isRead')
     }
 
-    function onStarClick(ev){
+    function onStarClick(ev) {
         ev.stopPropagation()
         setIsStarred((prevIsStarred) => !prevIsStarred)
         onMark(mail.id, 'isStarred')
@@ -80,10 +81,11 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMark }) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <button 
-                className={`btn btn-starred ${isStarred ? 'starred' : ''}`} 
+            <div className="mail-logo" style={{ backgroundColor: bgColors[utilService.getRandomInt(0, 5)] }}>{mail.from[0].toUpperCase()}</div>
+            <button
+                className={`btn btn-starred ${isStarred ? 'starred' : ''}`}
                 onClick={(onStarClick)}
-                >
+            >
                 <i className="fa-regular fa-star"></i>
             </button>
             {!isSent &&
@@ -94,7 +96,7 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMark }) {
             {isSent &&
                 <span className="mail-from">{`To: ${mail.to}`}</span>
             }
-            <section>
+            <section className="mail-content">
                 <p className={`mail-subject ${dynClassTxt}`}>
                     {`${mail.subject} `}
                 </p>

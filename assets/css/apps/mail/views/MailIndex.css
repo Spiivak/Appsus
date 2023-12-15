@@ -1,8 +1,14 @@
  /* mail index  */
 
  .mail-index {
-    display: grid;
     height: 100dvh;
-    grid-template-columns: auto 1fr;
-    grid-template-rows: auto 1fr;
+
+ }
+
+ @media (min-width: 700px) {
+   .mail-index {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto 1fr;
+   }
  }
