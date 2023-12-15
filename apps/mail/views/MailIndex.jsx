@@ -12,11 +12,9 @@ const { useState, useEffect } = React
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
-    const [mailId, setMailId] = useState(null)
 
     const [isAdd, setIsAdd] = useState(false)
     const [isSent, setIsSent] = useState(false)
-    // const [isPreview, setIsPreview] = useState(false)
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromQueryString(searchParams))
@@ -26,8 +24,6 @@ export function MailIndex() {
     useEffect(() => {
         loadMails()
         setSearchParams(filterBy)
-        // console.log('activated:')
-        // }, [isSent])
     }, [isSent, filterBy])
 
     function loadMails() {
@@ -44,7 +40,7 @@ export function MailIndex() {
         }
     }
 
-    function onRemoveMail(mailId) {
+    const onRemoveMail = (mailId) => {
         mailService.remove(mailId)
             .then(() => {
                 setMails(prevMails => {
@@ -83,7 +79,6 @@ export function MailIndex() {
 
     function onSetSearchFilter(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
-        // console.log('filterBy:', filterBy)
     }
 
     function onSetReadFilter(filterBy) {
@@ -93,8 +88,6 @@ export function MailIndex() {
 
     function onOpenDetails(mailId) {
         setIsSent(false)
-        // setIsPreview(true)
-        setMailId(mailId)
         navigate(`/mail/${mailId}`)
     }
 
@@ -120,9 +113,6 @@ export function MailIndex() {
     }
 
     if (!mails) return <div>Loading...</div>
-    // console.log('isPreview:', isPreview)
-    // console.log('isSent:', isSent)
-    // console.log('isAdd:', isAdd)
     return (
         <section className="mail-index">
             <MailHeader filterBy={filterBy} onSetSearchFilter={onSetSearchFilter} />
@@ -148,7 +138,7 @@ export function MailIndex() {
                     onChangeToSentMails
                 />}
             {!isSent && params.mailId &&
-                <Outlet />
+                <Outlet onRemoveMail={onRemoveMail}/>
             }
             {isAdd &&
                 <MailAdd
