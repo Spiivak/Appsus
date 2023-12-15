@@ -23,7 +23,7 @@ export const mailService = {
 }
 
 function query(filterBy) {
-    // console.log('filterBy query:', filterBy)
+    console.log('filterBy query:', filterBy)
     return storageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy.to) {
@@ -35,9 +35,10 @@ function query(filterBy) {
             if (filterBy.starred) {
                 mails = mails.filter(mail => mail.isStarred === true)
             }
-
+            
             if (filterBy.isDeleted) {
                 mails = mails.filter(mail => mail.removedAt !== null)
+
             }
 
             if (filterBy.filterBy.search) {

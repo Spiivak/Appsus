@@ -4,12 +4,15 @@ const { useParams, useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
 
 // ROUTING
-export function MailDetails({ onRemoveMail }) {
+export function MailDetails() {
     const params = useParams()
     const navigate = useNavigate()
+
     const [mail, setMail] = useState(null)
+
     const [isRead, setIsRead] = useState(null)
     const [isStarred, setIsStarred] = useState(false)
+
     const [mailIdx, setMailIdx] = useState(null)
     const [mailsLength, setMailsLength] = useState(null)
 
@@ -21,7 +24,6 @@ export function MailDetails({ onRemoveMail }) {
     function loadMail() {
         mailService.get(params.mailId)
             .then(mail => {
-                if (!mail.isRead) setMailIsRead(mail)
                 setMail(mail)
                 setIsStarred(mail.isStarred)
             })
@@ -54,16 +56,12 @@ export function MailDetails({ onRemoveMail }) {
         navigate('/mail')
     }
 
-    function setMailIsRead(mail) {
-        const updatedMail = { ...mail, isRead: true }
-        mailService.save(updatedMail)
-    }
-
     function onMark(prop) {
         const updatedMail = { ...mail, [prop]: !mail[prop] }
         mailService.save(updatedMail)
             .then((updatedMail) => {
                 setIsRead(updatedMail[prop])
+                setMail(updatedMail)
             })
             .catch(err => {
                 // showErrorMsg(`Error removing Mail: ${mailId}`)
@@ -114,7 +112,9 @@ export function MailDetails({ onRemoveMail }) {
                         <button
                             title="Mark as Unread"
                             className="btn"
-                            onClick={() => onMark('isRead')}
+                            onClick={() => {
+                                onMark('isRead')
+                            }}
                         >
                             <i className="ri-mail-unread-line"></i>
                         </button>
@@ -123,7 +123,9 @@ export function MailDetails({ onRemoveMail }) {
                         <button
                             title="Mark as Read"
                             className="btn"
-                            onClick={() => onMark('isRead')}
+                            onClick={() => {
+                                onMark('isRead')
+                            }}
                         >
                             <i className="ri-mail-open-line"></i>
                         </button>
@@ -144,11 +146,13 @@ export function MailDetails({ onRemoveMail }) {
             </section>
             <section className="mail-subject">
                 <p>{mail.subject}</p>
-                <button 
+                <button
                     className={`btn btn-starred ${mail.isStarred ? 'starred' : ''}`}
-                    onClick={() => onMark('isStarred')}
+                    onClick={() => {
+                        onMark('isStarred')
+                    }}
                 >
-                {/* <button className={`btn btn-starred`}> */}
+                    {/* <button className={`btn btn-starred`}> */}
                     <i className="fa-regular fa-star"></i>
                 </button>
             </section>

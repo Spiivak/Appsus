@@ -6,11 +6,78 @@
     grid-row: 2;
 }
 
-/* .mail-list .mails-container {
-    border: .2px solid black;
-} */
-
 .mail-list .mail-list-actions {
-    height: 48px;
-    border-radius: 16px;
+    height: 62px;
+    border-radius: 100px;
+}
+
+.mail-list .btn-select-filter {
+    margin-block: 10px;
+    margin-inline-start: 10px;
+    padding: 5px;
+}
+
+.mail-list .btn-select-sort {
+    margin-block: 10px;
+    margin-inline-start: 10px;
+    padding: 5px 6px;
+    padding-inline-end: 15px;
+}
+
+.mail-list .btn-select-filter:hover {
+    border-radius: 0;
+}
+
+.mail-list .filter-dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding-block: 5px;
+    left: 1rem;
+    top: 3rem;;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 5px;
+    color : #202124;
+}
+
+.mail-list .filter-dropdown button {
+    font-size: 0.875rem;
+    padding: 6px 48px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: start;
+}
+
+.mail-list .filter-dropdown button:hover {
+    background-color: #f0f0f0;
+}
+
+.mail-list .sort-dropdown {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    padding-block: 5px;
+    left: 1rem;
+    top: 3rem;;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    border-radius: 5px;
+    color : #202124;
+}
+
+.mail-list .sort-dropdown button {
+    font-size: 0.875rem;
+    padding: 6px 48px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    text-align: start;
+}
+
+.mail-list .sort-dropdown button:hover {
+    background-color: #f0f0f0;
 }

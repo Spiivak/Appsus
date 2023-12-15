@@ -11,6 +11,7 @@ const { useState, useEffect } = React
 export function MailIndex() {
     const [mails, setMails] = useState(null)
 
+    const [Mark, setMark] = useState(false)
     const [isAdd, setIsAdd] = useState(false)
     const [isSent, setIsSent] = useState(false)
     const [isStarred, setIsStarred] = useState(false)
@@ -18,13 +19,15 @@ export function MailIndex() {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromQueryString(searchParams))
+    const [sortOption, setSortOption] = useState({ field: 'sentAt', order: 'desc' });
+
     const navigate = useNavigate()
     const params = useParams()
 
     useEffect(() => {
         loadMails()
         setSearchParams(filterBy)
-    }, [filterBy, isSent, isStarred, isDeleted])
+    }, [filterBy, sortOption, isSent, isStarred, isDeleted, Mark])
 
     function loadMails() {
         const { email } = mailService.getLoggedInUser()
@@ -52,7 +55,7 @@ export function MailIndex() {
             .then(mail => {
                 mail.removedAt = Date.now()
                 return mailService.save(mail)
-            }).then (() => {
+            }).then(() => {
                 setMails(prevMails => {
                     return prevMails.filter(mail => mail.id !== mailId)
                 })
@@ -80,7 +83,7 @@ export function MailIndex() {
             })
     }
 
-    function onMark(mailId, prop) {
+    const onMark = (mailId, prop) => {
         mailService.get(mailId)
             .then(mail => {
                 mail[prop] = !mail[prop]
@@ -115,25 +118,25 @@ export function MailIndex() {
     function onOpenDetails(mailId) {
         navigate(`/mail/${mailId}`)
         mailService.get(mailId)
-        .then(mail => {
-            if (!mail.isRead) mail.isRead = true
-            return mailService.save(mail)
-        })
-        .then(() => {
-            setMails(prevMails => {
-                return prevMails.map(mail => {
-                    if (mail.id === mailId) {
-                        return { ...mail, isRead: true }
-                    }
-                    return mail
-                })
+            .then(mail => {
+                if (!mail.isRead) mail.isRead = true
+                return mailService.save(mail)
             })
-            // showSuccessMsg(`Mail successfully marked as read/unread!`)
-        })
-        .catch(err => {
-            // showErrorMsg(`Error marking mail as read/unread: ${mailId}`)
-            console.log('err:', err)
-        })
+            .then(() => {
+                setMails(prevMails => {
+                    return prevMails.map(mail => {
+                        if (mail.id === mailId) {
+                            return { ...mail, isRead: true }
+                        }
+                        return mail
+                    })
+                })
+                // showSuccessMsg(`Mail successfully marked as read/unread!`)
+            })
+            .catch(err => {
+                // showErrorMsg(`Error marking mail as read/unread: ${mailId}`)
+                console.log('err:', err)
+            })
     }
 
     const onAddMail = (newMail) => {
@@ -147,6 +150,10 @@ export function MailIndex() {
 
     const onToggleAddMail = () => {
         setIsAdd(isAdd => !isAdd)
+    }
+
+    const onToggleMark = () => {
+        setMark(prevMark => !prevMark)
     }
 
     const onChangeToSentMails = () => {
@@ -173,11 +180,19 @@ export function MailIndex() {
         setIsDeleted(true)
     }
 
+    function onSetSort(newSort) {
+        setSortOption(prevSortOption => ({ ...prevSortOption, ...newSort }))
+    }
+
     if (!mails) return <div>Loading...</div>
+
+    const unreadMailsCount = mails.reduce((count, mail) => (mail.isRead ? count : count + 1), 0);
+
     return (
         <section className="mail-index">
             <MailHeader filterBy={filterBy} onSetSearchFilter={onSetSearchFilter} />
             <MailAsideToolBar
+                unreadMailsCount={unreadMailsCount}
                 onToggleAddMail={onToggleAddMail}
                 onChangeToInboxMails={onChangeToInboxMails}
                 onChangeToSentMails={onChangeToSentMails}
@@ -192,9 +207,10 @@ export function MailIndex() {
                     onMark={onMark}
                     onOpenDetails={onOpenDetails}
                     onSetReadFilter={onSetReadFilter}
+                    onSetSort={onSetSort}
                 />}
             {params.mailId &&
-                <Outlet onRemoveMail={onRemoveMail} />
+                <Outlet onRemoveMail={onRemoveMail} onToggleMark={onToggleMark} onMark={onMark} />
             }
             {isAdd &&
                 <MailAdd

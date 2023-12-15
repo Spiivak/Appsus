@@ -1,11 +1,20 @@
-
-
 .mail-aside-tool-bar {
     grid-column: 1;
     grid-row: 1 / 4;
-    justify-content: start;
-    padding: 17px 0;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+
+    align-items: start;
+    padding: 26px 0;
     background: var(--main-clr);
+    width: 72px;
+    overflow: hidden;
+    transition: width 0.3s ease
+}
+
+.mail-aside-tool-bar.open{
+    padding-inline-end: 100px;
 }
 
 .mail-aside-tool-bar div {
@@ -13,6 +22,19 @@
 
 }
 
+.menu-actions {
+    margin-inline-start: 21px;
+    transition: margin-inline-start 0.3s ease
+}
+
+.menu-actions > *:not(.btn-compose) {
+    justify-self: start;
+    cursor: pointer;
+}
+
+.menu-actions:first-child {
+    margin-inline-start: 0px;
+}
 .mail-aside-tool-bar button {
     height: 2rem;
     width: 2rem;
@@ -20,9 +42,11 @@
 
 .mail-aside-tool-bar .btn-bars {
     margin-block-end: 10px;
+    margin-inline-start: 18px;
 }
 
 .mail-aside-tool-bar .btn-compose {
+    margin-inline-start: -15px;
     width: 56px;
     height: 56px;
     margin-block: 0.6rem 1rem;
@@ -30,10 +54,30 @@
     color: #001d35;
     border-radius: 16px;
     background-color: #c2e7ff;
-    transition: .08s linear,min-width .15s cubic-bezier(0.4,0,0.2,1);
+    transition: .08s linear, min-width .15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.menu-actions div{
+    gap: 10px;
+
 }
 
 .mail-aside-tool-bar .btn-compose:hover {
-    box-shadow: 0 1px 3px 0 rgba(60,64,67,0.302), 0 4px 8px 3px rgba(60,64,67,0.149);
+    box-shadow: 0 1px 3px 0 rgba(60, 64, 67, 0.302), 0 4px 8px 3px rgba(60, 64, 67, 0.149);
 }
 
+.btn-inbox {
+    position: relative;
+}
+
+.btn-inbox.unread::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(198, 35, 35);
+    border-radius: 50%;
+    display: block;
+}
