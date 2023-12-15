@@ -6,7 +6,7 @@ export function MailAsideToolBar({ onToggleAddMail, onChangeToInboxMails, onChan
             <div className="grid justify-center align-center">
                 <button className="btn btn-bars"><i className="fa-solid fa-bars"></i></button>
                 <button className="btn btn-compose" onClick={onToggleAddMail}><i className="fa-regular fa-pen-to-square"></i></button>
-                <NavLink to="/mail" activeClassName="active">
+                <NavLink to="/mail">
                     <button className="btn btn-inbox" onClick={onChangeToInboxMails}><i className="fa-solid fa-inbox"></i></button>
                 </NavLink>
                 <button className="btn btn-starred"><i className="fa-regular fa-star"></i></button>

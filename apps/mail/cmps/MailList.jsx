@@ -2,7 +2,8 @@ import { MailPreview } from "./MailPreview.jsx"
 
 const { useState } = React
 
-export function MailList({ mails, onRemoveMail, onOpenDetails, onMarkRead, onSetReadFilter }) {
+export function MailList({ mails, isSent, onRemoveMail, onOpenDetails, onMarkRead, onSetReadFilter }) {
+    console.log('isSent:', isSent)
     const sortedMails = [...mails].sort((a, b) => b.sentAt - a.sentAt)
     const [showFilterDropdown, setShowFilterDropdown] = useState(false)
 
@@ -33,7 +34,7 @@ export function MailList({ mails, onRemoveMail, onOpenDetails, onMarkRead, onSet
             {/* <section className="mails-container"> */}
             {sortedMails.map((mail) =>
                 <article key={mail.id} className="mail-item" onClick={() => onOpenDetails(mail.id)}>
-                    <MailPreview mail={mail} onRemoveMail={onRemoveMail} isSent={false} onMarkRead={onMarkRead} />
+                    <MailPreview mail={mail} isSent={isSent} onRemoveMail={onRemoveMail} onMarkRead={onMarkRead} />
                 </article>
             )}
             {/* </section> */}

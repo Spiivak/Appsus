@@ -105,11 +105,13 @@ export function MailIndex() {
     }
 
     const onChangeToSentMails = () => {
-        setIsSent(isSent => setIsSent(true))
+        setIsSent(true)
+        // loadMails()
     }
 
     const onChangeToInboxMails = () => {
-        setIsSent(isSent => setIsSent(false))
+        setIsSent(false)
+        // loadMails()
     }
 
     if (!mails) return <div>Loading...</div>
@@ -122,23 +124,17 @@ export function MailIndex() {
                 onChangeToSentMails={onChangeToSentMails}
             />
 
-            {!isSent && !params.mailId && 
+            {!params.mailId &&
                 <MailList
                     mails={mails}
+                    isSent={isSent}
                     onRemoveMail={onRemoveMail}
                     onMarkRead={onMarkRead}
                     onOpenDetails={onOpenDetails}
                     onSetReadFilter={onSetReadFilter}
                 />}
-            {isSent &&
-                <MailSent
-                    mails={mails}
-                    onRemoveMail={onRemoveMail}
-                    onOpenDetails={onOpenDetails}
-                    onChangeToSentMails
-                />}
             {!isSent && params.mailId &&
-                <Outlet onRemoveMail={onRemoveMail}/>
+                <Outlet onRemoveMail={onRemoveMail} />
             }
             {isAdd &&
                 <MailAdd
