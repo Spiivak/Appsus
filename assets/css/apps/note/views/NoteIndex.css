@@ -6,18 +6,9 @@
   grid-template-columns: 72px 1fr;
   grid-template-rows: auto 1fr;
 }
+
 .note-index .note-header {
   grid-column: 2 / 3;
   justify-content: space-between;
   padding: 8px;
-}
-
-.note-list {
-  display: grid;
-  grid-column: 2;
-}
-
-.add-note {
-  display: grid;
-  grid-column: 2;
 }

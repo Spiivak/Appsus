@@ -35,8 +35,11 @@ export function NoteIndex() {
     <section className="note-index page">
       <NoteHeader />
       <NoteAsideToolBar />
+      <section className='note-list-section'>
+
       <AddNote onAdd={loadNotes} />
       <NoteList onChangeNote={loadNotes} notes={notes} />
+      </section>
       <Outlet />
     </section>
   )

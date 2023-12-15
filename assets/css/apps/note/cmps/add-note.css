@@ -1,15 +1,13 @@
 .add-note {
   position: relative;
-  /* display: flex; */
-  /* flex-direction: column; */
-  max-width: 600px;
-  max-height: 140px;
+  min-width: 600px;
+  min-height: 100px;
   padding-block: 10px 5px;
   padding-inline: 20px;
   border-radius: 10px;
   border: 1px solid #3a3a3a38;
   transition: 0.2s;
-  
+  justify-self: center;
 }
 
 .add-note-form {
