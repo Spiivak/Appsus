@@ -1,4 +1,4 @@
-.mail-details{
+.mail-details {
     position: relative;
     grid-column: 2;
     grid-row: 2;
@@ -11,7 +11,7 @@
     border-radius: 2000px;
 }
 
-.mail-details > *:not(.btn-back) {
+.mail-details>*:not(.btn-back) {
     grid-column: 2;
 }
 
@@ -37,7 +37,8 @@
     justify-content: space-between;
 }
 
-.mail-details .btn-next-mail, .btn-prev-mail {
+.mail-details .btn-next-mail,
+.btn-prev-mail {
     border: none;
     background: transparent;
     cursor: pointer;
@@ -53,11 +54,15 @@
     font-size: 1.375rem;
     white-space: nowrap;
     overflow-x: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;
 }
 
 .mail-details .btn-starred {
     font-size: 0.875rem;
+}
+
+.mail-details .btn-starred.starred {
+    color: rgb(255, 208, 0);
 }
 
 .mail-details .info-section {
@@ -73,7 +78,8 @@
     margin-inline-start: 5px;
 }
 
-.mail-details .info-section .from-full-mail, span  {
+.mail-details .info-section .from-full-mail,
+span {
     font-size: 0.75rem;
     color: #5e5e5e;
 }
@@ -82,11 +88,12 @@
     align-self: start;
 }
 
-.mail-details p, .from-name-only {
+.mail-details p,
+.from-name-only {
     margin-inline-start: 0.875rem;
     color: #1f1f1f;
-}   
+}
 
 .mail-details .date {
     margin-inline-end: 0.875rem;
-}   
+}

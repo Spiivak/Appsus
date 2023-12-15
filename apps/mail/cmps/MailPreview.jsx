@@ -1,8 +1,9 @@
 import { utilService } from '../../../services/util.service.js'
 const { useState, useEffect } = React
 
-export function MailPreview({ mail, onRemoveMail, isSent, onMarkRead }) {
+export function MailPreview({ mail, onRemoveMail, isSent, onMark }) {
     const [isHovered, setIsHovered] = useState(false)
+    const [isStarred, setIsStarred] = useState(mail.isStarred ? true : false)
 
     const sentDate = new Date(mail.sentAt)
     const isRead = mail.isRead
@@ -46,9 +47,6 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMarkRead }) {
         }
     }
 
-    const dynClassTxt = (!mail.isRead) ? 'un-read-txt' : ''
-    const dynClassBgc = (!mail.isRead) ? 'un-read-bgc' : ''
-
     const handleMouseEnter = () => {
         setIsHovered(true)
     }
@@ -64,8 +62,17 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMarkRead }) {
 
     function onMarkReadBtn(ev) {
         ev.stopPropagation()
-        onMarkRead(mail.id)
+        onMark(mail.id, 'isRead')
     }
+
+    function onStarClick(ev){
+        ev.stopPropagation()
+        setIsStarred((prevIsStarred) => !prevIsStarred)
+        onMark(mail.id, 'isStarred')
+    }
+
+    const dynClassTxt = (!mail.isRead) ? 'un-read-txt' : ''
+    const dynClassBgc = (!mail.isRead) ? 'un-read-bgc' : ''
 
     return (
         <article
@@ -73,7 +80,12 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMarkRead }) {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
         >
-            <button className="btn btn-starred"><i className="fa-regular fa-star"></i></button>
+            <button 
+                className={`btn btn-starred ${isStarred ? 'starred' : ''}`} 
+                onClick={(onStarClick)}
+                >
+                <i className="fa-regular fa-star"></i>
+            </button>
             {!isSent &&
                 <span className={`mail-from ${dynClassTxt}`}>
                     {mail.from}
@@ -89,7 +101,6 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMarkRead }) {
                 <p className="mail-body">{mail.body}</p>
             </section>
             <span className={`mail-sentAt ${dynClassTxt}`}>{displayedContent}</span>
-            {/* <span className={`mail-sentAt ${dynClassTxt}`}>{formattedSentAt}</span> */}
         </article >
     )
 }

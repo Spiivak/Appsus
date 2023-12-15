@@ -16,15 +16,8 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
 }
 
-.mail-preview.un-read-bgc {
-    background-color: #fff;
-}
-
 .mail-preview button {
     padding: 10px;
-}
-
-.mail-preview button {
     height: 20px;
     width: 20px;
     margin-inline-start: 10px;
@@ -68,6 +61,14 @@
     color: #5f6368;
 }
 
-.mail-preview .un-read-txt {
+.un-read-txt {
     font-weight: 700;
+}
+
+.un-read-bgc {
+    background-color: #fff;
+}
+
+.mail-preview .btn-starred.starred{
+    color: rgb(255, 208, 0); 
 }
