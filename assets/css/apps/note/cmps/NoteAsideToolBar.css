@@ -1,0 +1,24 @@
+
+
+.note-aside-tool-bar {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    justify-content: flex-start;
+    padding: 20px 0;
+
+    background: var(--main-clr);
+}
+
+.note-aside-tool-bar button {
+    height: 2rem;
+    width: 2rem;
+    cursor: pointer;
+}
+
+.note-aside-tool-bar button:hover {
+    height: 2rem;
+}
+
+.note-aside-tool-bar .btn-bars {
+    padding-bottom: 8px;
+}

@@ -1,46 +1,80 @@
-import { eventBusService } from '../../../services/event-bus.service.js'
-import { AddNote } from '../cmps/AddNote.jsx'
-import { NoteHeader } from '../cmps/NoteHeader.jsx'
-import { NoteAsideToolBar } from '../cmps/NoteAsideToolBar.jsx'
-import { NoteList } from '../cmps/NoteList.jsx'
-import { noteService } from '../services/note.service.js'
-
-const { Outlet } = ReactRouterDOM
 const { useState, useEffect } = React
+const { Link } = ReactRouterDOM
+
+import { NoteAdd } from '../cmps/NoteAdd.jsx'
+import { NoteAsideToolBar } from '../cmps/NoteAsideToolBar.jsx'
+import { NoteEdit } from '../cmps/NoteEdit.jsx'
+import { NoteList } from '../cmps/NoteList.jsx'
+import { NoteHeader } from '../cmps/NoteHeader.jsx'
+import { noteUtilsService } from '../services/note.utils.service.js'
 
 export function NoteIndex() {
   const [notes, setNotes] = useState(null)
-  const [filterBy, setFilterBy] = useState(null)
-
-  useEffect(() => {
-    const unsubscribe = eventBusService.on('load-notes', loadNotes)
-
-    return () => {
-      unsubscribe()
-    }
-  }, [])
+  const [selectedNote, setSelectedNote] = useState(null)
 
   useEffect(() => {
     loadNotes()
-  }, [filterBy])
+  }, [])
+
+  // *  --------------------------//CRUD HANDLE //---------------------------  * //
 
   function loadNotes() {
-    noteService
-      .query(filterBy)
-      .then(setNotes)
-      .catch((err) => console.log('err:', err))
+    noteUtilsService.loadNotes(setNotes)
   }
 
-  return (
-    <section className="note-index page">
-      <NoteHeader />
-      <NoteAsideToolBar />
-      <section className='note-list-section'>
+  function addNote(note) {
+    noteUtilsService.addNote(note, setNotes)
+  }
 
-      <AddNote onAdd={loadNotes} />
-      <NoteList onChangeNote={loadNotes} notes={notes} />
-      </section>
-      <Outlet />
+  function deleteNote(note) {
+    noteUtilsService.deleteNote(note, setNotes)
+  }
+
+  function editNote(note) {
+    noteUtilsService.editNote(note, setSelectedNote)
+  }
+
+  function saveNote(note) {
+    noteUtilsService.saveNote(note, setNotes, setSelectedNote)
+  }
+
+  //* -------------------------------------------------------------------------- //
+
+  function todoToggle(note, todo) {
+    noteUtilsService.todoToggle(note, todo, setNotes)
+  }
+
+  function changeBackgroundColor(colorHex, note) {
+    noteUtilsService.changeBackgroundColor(colorHex, note, setNotes)
+  }
+
+  if (!notes) return <div>Loading... </div>
+  return (
+    <section className="note-index">
+      {/* <div className="search-title">
+        <Link to={'search'}>
+          <input type="text" placeholder="Search note" />
+        </Link>
+        <button>X</button>
+      </div> */}
+      <NoteHeader/>
+      <NoteAsideToolBar/>
+      <NoteAdd addNote={addNote} />
+      <NoteList
+        notes={notes}
+        changeBackgroundColor={changeBackgroundColor}
+        deleteNote={deleteNote}
+        editNote={editNote}
+        todoToggle={todoToggle}
+      />
+
+      {selectedNote && (
+        <NoteEdit
+          selectedNote={selectedNote}
+          setSelectedNote={setSelectedNote}
+          saveNote={saveNote}
+        />
+      )}
     </section>
   )
 }

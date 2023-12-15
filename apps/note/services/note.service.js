@@ -1,12 +1,102 @@
-// note service
+import { localStorageService } from '../../../services/storage.service.js'
+import { storageService } from '../../../services/async-storage.service.js'
 
-import { storageService } from '../../../services/async-storage.service.js';
-import { utilService } from '../../../services/util.service.js';
-import { localStorageService } from '../../../services/storage.service.js';
+const NOTES_KEY = 'noteDB'
 
-const NOTE_KEY = 'notesDB'
+let gFilterBy = {
+  title: '',
+  type: '',
+  color: '',
+}
 
-_createNotes()
+const tempNotes = [
+  {
+    id: 'n101',
+    createdAt: 1702080000000,
+    type: 'noteTxt',
+    isPinned: true,
+    style: {
+      backgroundColor: `#fff`,
+    },
+    info: {
+      title: 'Title - 1',
+      txt: 'lorem ipsum dolor sit amet con laoreet lore tell tellus et lore tell tellus et lore tellus',
+    },
+  },
+  // ... (other temp notes)
+]
+
+function query() {
+  return storageService.query(NOTES_KEY)
+    .then((notes) => {
+      return applyFilter(notes);
+    });
+}
+
+function applyFilter(notes) {
+  if (gFilterBy.title) {
+    const regex = new RegExp(gFilterBy.title, 'i')
+    notes = notes.filter((note) => regex.test(note.info.title))
+  }
+  if (gFilterBy.type) {
+    notes = notes.filter((note) => note.type === gFilterBy.type)
+  }
+  if (gFilterBy.color) {
+    notes = notes.filter((note) => note.style.backgroundColor === gFilterBy.color)
+  }
+  return notes;
+}
+
+function get(noteId) {
+  return storageService.get(NOTES_KEY, noteId);
+}
+
+function remove(noteId) {
+  return storageService.remove(NOTES_KEY, noteId);
+}
+
+function save(note) {
+  return note.id
+    ? storageService.put(NOTES_KEY, note)
+    : storageService.post(NOTES_KEY, note);
+}
+
+function getFilterBy() {
+  return { ...gFilterBy };
+}
+
+function setFilterBy(filterBy = {}) {
+  gFilterBy = { ...filterBy };
+  return getFilterBy();
+}
+
+function getEmptyNote(createdAt = Date.now(), type = 'noteTxt', isPinned = false, title = 'New Note') {
+  return {
+    createdAt,
+    type,
+    isPinned,
+    info: { title },
+  };
+}
+
+function getNextNoteId(noteId) {
+  return storageService.query(NOTES_KEY)
+    .then((notes) => {
+      let nextNoteIdx = notes.findIndex((note) => note.id === noteId) + 1;
+      if (nextNoteIdx === notes.length) nextNoteIdx = 0;
+      return notes[nextNoteIdx].id;
+    });
+}
+
+function initializeNotes() {
+  let notes = localStorageService.loadFromStorage(NOTES_KEY);
+  if (!notes || !notes.length) {
+    notes = tempNotes;
+    localStorageService.saveToStorage(NOTES_KEY, notes);
+  }
+}
+
+initializeNotes();
 
 export const noteService = {
   query,
@@ -14,213 +104,7 @@ export const noteService = {
   remove,
   save,
   getEmptyNote,
-  getDefaultFilter
-}
-
-function query() {
-  return storageService.query(NOTE_KEY)
-    // .then(notes => notes)
-}
-
-function get(noteId) {
-  return storageService.get(NOTE_KEY, noteId)
-}
-
-function remove(noteId) {
-  return storageService.remove(NOTE_KEY, noteId)
-}
-
-function save(note) {
-  if(note.id) {
-    return storageService.put(NOTE_KEY, note)
-  } else {
-    return storageService.post(NOTE_KEY, note)
-  }
-}
-
-function getDefaultFilter() {
-  return { pinned: '' }
-}
-
-function getEmptyNote(title = '', txt = '') {
-  return {
-    createAt: '',
-    type: 'NoteTxt',
-    isPinned: '',
-    style: {
-      backgroundColor: 'white'
-    },
-    info: {
-      url: '',
-      title,
-      txt,
-      todos: [
-        {
-          txt: '',
-          doneAt: '',
-        }
-      ],
-    }
-  }
-}
-
-function _createNotes() {
-  let notes = localStorageService.loadFromStorage(NOTE_KEY)
-  if(!notes || !notes.length) {
-
-    const notes = [
-      {
-        id: utilService.makeId(),
-        createAt: '',
-        type: 'NoteTxt',
-        isPinned: '',
-        style: {
-          backgroundColor: '#fff'
-        },
-        info: {
-          url: '',
-          title: 'Home',
-          txt: 'Take a walk.',
-          todos: [
-            {
-              txt: '',
-              doneAt: '',
-            }
-          ],
-        }
-      },
-      {
-        id: utilService.makeId(),
-        createAt: '',
-        type: 'NoteTxt',
-        isPinned: '',
-        style: {
-          backgroundColor: '#fff'
-        },
-        info: {
-          url: '',
-          title: 'Home',
-          txt: 'Take a walk.',
-          todos: [
-            {
-              txt: '',
-              doneAt: '',
-            }
-          ],
-        }
-      },
-      {
-        id: utilService.makeId(),
-        createAt: '',
-        type: 'NoteTxt',
-        isPinned: '',
-        style: {
-          backgroundColor: '#fff'
-        },
-        info: {
-          url: '',
-          title: 'Home',
-          txt: 'Take a walk.',
-          todos: [
-            {
-              txt: '',
-              doneAt: '',
-            }
-          ],
-        }
-      },
-      {
-        id: utilService.makeId(),
-        createAt: '',
-        type: 'NoteTxt',
-        isPinned: '',
-        style: {
-          backgroundColor: '#fff'
-        },
-        info: {
-          url: '',
-          title: 'Home',
-          txt: 'Take a walk.',
-          todos: [
-            {
-              txt: '',
-              doneAt: '',
-            }
-          ],
-        }
-      },
-      {
-        id: utilService.makeId(),
-        createAt: '',
-        type: 'NoteTxt',
-        isPinned: '',
-        style: {
-          backgroundColor: '#fff'
-        },
-        info: {
-          url: '',
-          title: 'Home',
-          txt: 'Take a walk.',
-          todos: [
-            {
-              txt: '',
-              doneAt: '',
-            }
-          ],
-        }
-      },
-      {
-        id: utilService.makeId(),
-        createAt: '',
-        type: 'NoteImg',
-        isPinned: '',
-        style: {
-          backgroundColor: '#fff'
-        },
-        info: {
-          url: '../../../assets/img/gmail.png',
-          title: 'img',
-          txt: '',
-          todos: [
-            {
-              txt: '',
-              doneAt: '',
-            }
-          ],
-        }
-      },
-      {
-        id: utilService.makeId(),
-        createAt: '',
-        type: 'NoteTodos',
-        isPinned: '',
-        style: {
-          backgroundColor: '#fff'
-        },
-        info: {
-          url: '',
-          title: 'Todos List',
-          txt: '',
-          todos: [
-            {
-              txt: 'Todo 1.',
-              doneAt: '',
-            },
-            {
-              txt: 'Task 2.',
-              doneAt: '',
-            }
-          ],
-        }
-      },
-      
-    ]
-        localStorageService.saveToStorage(NOTE_KEY, notes)
-  }
-}
-
-function _createNote({ id, title, txt }) {
-  const note = getEmptyNote({ id, title, txt})
-  console.log('Create Note', note)
-  return note
-}
+  getNextNoteId,
+  getFilterBy,
+  setFilterBy,
+};

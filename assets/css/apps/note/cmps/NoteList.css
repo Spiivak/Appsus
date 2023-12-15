@@ -1,0 +1,23 @@
+.note-list-section {
+  margin-inline-start: -10px;
+  margin-inline-end: 80px;
+  padding: 0;
+
+  column-gap: 2.5em;
+  column-width: 200px;
+}
+.note-list {
+  width: 100%;
+  margin-inline-start: auto;
+}
+
+.note-list > li:first-of-type {
+  margin-block-start: -16px;
+}
+.note-list > li {
+  margin-block-end: 1em;
+}
+
+.note-list-section ul {
+  list-style: none;
+}

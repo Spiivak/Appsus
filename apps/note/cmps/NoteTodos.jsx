@@ -1,22 +1,42 @@
-export function NoteTodos({note}) {
+import { PreviewButtons } from './PreviewButtons.jsx'
+
+export function NoteTodos({
+  note,
+  changeBackgroundColor,
+  deleteNote,
+  editNote,
+  from,
+  todoToggle,
+}) {
+  const isDoneClass = (todo) => (todo.isDone ? 'done' : 'todo')
+
+  const handleTodoClick = (todo) => {
+    todoToggle(note, todo)
+  }
 
   return (
-    <article 
-    className="note-todos"
-    >
-      {note.info.title && <p className="note-title">{note.info.title}</p>}
+    <article className="note-preview" style={note.style}>
+      <h2>{note.info.title}</h2>
+      {note.info.todos && note.info.todos.length > 0 && (
+        <ul>
+          {note.info.todos.map((todo) => (
+            <li key={todo.id}>
+              <span
+                onClick={() => handleTodoClick(todo)}
+                className={isDoneClass(todo)}>
+                {todo.txt}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
 
-      <ul className="note-todos-list note-content">
-        {note.info.todos.map((todo, idx) => {
-          return <li key={idx} className="todo">
-            
-            <label>
-              <input onChange={console.log} type="checkbox" checked={todo.doneAt} />
-               {todo.txt}
-            </label>
-          </li>
-        })}
-      </ul>
+      <PreviewButtons
+        note={note}
+        deleteNote={deleteNote}
+        editNote={editNote}
+        changeBackgroundColor={changeBackgroundColor}
+      />
     </article>
   )
 }

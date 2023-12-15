@@ -1,6 +1,4 @@
- /* note index */
-
- .note-index {
+.note-index {
   display: grid;
   height: 100dvh;
   grid-template-columns: 72px 1fr;
@@ -10,5 +8,5 @@
 .note-index .note-header {
   grid-column: 2 / 3;
   justify-content: space-between;
-  padding: 8px;
+  padding: 16px;
 }
