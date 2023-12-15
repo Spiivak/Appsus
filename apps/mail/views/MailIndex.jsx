@@ -1,4 +1,5 @@
 import { mailService } from '../services/mail.service.js'
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 
 import { MailList } from "../cmps/MailList.jsx"
 import { MailAsideToolBar } from "../cmps/MailAsideToolBar.jsx"
@@ -19,7 +20,7 @@ export function MailIndex() {
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromQueryString(searchParams))
-    const [sortOption, setSortOption] = useState({ field: 'sentAt', order: 'desc' });
+    const [sortOption, setSortOption] = useState({ field: 'sentAt', order: 'desc' })
 
     const navigate = useNavigate()
     const params = useParams()
@@ -53,37 +54,60 @@ export function MailIndex() {
     const onRemoveMail = (mailId) => {
         mailService.get(mailId)
             .then(mail => {
-                mail.removedAt = Date.now()
-                return mailService.save(mail)
+                console.log('mail.removedAt:', mail.removedAt)
+                if (!mail.removedAt) {
+                    mail.removedAt = Date.now()
+                    return mailService.save(mail)
+                } else {
+                    onFinalRemoveMail(mail.id)
+                }
             }).then(() => {
                 setMails(prevMails => {
                     return prevMails.filter(mail => mail.id !== mailId)
                 })
-            })
-            // }).then(
-            //     // showSuccessMsg(`Mail successfully removed to Trash!`)
-            //     )
+            }).then(showSuccessMsg(`Conversation moved to Trash`))
             .catch(err => {
-                // showErrorMsg(`Error removing Mail: ${mailId}`)
+                showErrorMsg(`Error removing Mail: ${mailId}`)
                 console.log('err:', err)
             })
     }
 
-    const onFinalRemoveMail = (mailId) => {
+    function onFinalRemoveMail(mailId) {
         mailService.remove(mailId)
             .then(() => {
                 setMails(prevMails => {
                     return prevMails.filter(mail => mail.id !== mailId)
                 })
-                // showSuccessMsg(`Mail successfully removed!`)
+                showSuccessMsg(`Conversation successfully removed!`)
             })
             .catch(err => {
-                // showErrorMsg(`Error removing Mail: ${mailId}`)
+                showErrorMsg(`Error removing Mail: ${mailId}`)
                 console.log('err:', err)
             })
     }
 
+    const onEmptyTrash = () => {
+        console.log('isDeleted:', isDeleted)
+        mailService.getDeletedMails({ filterBy, isDeleted: true })
+            .then(trashMails => {
+                console.log("trashMails:", trashMails)
+                return trashMails.reduce((promise, mail) => {
+                    return promise.then(() => mailService.remove(mail.id))
+                }, Promise.resolve())
+            })
+            .then(() => {
+                setIsDeleted(false)
+                showSuccessMsg(`Trash successfully emptied!`)
+            })
+            .catch(err => {
+                showErrorMsg(`Error emptying Trash`)
+                console.log('Error emptying trash:', err)
+            })
+    }
+
     const onMark = (mailId, prop) => {
+        console.log('prop:', prop)
+        let mailMark
         mailService.get(mailId)
             .then(mail => {
                 mail[prop] = !mail[prop]
@@ -98,10 +122,11 @@ export function MailIndex() {
                         return mail
                     })
                 })
-                // showSuccessMsg(`Mail successfully marked as read/unread!`)
+
+                showSuccessMsg(`Conversation marked as read/unread!`)
             })
             .catch(err => {
-                // showErrorMsg(`Error marking mail as read/unread: ${mailId}`)
+                showErrorMsg(`Error marking mail: ${mailId}`)
                 console.log('err:', err)
             })
     }
@@ -131,10 +156,10 @@ export function MailIndex() {
                         return mail
                     })
                 })
-                // showSuccessMsg(`Mail successfully marked as read/unread!`)
+                showSuccessMsg(`Mail successfully marked as read/unread!`)
             })
             .catch(err => {
-                // showErrorMsg(`Error marking mail as read/unread: ${mailId}`)
+                showErrorMsg(`Error marking mail as read/unread: ${mailId}`)
                 console.log('err:', err)
             })
     }
@@ -186,7 +211,7 @@ export function MailIndex() {
 
     if (!mails) return <div>Loading...</div>
 
-    const unreadMailsCount = mails.reduce((count, mail) => (mail.isRead ? count : count + 1), 0);
+    const unreadMailsCount = mails.reduce((count, mail) => (mail.isRead ? count : count + 1), 0)
 
     return (
         <section className="mail-index">
@@ -208,6 +233,8 @@ export function MailIndex() {
                     onOpenDetails={onOpenDetails}
                     onSetReadFilter={onSetReadFilter}
                     onSetSort={onSetSort}
+                    onEmptyTrash={onEmptyTrash}
+                    isDeleted={isDeleted}
                 />}
             {params.mailId &&
                 <Outlet onRemoveMail={onRemoveMail} onToggleMark={onToggleMark} onMark={onMark} />

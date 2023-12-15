@@ -7,6 +7,7 @@
 }
 
 .mail-list .mail-list-actions {
+    position: relative;
     height: 62px;
     border-radius: 100px;
 }
@@ -80,4 +81,12 @@
 
 .mail-list .sort-dropdown button:hover {
     background-color: #f0f0f0;
+}
+
+.mail-list .btn-empty-trash {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+
+    padding: 5px;
 }

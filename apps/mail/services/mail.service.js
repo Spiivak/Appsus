@@ -38,7 +38,8 @@ function query(filterBy) {
             
             if (filterBy.isDeleted) {
                 mails = mails.filter(mail => mail.removedAt !== null)
-
+            } else {
+                mails = mails.filter(mail => mail.removedAt === null)
             }
 
             if (filterBy.filterBy.search) {

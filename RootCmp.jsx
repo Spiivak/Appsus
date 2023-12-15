@@ -8,6 +8,7 @@ import { MailIndex } from "./apps/mail/views/MailIndex.jsx"
 import { MailDetails } from "./apps/mail/views/MailDetails.jsx"
 import { MailAdd } from "./apps/mail/cmps/MailAdd.jsx"
 import { NoteIndex } from "./apps/note/views/NoteIndex.jsx"
+import { UserMsg } from "./cmps/UserMsg.jsx"
 
 export function App() {
     return (
@@ -24,6 +25,7 @@ export function App() {
                 </Routes>
             </main>
             <AppAsideNav />
+            <UserMsg />
         </Router>
     )
 }
