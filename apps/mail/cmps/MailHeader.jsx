@@ -3,7 +3,7 @@ import { MailFilter } from "../cmps/MailFilter.jsx"
 const { Link, NavLink } = ReactRouterDOM
 
 export function MailHeader({ filterBy, onSetSearchFilter }) {
-    return <header className="mail-header flex justify-center align-center full">
+    return <header className="mail-header grid column justify-center align-center">
         <div className="left-side flex">
             <Link to="/mail">
                 <img src="../assets/img/gmail.png" alt="" />
