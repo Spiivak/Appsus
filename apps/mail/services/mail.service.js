@@ -8,6 +8,7 @@ _createMails()
 
 export const mailService = {
     query,
+    queryNoFilter,
     get,
     remove,
     save,
@@ -43,10 +44,17 @@ function query(filterBy) {
                 mails = mails.filter(mail => mail.isRead === true)
             } else if (filterBy.filterBy.isRead === false) {
                 mails = mails.filter(mail => mail.isRead === false)
-            } 
+            }
 
             return mails
         })
+        .catch(err => console.error('err: ', err))
+}
+
+function queryNoFilter() {
+    return storageService.query(MAIL_KEY)
+        .then(mails => mails)
+        .catch(err => console.error('err: ', err))
 }
 
 function getInboxMails({ filterBy, email }) {
@@ -301,7 +309,7 @@ function _createMails() {
                 id: 'e111',
                 subject: 'Miss you!',
                 body: 'Would love to catch up sometimes',
-                isRead: false,
+                isRead: true,
                 sentAt: 1681332778460,
                 removedAt: null,
                 from: 'user@appsus.com',
@@ -311,7 +319,7 @@ function _createMails() {
                 id: 'e112',
                 subject: 'Hello you!',
                 body: utilService.makeLorem(11),
-                isRead: false,
+                isRead: true,
                 sentAt: 1691332778460,
                 removedAt: null,
                 from: 'user@appsus.com',
@@ -331,7 +339,7 @@ function _createMails() {
                 id: 'e114',
                 subject: 'We Rock!',
                 body: 'Would love to catch up sometimes',
-                isRead: false,
+                isRead: true,
                 sentAt: 1657332778460,
                 removedAt: null,
                 from: 'user@appsus.com',
@@ -351,7 +359,7 @@ function _createMails() {
                 id: 'e116',
                 subject: 'Hello you!',
                 body: 'How have you been?',
-                isRead: false,
+                isRead: true,
                 sentAt: 1231133930594,
                 removedAt: null,
                 from: 'user@appsus.com',
@@ -381,7 +389,7 @@ function _createMails() {
                 id: 'e119s',
                 subject: 'We are going to have the best project!',
                 body: 'Eden and Noam are going to have the best project',
-                isRead: false,
+                isRead: true,
                 sentAt: 1521133930594,
                 removedAt: null,
                 from: 'user@appsus.com',

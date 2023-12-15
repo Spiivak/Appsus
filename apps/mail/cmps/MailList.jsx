@@ -3,7 +3,6 @@ import { MailPreview } from "./MailPreview.jsx"
 const { useState } = React
 
 export function MailList({ mails, onRemoveMail, onOpenDetails, onMarkRead, onSetReadFilter }) {
-    // console.log('mails:', mails)
     const sortedMails = [...mails].sort((a, b) => b.sentAt - a.sentAt)
     const [showFilterDropdown, setShowFilterDropdown] = useState(false)
 

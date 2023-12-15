@@ -5,14 +5,88 @@
 
     display: grid;
     grid-template-columns: 60px 1fr 60px;
-    grid-template-rows: 48px 84px 60px 1fr;
+    grid-template-rows: 48px 56px 60px 1fr;
+    align-items: center;
+
+    border-radius: 2000px;
 }
 
-.mail-details > * {
+.mail-details > *:not(.btn-back) {
     grid-column: 2;
 }
 
-.mail-details .btn-back {
-    position: absolute;
-    left: 0;
+.mail-details button {
+    height: 40px;
+    width: 40px;
+    font-size: 1.2rem;
 }
+
+
+.mail-details .btn-back {
+    grid-column: 1;
+    align-self: center;
+    /* height: 40px;
+    width: 40px; */
+    margin-inline-start: 0.5rem;
+    /* font-size: 1.2rem; */
+}
+
+.mail-details .actions-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mail-details .btn-next-mail, .btn-prev-mail {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.mail-details .mail-subject {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mail-details .mail-subject p {
+    font-size: 1.375rem;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis; 
+}
+
+.mail-details .btn-starred {
+    font-size: 0.875rem;
+}
+
+.mail-details .info-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mail-details .from-name-only {
+    font-weight: 700;
+}
+
+.mail-details .from-full-mail {
+    margin-inline-start: 5px;
+}
+
+.mail-details .info-section .from-full-mail, span  {
+    font-size: 0.75rem;
+    color: #5e5e5e;
+}
+
+.mail-details .mail-body {
+    align-self: start;
+}
+
+.mail-details p, .from-name-only {
+    margin-inline-start: 0.875rem;
+    color: #1f1f1f;
+}   
+
+.mail-details .date {
+    margin-inline-end: 0.875rem;
+}   
