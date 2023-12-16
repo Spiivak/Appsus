@@ -16,6 +16,7 @@ export function MailIndex() {
     const [mark, setMark] = useState(false)
     const [isAdd, setIsAdd] = useState(false)
     const [isMenuOpen, setMenuOpen] = useState(false)
+    
     const [showSentMails, setShowSentMails] = useState(false)
     const [showStarredMails, setShowStarredMails] = useState(false)
     const [showDeletedMails, setShowDeletedMails] = useState(false)
