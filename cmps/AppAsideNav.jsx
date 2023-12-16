@@ -6,7 +6,7 @@ export function AppAsideNav() {
             <nav>
                 <NavLink to="/mail">
                     <div>
-                        <img className="btn" src="assets\img\gmail.png" alt="gmail-logo" />
+                        <img className="btn" src="assets\img\gmail-logo.png" alt="gmail-logo" />
                     </div>
                 </NavLink>
                 <NavLink to="/note">
