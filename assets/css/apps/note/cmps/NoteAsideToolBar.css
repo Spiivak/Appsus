@@ -1,34 +1,62 @@
-
-
 .note-aside-tool-bar {
-    grid-column: 1;
-    grid-row: 1 / 4;
+	z-index: 10;
+	background: white;
+    transition: width 0.3s ease;
+    padding: 16px;
+}
 
-    display: grid;
-    grid-template-rows: auto 1fr;
-    align-items: start;
-
-    padding-inline-start: 10px;
-    width: 72px;
-
-    position: sticky;
-    top: 64px;
-    left: 0;
-    height: 100%;
-    z-index: 10;
-    background: var(--main-clr);
+.note-aside-tool-bar span {
+    display: none;
 }
 
 .note-aside-tool-bar button {
-    height: 2rem;
-    width: 2rem;
-    cursor: pointer;
+	font-size: 1.125rem;
+	height: 3rem;
+	width: 3rem;
+	cursor: pointer;
+    border-radius: 1000px;
+
 }
 
-.note-aside-tool-bar button:hover {
-    height: 2rem;
+.active-btn {
+    background-color: #FEEFC3;
 }
 
-.note-aside-tool-bar .btn-bars {
-    padding-bottom: 8px;
+.note-aside-tool-bar:hover {
+    width: 280px;
 }
+
+.note-aside-tool-bar:hover button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    display: flex;
+    align-items: center;
+    /* justify-content: first baseline; */
+    width: 280px;
+    height: 48px;
+    /* padding-left: 12px; */
+    /* width: 100%; */
+    /* padding: 0 64px; */
+}
+
+.note-aside-tool-bar:hover span {
+    display: flex;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-left: 20px;
+}
+
+.note-aside-tool-bar:hover button i {
+    margin-left: 27px;
+}
+
+.note-aside-tool-bar:hover button:hover{
+
+    background-color: #F1F3F4;
+
+}
+
+/* .note-aside-tool-bar:hover .main-note-container {
+    grid-template-columns: 280px 1fr 54px;
+    grid-auto-flow: row;
+} */

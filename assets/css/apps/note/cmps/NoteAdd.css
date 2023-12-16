@@ -1,22 +1,30 @@
 
 .main-note-container {
-  padding: 32px;
   border-radius: 24px;
 }
+/* margin: auto; */
 
 .note-add-container {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  margin-bottom: 32px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  width: 100%;
+  margin-top: 32px;
+  /* place-items: center; */
+}
+
+.note-add-section {
+  display: grid;
+  place-items: center;
 }
 
 .note-add {
+  /* grid-column: 2; */
   display: grid;
   grid-auto-flow: column;
   max-width: 600px;
-  min-height: 46px;
+  min-height: 48px;
   width: 100%;
+  height: 100%;
   padding: 12px 16px;
 
 
@@ -28,8 +36,11 @@
 }
 
 i {
-  margin: 0;
-  padding: 0;
+  /* margin: 0; */
+  /* padding: 0; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .add-type-btns-notetxt {

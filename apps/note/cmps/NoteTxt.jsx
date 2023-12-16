@@ -1,7 +1,7 @@
 const { useState } = React
 
 import { PreviewButtons } from './PreviewButtons.jsx'
-import { NoteForm } from './NoteAddTxt.jsx'
+// import { NoteForm } from './NoteAddTxt.jsx'
 
 export function NoteTxt({
   note,
@@ -57,16 +57,16 @@ export function NoteTxt({
         </article>
       )
 
-    case 'noteEdit':
-      return (
-        <NoteForm
-          onSubmit={onSubmitHandle}
-          onChange={onChangeHandle}
-          title={newNoteInfo.title}
-          txt={newNoteInfo.txt}
-          buttonText="Save"
-        />
-      )
+    // case 'noteEdit':
+    //   return (
+    //     <NoteForm
+    //       onSubmit={onSubmitHandle}
+    //       onChange={onChangeHandle}
+    //       title={newNoteInfo.title}
+    //       txt={newNoteInfo.txt}
+    //       buttonText="Save"
+    //     />
+    //   )
 
     default:
       return null

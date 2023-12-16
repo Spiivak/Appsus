@@ -4,11 +4,11 @@ export function NoteAsideToolBar() {
     return (
         <aside className="note-aside-tool-bar">
             <div className="grid justify-center align-center">
-                <button className="note-btn btn-notes"><i className="ri-lightbulb-line"></i></button>
-                <button className="note-btn btn-reminders"><i className="ri-notification-line"></i></button>
-                <button className="note-btn btn-sent"><i className="ri-pencil-line"></i></button>
-                <button className="note-btn btn-trash"><i className="ri-delete-bin-line"></i></button>
-                <button className="note-btn btn-trash"><i className="ri-inbox-archive-line"></i></button>
+                <button className="btn active-btn"><i className="ri-lightbulb-line"></i><span>Notes</span></button>
+                <button className="btn"><i className="ri-notification-line"></i><span>Reminders</span></button>
+                <button className="btn"><i className="ri-pencil-line"></i><span>Edit Labels</span></button>
+                <button className="btn"><i className="ri-delete-bin-line"></i><span>Archive</span></button>
+                <button className="btn"><i className="ri-inbox-archive-line"></i><span>Bin</span></button>
             </div>
         </aside>
     )

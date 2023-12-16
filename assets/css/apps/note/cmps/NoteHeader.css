@@ -1,0 +1,12 @@
+.header-logo {
+  padding-left: 4px;
+}
+
+.header-logo button {
+  margin-right: 16px;
+}
+
+.header-actions button i,
+.header-logo button i {
+  font-size: 20px;
+}

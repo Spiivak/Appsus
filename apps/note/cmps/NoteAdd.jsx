@@ -8,8 +8,8 @@ export function NoteAdd({ addNote }) {
   const buttonConfigurations = [
     { type: 'noteTxt', display: <span>Add a note...</span> },
     { type: 'noteTodos', display: <i className='ri-checkbox-line'></i> },
-    { type: 'noteImg', display: <i className='ri-video-add-line'></i> },
-    { type: 'noteVideo', display: <i className='ri-image-add-line'></i> },
+    { type: 'noteVideo', display: <i className='ri-video-add-line'></i> },
+    { type: 'noteImg', display: <i className='ri-image-add-line'></i> },
   ];
 
   const onTypeChange = (type) => {
@@ -23,6 +23,7 @@ export function NoteAdd({ addNote }) {
   };
 
   return (
+    <section className="note-add-section">
     <article className="note-add">
       {/* Render 'noteTxt' type separately */}
       {showButtons && (
@@ -51,7 +52,7 @@ export function NoteAdd({ addNote }) {
             .map((btn, idx) => (
               <button
                 key={idx}
-                className={`note-btn btn type-btn ${
+                className={`btn type-btn ${
                   selectedType === btn.type ? 'active' : ''
                 }`}
                 onClick={() => onTypeChange(btn.type)}
@@ -71,5 +72,6 @@ export function NoteAdd({ addNote }) {
         </div>
       )}
     </article>
+    </section>
   );
 }

@@ -9,77 +9,71 @@ import { NoteHeader } from '../cmps/NoteHeader.jsx'
 import { noteUtilsService } from '../services/note.utils.service.js'
 
 export function NoteIndex() {
-  const [notes, setNotes] = useState(null)
-  const [selectedNote, setSelectedNote] = useState(null)
+	const [notes, setNotes] = useState(null)
+	const [selectedNote, setSelectedNote] = useState(null)
 
-  useEffect(() => {
-    loadNotes()
-  }, [])
+	useEffect(() => {
+		loadNotes()
+	}, [])
 
-  // *  --------------------------//CRUD HANDLE //---------------------------  * //
+	// *  --------------------------//CRUD HANDLE //---------------------------  * //
 
-  function loadNotes() {
-    noteUtilsService.loadNotes(setNotes)
-  }
+	function loadNotes() {
+		noteUtilsService.loadNotes(setNotes)
+	}
 
-  function addNote(note) {
-    noteUtilsService.addNote(note, setNotes)
-  }
+	function addNote(note) {
+		noteUtilsService.addNote(note, setNotes)
+	}
 
-  function deleteNote(note) {
-    noteUtilsService.deleteNote(note, setNotes)
-  }
+	function deleteNote(note) {
+		noteUtilsService.deleteNote(note, setNotes)
+	}
 
-  function editNote(note) {
-    noteUtilsService.editNote(note, setSelectedNote)
-  }
+	function editNote(note) {
+		noteUtilsService.editNote(note, setSelectedNote)
+	}
 
-  function saveNote(note) {
-    noteUtilsService.saveNote(note, setNotes, setSelectedNote)
-  }
+	function saveNote(note) {
+		noteUtilsService.saveNote(note, setNotes, setSelectedNote)
+	}
 
-  //* -------------------------------------------------------------------------- //
+	//* -------------------------------------------------------------------------- //
 
-  function todoToggle(note, todo) {
-    noteUtilsService.todoToggle(note, todo, setNotes)
-  }
+	function todoToggle(note, todo) {
+		noteUtilsService.todoToggle(note, todo, setNotes)
+	}
 
-  function changeBackgroundColor(colorHex, note) {
-    noteUtilsService.changeBackgroundColor(colorHex, note, setNotes)
-  }
+	function changeBackgroundColor(colorHex, note) {
+		noteUtilsService.changeBackgroundColor(colorHex, note, setNotes)
+	}
 
-  if (!notes) return <div>Loading... </div>
-  return (
-    <section className="note-index">
-      {/* <div className="search-title">
-        <Link to={'search'}>
-          <input type="text" placeholder="Search note" />
-        </Link>
-        <button>X</button>
-      </div> */}
-      <NoteHeader/>
-      <NoteAsideToolBar/>
+	if (!notes) return <div>Loading... </div>
+	return (
+		<section className="note-index">
+			<NoteHeader />
 
-      <section className='main-note-container'>
-      <section className="note-add-container">
-      <NoteAdd addNote={addNote} />
-      </section>
-      <NoteList
-        notes={notes}
-        changeBackgroundColor={changeBackgroundColor}
-        deleteNote={deleteNote}
-        editNote={editNote}
-        todoToggle={todoToggle}
-        />
-      </section>
+			<section className="main-note-container">
+			<NoteAsideToolBar />
+				<section className="note-add-container">
+					<NoteAdd addNote={addNote} />
+				</section>
+				<NoteList
+					notes={notes}
+					changeBackgroundColor={changeBackgroundColor}
+					deleteNote={deleteNote}
+					editNote={editNote}
+					todoToggle={todoToggle}
+				/>
+			</section>
 
-      {selectedNote && (
-        <NoteEdit
-        selectedNote={selectedNote}
-        setSelectedNote={setSelectedNote}
-        saveNote={saveNote}
-        />
-        )}
-    </section>
-  )
+			{selectedNote && (
+				<NoteEdit
+					selectedNote={selectedNote}
+					setSelectedNote={setSelectedNote}
+					saveNote={saveNote}
+				/>
+			)}
+		</section>
+	)
 }
