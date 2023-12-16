@@ -44,13 +44,13 @@ export function MailAdd({ onAddMail, onToggleAddMail }) {
     // console.log('newMail:', newMail)
     return (
         <section className="mail-add">
-            <section className="mail-add-header">
+            <section className="mail-add-header flex align-center space-between">
                 <span className="new-mail-title">New Message</span>
                 <button className="btn btn-cancel" onClick={handleCancelAdd}>X</button>
             </section>
 
             <form className="mail-add-form" onSubmit={handleAddMail}>
-                <section className="to-section">
+                <section className="to-section grid column">
                     <label htmlFor="to" > To:</label>
                     <input
                         type="text"
@@ -67,7 +67,7 @@ export function MailAdd({ onAddMail, onToggleAddMail }) {
                     name="subject"
                     value={newMail.subject}
                     onChange={handleInputChange}
-                    placeholder="subject"
+                    placeholder="Subject"
                     required
                 />
                 {/* <section className="body-section"> */}
@@ -78,6 +78,7 @@ export function MailAdd({ onAddMail, onToggleAddMail }) {
                     name="body"
                     value={newMail.body}
                     onChange={handleInputChange}
+                    placeholder="Compose email"
                     required
                 />
                 {/* </section> */}

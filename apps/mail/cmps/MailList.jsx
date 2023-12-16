@@ -93,10 +93,14 @@ export function MailList({
                 }
             </section>
             <section className="mails-container">
-                {sortedMails.map((mail) =>
-                    <article key={mail.id} className="mail-item" onClick={() => onOpenDetails(mail.id)}>
-                        <MailPreview mail={mail} isSent={isSent} onRemoveMail={onRemoveMail} onMark={onMark} />
-                    </article>
+                {sortedMails.length > 0 ? (
+                    sortedMails.map((mail) => (
+                        <article key={mail.id} className="mail-item" onClick={() => onOpenDetails(mail.id)}>
+                            <MailPreview mail={mail} isSent={isSent} onRemoveMail={onRemoveMail} onMark={onMark} />
+                        </article>
+                    ))
+                ) : (
+                    <span className="no-conversations-msg">{`No conversations in ${isSent ? 'Sent' : isDeleted ? 'Trash' : 'Inbox'}`}</span>
                 )}
             </section>
 
