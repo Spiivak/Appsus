@@ -1,6 +1,8 @@
 const { NavLink } = ReactRouterDOM
 const { useState, useEffect } = React
 
+// const isMenuOpenn = true;
+
 export function MailAsideToolBar({
     unreadMailsCount,
     onToggleAddMail,
@@ -42,9 +44,9 @@ export function MailAsideToolBar({
             className={`mail-aside-tool-bar ${isMenuOpen ? 'open' : ''}`}
             {...menuProps}
         >
-            <button className="btn btn-bars" onClick={handleToggleMenu}>
+            {/* <button className="btn btn-bars" onClick={handleToggleMenu}>
                 <i className="fa-solid fa-bars"></i>
-            </button>
+            </button> */}
 
             {!isMenuOpen &&
                 <div className="menu-actions grid justify-center align-center">
@@ -75,39 +77,37 @@ export function MailAsideToolBar({
             {isMenuOpen &&
                 <div className="menu-actions grid justify-center align-center">
                     <div className="flex justify-center align-center" onClick={onToggleAddMail}>
-                        <button className="btn btn-compose" >
-                            <i className="fa-regular fa-pen-to-square"></i>
+                        <button className="btn btn-compose flex align-center" >
+                            <i className="fa-regular fa-pen-to-square"></i><span>Compose</span>
                         </button>
-                        Compose
                     </div>
 
                     <NavLink to="/mail">
-                        <div className="flex justify-center align-center" onClick={onChangeToInboxMails}>
-
+                        <div className="aciton flex justify-center align-center" onClick={onChangeToInboxMails}>
                             <button className="btn btn-inbox">
                                 <i className="fa-solid fa-inbox"></i>
                             </button>
-                            {`Inbox (${unreadMailsCount})`}
+                            <span className="txt-span">{`Inbox (${unreadMailsCount})`}</span>
                         </div>
                     </NavLink>
 
-                    <div className="flex justify-center align-center" onClick={onChangeToStarredMails}>
+                    <div className="aciton flex justify-center align-center" onClick={onChangeToStarredMails}>
                         <button className="btn btn-starred">
                             <i className="fa-regular fa-star"></i>
                         </button>
-                        Starred
+                        <span className="txt-span">Starred</span>
                     </div>
-                    <div className="flex justify-center align-center" onClick={onChangeToSentMails}>
+                    <div className="aciton flex justify-center align-center" onClick={onChangeToSentMails}>
                         <button className="btn btn-sent" >
                             <i className="ri-send-plane-2-line"></i>
                         </button>
-                        Sent
+                        <span className="txt-span">Sent</span>
                     </div>
-                    <div className="flex justify-center align-center" onClick={onChangeToDeletedMails}>
+                    <div className="aciton flex justify-center align-center" onClick={onChangeToDeletedMails}>
                         <button className="btn btn-trash" >
                             <i className="ri-delete-bin-line"></i>
                         </button>
-                        Trash
+                        <span className="txt-span">Trash</span>
                     </div>
                     <p></p>
                 </div>

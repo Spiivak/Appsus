@@ -24,7 +24,7 @@
 
     .app-aside-nav nav {
         display: grid;
-        justify-content: center;
-        align-items: center;
+        gap: 10px;
+        text-align: center;
     }
-}
+} 
