@@ -5,7 +5,6 @@
 
 @media (max-width: 700px) {
     .mail-header {
-        /* width: 100%; */
         grid-template-columns: 40px 1fr;
     }
 

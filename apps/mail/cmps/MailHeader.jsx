@@ -13,7 +13,7 @@ export function MailHeader({ filterBy, onSetSearchFilter, handleToggleMenu, user
 
     return (
         <header className="mail-header grid justify-center align-center">
-            <button className="btn btn-bars" onClick={handleToggleMenu}>
+            <button title="Menu" className="btn btn-bars" onClick={handleToggleMenu}>
                 <i className="fa-solid fa-bars"></i>
             </button>
 
@@ -26,13 +26,13 @@ export function MailHeader({ filterBy, onSetSearchFilter, handleToggleMenu, user
             <MailFilter filterBy={filterBy} onSetSearchFilter={onSetSearchFilter} />
 
             <div>
-                <button className="btn btn-about">
+                <button title="About" className="btn btn-about">
                     <i className="fa-regular fa-circle-question"></i>
                 </button>
-                <button className="btn btn-settings">
+                <button title="Settings" className="btn btn-settings">
                     <i className="fa-solid fa-gear"></i>
                 </button>
-                <button className="btn btn-user" onClick={onToggleModal}>
+                <button title="User" className="btn btn-user" onClick={onToggleModal}>
                     <i className="fa-regular fa-circle-user"></i>
                 </button>
             </div>

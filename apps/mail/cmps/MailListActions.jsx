@@ -15,7 +15,7 @@ export function MailListActions(props) {
     
     return (
         <section className="mail-list-actions">
-            <button className="btn btn-select-filter" onClick={toggleFilterDropdown}>
+            <button title="Select Filter" className="btn btn-select-filter" onClick={toggleFilterDropdown}>
                 {!filterBy &&
                     <i className="fa-regular fa-square"></i>
                 }
@@ -30,26 +30,26 @@ export function MailListActions(props) {
 
             {showFilterDropdown && (
                 <div className="filter-dropdown">
-                    <button onClick={() => {
+                    <button title="Filter by None" onClick={() => {
                         filterByReadStatus('all')
                         setFilterBy('none')
                     }}>None</button>
-                    <button onClick={() => {
+                    <button title="Filter by All" onClick={() => {
                         filterByReadStatus('all')
                         setFilterBy('all')
                     }}>All</button>
-                    <button onClick={() => {
+                    <button title="Filter by Read" onClick={() => {
                         filterByReadStatus(true)
                         setFilterBy('read')
                     }}>Read</button>
-                    <button onClick={() => {
+                    <button title="Filter by unRead" onClick={() => {
                         filterByReadStatus(false)
                         setFilterBy('read')
                     }}>Unread</button>
                 </div>
             )}
 
-            <button className="btn btn-select-sort" onClick={toggleSortDropdown}>
+            <button title="Sort" className="btn btn-select-sort" onClick={toggleSortDropdown}>
                 {sortOption.field === 'sentAt' ? 'Date' : 'Title'}
                 <i className={`ri-arrow-${showSortDropdown ? 'up' : 'down'}-s-line`}></i>
             </button>

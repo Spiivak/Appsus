@@ -26,16 +26,16 @@ export function MailPreview({ mail, onRemoveMail, showSentMails, onMark }) {
     if (isHovered && !isMobileView) {
         displayedContent = (
             <div className="actions-container flex align-center">
-                <button className="btn" onClick={onDeleteMail} >
+                <button title="Delete Mail" className="btn" onClick={onDeleteMail} >
                     <i className=" ri-delete-bin-line"></i>
                 </button>
                 {isRead &&
-                    <button className="btn" onClick={onChangeReadMark}>
+                    <button title="Mark As unRead" className="btn" onClick={onChangeReadMark}>
                         <i className="ri-mail-unread-line"></i>
                     </button>
                 }
                 {!isRead &&
-                    <button className="btn" onClick={onChangeReadMark}>
+                    <button title="Mark As Read" className="btn" onClick={onChangeReadMark}>
                         <i className="ri-mail-open-line"></i>
                     </button>
                 }
@@ -91,7 +91,7 @@ export function MailPreview({ mail, onRemoveMail, showSentMails, onMark }) {
                 {mail.from[0].toUpperCase()}
             </div>
 
-            <button className={`btn btn-starred ${isStarred ? 'starred' : ''}`} onClick={(onStarClick)}>
+            <button title="Mark As Star" className={`btn btn-starred ${isStarred ? 'starred' : ''}`} onClick={(onStarClick)}>
                 <i className="fa-regular fa-star"></i>
             </button>
 

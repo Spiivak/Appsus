@@ -6,8 +6,8 @@ export function UserModal({ user, onClose }) {
         <h2>User Information</h2>
         <p>Name: <span>{user.fullname}</span></p>
         <p>Email: <span>{user.email}</span></p>
-        <button onClick={onClose}>Close</button>
+        <button title="Close Modal" onClick={onClose}>Close</button>
       </div>
     </div>
-  );
+  )
 }
