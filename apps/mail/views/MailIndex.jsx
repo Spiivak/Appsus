@@ -11,6 +11,7 @@ const { useState, useEffect } = React
 
 export function MailIndex() {
     const [mails, setMails] = useState(null)
+    const [unfilteredMails, setUnfilteredMails] = useState(null)
 
     const [Mark, setMark] = useState(false)
     const [isAdd, setIsAdd] = useState(false)
@@ -43,7 +44,7 @@ export function MailIndex() {
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
         } else if (showStarredMails) {
-            mailService.query({ filterBy, starred: isStarred })
+            mailService.query({ filterBy, starred: true })
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
         } else if (showDeletedMails) {
@@ -51,6 +52,10 @@ export function MailIndex() {
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
         }
+
+        mailService.queryNoFilter()
+            .then(mails => setUnfilteredMails(mails))
+            .catch(err => console.log('err:', err))
     }
 
     // Remove mail to Trash
@@ -219,9 +224,9 @@ export function MailIndex() {
         setMenuOpen(prevMenuOpen => !prevMenuOpen)
     }
 
-    if (!mails) return <div>Loading...</div>
+    if (!mails || !unfilteredMails) return <div>Loading...</div>
 
-    const unreadMailsCount = mails.reduce((count, mail) => (mail.isRead ? count : count + 1), 0)
+    const unreadMailsCount = unfilteredMails.reduce((count, mail) => (mail.isRead ? count : count + 1), 0)
     const user = mailService.getLoggedInUser()
 
     return (
