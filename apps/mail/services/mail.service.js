@@ -23,7 +23,7 @@ export const mailService = {
 }
 
 function query(filterBy) {
-    // console.log('filterBy query:', filterBy)
+    console.log('filterBy query:', filterBy)
     return storageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy.to) {
@@ -35,9 +35,11 @@ function query(filterBy) {
             if (filterBy.starred) {
                 mails = mails.filter(mail => mail.isStarred === true)
             }
-
+            
             if (filterBy.isDeleted) {
                 mails = mails.filter(mail => mail.removedAt !== null)
+            } else {
+                mails = mails.filter(mail => mail.removedAt === null)
             }
 
             if (filterBy.filterBy.search) {
@@ -137,7 +139,7 @@ function _createMails() {
             {
                 id: 'e101',
                 subject: 'Coding Rocks! Coding Rocks! Coding Rocks!',
-                body: utilService.makeLorem(10),
+                body: utilService.makeLorem(300),
                 isRead: false,
                 sentAt: 1702534778460,
                 removedAt: null,
@@ -148,7 +150,7 @@ function _createMails() {
             {
                 id: 'e102',
                 subject: 'Hello you!',
-                body: utilService.makeLorem(10),
+                body: utilService.makeLorem(300),
                 isRead: true,
                 sentAt: 1701532778460,
                 removedAt: null,
@@ -159,7 +161,7 @@ function _createMails() {
             {
                 id: 'e103',
                 subject: 'Need you help!',
-                body: utilService.makeLorem(10),
+                body: utilService.makeLorem(300),
                 isRead: false,
                 sentAt: 1701232778460,
                 removedAt: null,
@@ -170,7 +172,7 @@ function _createMails() {
             {
                 id: 'e104',
                 subject: 'We Rock!',
-                body: utilService.makeLorem(10),
+                body: utilService.makeLorem(300),
                 isRead: true,
                 sentAt: 1541133930594,
                 removedAt: null,
@@ -203,7 +205,7 @@ function _createMails() {
             {
                 id: 'e107',
                 subject: 'Miss you!',
-                body: utilService.makeLorem(6),
+                body: utilService.makeLorem(300),
                 isRead: false,
                 sentAt: 1701532778460,
                 removedAt: null,
@@ -214,7 +216,7 @@ function _createMails() {
             {
                 id: 'e108',
                 subject: 'Need you help!',
-                body: utilService.makeLorem(6),
+                body: utilService.makeLorem(300),
                 isRead: true,
                 sentAt: 1551133830594,
                 removedAt: null,
@@ -258,7 +260,7 @@ function _createMails() {
             {
                 id: 'e112',
                 subject: 'Hello you!',
-                body: utilService.makeLorem(11),
+                body: utilService.makeLorem(300),
                 isRead: false,
                 sentAt: 1691332778460,
                 removedAt: null,

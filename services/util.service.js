@@ -2,6 +2,7 @@ export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
+    getRandomInt,
     getRandomColor,
     padNum,
     getDayName,
@@ -9,7 +10,7 @@ export const utilService = {
     getFormattedDate,
     getFormattedTime,
     getFormattedDayMpnth,
-    isSameDay, 
+    isSameDay,
     isSameYear,
 }
 
@@ -34,11 +35,34 @@ function makeLorem(size = 100) {
     return txt
 }
 
+// function makeLorem(size = 100, wordsPerParagraph = 20) {
+//     var words = ['The sky', 'above', 'the port', 'was', 'the color of television', 'tuned', 'to', 'a dead channel', '.', 'All', 'this happened', 'more or less', '.', 'I', 'had', 'the story', 'bit by bit', 'from various people', 'and', 'as generally', 'happens', 'in such cases', 'each time', 'it', 'was', 'a different story', '.', 'It', 'was', 'a pleasure', 'to', 'burn']
+//     var txt = '';
+//     var paragraphs = Math.ceil(size / wordsPerParagraph);
+
+//     for (let i = 0; i < paragraphs; i++) {
+//         for (let j = 0; j < wordsPerParagraph && size > 0; j++) {
+//             size--;
+//             txt += words[Math.floor(Math.random() * words.length)] + ' ';
+//         }
+//         txt += '\n\n'; // Add double line breaks between paragraphs
+//     }
+
+//     return txt; // Remove trailing spaces
+// }
+
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min)
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min + 1)) + min //The maximum is inclusive and the minimum is inclusive 
 }
+
+function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+}
+
 
 function padNum(num) {
     return (num > 9) ? num + '' : '0' + num
@@ -91,7 +115,7 @@ function isSameDay(date1, date2) {
     )
 }
 
-function isSameYear (date1, date2) {
+function isSameYear(date1, date2) {
     const date1Date = new Date(date1)
     const date2Date = new Date(date2)
 
