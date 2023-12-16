@@ -4,7 +4,7 @@ export function AppHeader() {
     return <header className="app-header flex justify-center align-center full">
         <div className="left-side flex">
         <Link to="/">
-            <img src="../assets/img/gmail.png" alt="" />
+            <img src="assets/img/gmail.png" alt="" />
         </Link>
         </div>
         <div className="center flex justify-center align-center">

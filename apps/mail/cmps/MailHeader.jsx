@@ -20,7 +20,7 @@ export function MailHeader({ filterBy, onSetSearchFilter, handleToggleMenu, user
 
             <div className="flex">
                 <Link to="/mail">
-                    <img src="../assets/img/gmail.png" alt="" />
+                    <img src="assets/img/gmail.png" alt="" />
                 </Link>
             </div>
 
