@@ -2,7 +2,6 @@
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: grid;
     grid-template-rows: 40px 1fr;
     font-family: sans-serif;
     font-size: 14px;
@@ -17,7 +16,6 @@
 }
 
 .mail-add form {
-    display: grid;
     grid-template-rows: 40px 40px 1fr;
     align-items: center;
     padding-inline: 16px;
@@ -70,7 +68,6 @@
     justify-self: stretch;
     align-self: stretch;
     font-size: 14px;
-    /* border-bottom: lightgray; */
 }
 
 .mail-add .subject-section input{

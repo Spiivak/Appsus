@@ -40,13 +40,13 @@ export function MailAdd({ onAddMail, onToggleAddMail }) {
     }
 
     return (
-        <section className="mail-add">
+        <section className="mail-add grid">
             <section className="mail-add-header flex align-center space-between">
                 <span className="new-mail-title">New Message</span>
                 <button className="btn btn-cancel" onClick={handleCancelAdd}>X</button>
             </section>
 
-            <form className="mail-add-form" onSubmit={handleAddMail}>
+            <form className="mail-add-form grid" onSubmit={handleAddMail}>
                 <section className="to-section grid column">
                     <label htmlFor="to" > To:</label>
                     <input

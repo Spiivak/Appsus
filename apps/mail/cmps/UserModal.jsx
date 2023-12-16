@@ -1,7 +1,7 @@
 
 export function UserModal({ user, onClose }) {
   return (
-    <div className="user-modal">
+    <div className="user-modal flex align-center justify-center">
       <div className="modal-content">
         <h2>User Information</h2>
         <p>Name: <span>{user.fullname}</span></p>

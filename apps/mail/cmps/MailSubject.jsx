@@ -2,7 +2,7 @@ export function MailSubject({
     subject, isStarred, onMark
 }){
     return (
-        <section className="mail-subject">
+        <section className="mail-subject flex align-center space-between">
                 <p>{subject}</p>
                 <button
                     className={`btn btn-starred ${isStarred ? 'starred' : ''}`}

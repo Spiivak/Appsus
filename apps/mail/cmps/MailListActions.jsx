@@ -29,7 +29,7 @@ export function MailListActions(props) {
             </button>
 
             {showFilterDropdown && (
-                <div className="filter-dropdown">
+                <div className="filter-dropdown flex">
                     <button title="Filter by None" onClick={() => {
                         filterByReadStatus('all')
                         setFilterBy('none')
@@ -55,7 +55,7 @@ export function MailListActions(props) {
             </button>
 
             {showSortDropdown && (
-                <div className="sort-dropdown">
+                <div className="sort-dropdown flex">
                     <button onClick={() => sortBy('sentAt', 'desc')}>Date Desc</button>
                     <button onClick={() => sortBy('sentAt', 'asc')}>Date Asc</button>
                     <button onClick={() => sortBy('subject', 'desc')}>Title Desc</button>

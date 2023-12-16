@@ -7,7 +7,7 @@ export function MailPreviewActions({
     navigateToMail
 }) {
     return (
-        <section className="mail-preview-actions">
+        <section className="mail-preview-actions flex align-center space-between">
             <section>
                 <button title="Delete" className="btn btn-delete" onClick={onDeleteMail}>
                     <i className=" ri-delete-bin-line"></i>

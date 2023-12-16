@@ -80,7 +80,7 @@ export function MailPreview({ mail, onRemoveMail, showSentMails, onMark }) {
 
     return (
         <article
-            className={`mail-preview ${dynClassBgc}`}
+            className={`mail-preview grid ${dynClassBgc}`}
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}>
 

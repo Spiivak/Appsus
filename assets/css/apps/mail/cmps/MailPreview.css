@@ -1,5 +1,4 @@
 .mail-preview {
-    display: grid;
     grid-auto-flow: column;
 }
 
@@ -22,8 +21,6 @@
 .un-read-txt {
     font-weight: 700;
 }
-
-
 
 .mail-preview .btn-starred.starred {
     color: rgb(255, 208, 0);
@@ -128,7 +125,6 @@
     }
 
     .mail-preview .mail-subject {
-        
         white-space: nowrap;
         overflow-x: hidden;
         text-overflow: ellipsis;
