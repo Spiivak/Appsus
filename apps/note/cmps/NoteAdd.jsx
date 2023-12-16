@@ -32,7 +32,7 @@ export function NoteAdd({ addNote }) {
             .map((btn, idx) => (
               <button
                 key={idx}
-                className={`btn type-btn ${
+                className={`note-btn type-btn ${
                   selectedType === btn.type ? 'active' : ''
                 }`}
                 onClick={() => onTypeChange(btn.type)}
@@ -51,7 +51,7 @@ export function NoteAdd({ addNote }) {
             .map((btn, idx) => (
               <button
                 key={idx}
-                className={`btn type-btn ${
+                className={`note-btn btn type-btn ${
                   selectedType === btn.type ? 'active' : ''
                 }`}
                 onClick={() => onTypeChange(btn.type)}
@@ -64,7 +64,7 @@ export function NoteAdd({ addNote }) {
 
       {selectedType && (
         <div className="controls-container">
-          <button className="btn" onClick={goBack}>
+          <button className="note-btn" onClick={goBack}>
             Back
           </button>
           <NoteAddType addNote={addNote} type={selectedType} />

@@ -38,9 +38,12 @@ export function ColorButtons({ changeBackgroundColor }) {
 
   return (
     <section className="color-buttons">
+      <div className="pallete-btn flex">
+
       <button type="button" className="btn open-palette" onClick={handlePaletteToggle}>
         <i className="ri-palette-line"></i>
       </button>
+      </div>
       <div className={`color-palette ${isPaletteOpen ? 'open' : 'closed'}`} ref={paletteRef}>
         {colors.map((color, index) => (
           <button

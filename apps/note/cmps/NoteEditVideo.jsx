@@ -93,7 +93,7 @@ export function NoteEditVideo({ selectedNote, setSelectedNote, saveNote }) {
             value={newNoteInfo.youtubeUrl}
           />
           <button
-            className='btn'
+            className='note-btn'
             type="button"
             onClick={(event) => onSubmitHandle(event, true)}>
             send
@@ -102,7 +102,7 @@ export function NoteEditVideo({ selectedNote, setSelectedNote, saveNote }) {
 
         <div className="add-buttons-section">
           <section className="add-buttons">
-            <button className='btn' type="submit">
+            <button className='note-btn' type="submit">
               <i className="fa-solid fa-plus"></i>
             </button>
             <ColorButtons changeBackgroundColor={changeBackgroundColor} />

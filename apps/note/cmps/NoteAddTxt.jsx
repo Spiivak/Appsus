@@ -8,7 +8,10 @@ const EmptyNote = () => ({
   txt: '',
 })
 
-const NoteForm = ({ onSubmit, onChange, value, backgroundColor, changeBackgroundColor }) => (
+export function NoteForm({ onSubmit, onChange, value, backgroundColor, changeBackgroundColor }) {
+
+ return (
+  
   <form className="add-txt-form" style={{ backgroundColor }} onSubmit={onSubmit}>
     <input
       className="title-input"
@@ -33,13 +36,17 @@ const NoteForm = ({ onSubmit, onChange, value, backgroundColor, changeBackground
     />
 
     <div className="add-buttons-section">
-        <button className="btn" type="submit">
+        <div className="add-buttons flex">
+
+        <button className="note-btn btn" type="submit">
           <i className="fa-solid fa-plus"></i>
         </button>
-        {value.txt && <ColorButtons changeBackgroundColor={changeBackgroundColor} />}
+        <ColorButtons changeBackgroundColor={changeBackgroundColor} />
+        </div>
     </div>
   </form>
-)
+ )
+}
 
 export function NoteAddTxt({ addNote, type }) {
   const [noteInfo, setNoteInfo] = useState(EmptyNote)

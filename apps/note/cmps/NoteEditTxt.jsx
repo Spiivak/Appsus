@@ -69,7 +69,7 @@ export function NoteEditTxt({ selectedNote, setSelectedNote, saveNote }) {
           id="txt"
         />
         <div className="add-buttons-section">
-            <button className='btn' type="submit">
+            <button className='note-btn' type="submit">
               Save
             </button>
             <ColorButtons changeBackgroundColor={changeBackgroundColor} />

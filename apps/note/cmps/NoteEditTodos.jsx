@@ -69,11 +69,11 @@ export function NoteEditTodos({ selectedNote, setSelectedNote, saveNote }) {
       >
         {/* Add your title input here if needed */}
         <div className="add-buttons-section">
-          <button className="btn" type="submit">
+          <button className="note-btn" type="submit">
             Save
           </button>
           <ColorButtons changeBackgroundColor={changeBackgroundColor} />
-          <button className="btn" type="button" onClick={addTodo}>
+          <button className="note-btn" type="button" onClick={addTodo}>
             Add Todo
           </button>
         </div>

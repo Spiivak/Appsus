@@ -19,6 +19,7 @@
   width: 100%;
   padding: 12px 16px;
 
+
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.077);
   border: 1px solid #e0e0e0;
 
@@ -58,9 +59,6 @@ i {
 
 .add-buttons-section {
   display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
 }
 
 

@@ -3,9 +3,19 @@
 .note-aside-tool-bar {
     grid-column: 1;
     grid-row: 1 / 4;
-    justify-content: flex-start;
-    padding: 20px 0;
 
+    display: grid;
+    grid-template-rows: auto 1fr;
+    align-items: start;
+
+    padding-inline-start: 10px;
+    width: 72px;
+
+    position: sticky;
+    top: 64px;
+    left: 0;
+    height: 100%;
+    z-index: 10;
     background: var(--main-clr);
 }
 

@@ -14,8 +14,8 @@ export function PreviewButtons({
   }
 
   return (
-    <section className="btn preview-btns" onClick={(ev) => ev.stopPropagation()}>
-      <button className="btn delete-btn" onClick={handleDeleteNote}>
+    <section className="preview-btns" onClick={(ev) => ev.stopPropagation()}>
+      <button className="note-btn btn delete-btn" onClick={handleDeleteNote}>
       <i className="ri-delete-bin-line"></i>
       </button>
 
