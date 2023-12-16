@@ -1,19 +1,18 @@
 .note-preview {
+  width: 100%;
   position: relative;
-  list-style: none;
   break-inside: avoid;
   border-radius: 8px;
-  padding: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  min-width: 200px;
+  border: 1px solid #e0e0e0;
   transition: box-shadow 0.3s ease;
-  margin-bottom: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
 
+  padding: 16px;
 }
 
 .note-preview:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  /* background-color: #f8f9fa; */
 }
 
 .note-preview .preview-btns {
@@ -33,15 +32,34 @@
 }
 
 .note-preview button:not(.color-palette) {
-  height: 30px;
-  width: 30px;
+  height: 32px;
+  width: 32px;
+
   color: white;
-  /* background-color: #fff; */
   border: none;
   border-radius: 50%;
-  color: #5f6368; /* Adjusted button color */
+  color: #5f6368;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.note-preview p {
+  /* padding: 12px 16px; */
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 1.5rem;
+  word-wrap: break-word;
+}
+
+.note-preview h2 {
+  padding-bottom: 12px;
+  color: #202124;
+  letter-spacing: .00625em;
+  font-size: 1.125rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  word-wrap: break-word;
 }
 
 .note-preview button:hover {
@@ -49,9 +67,6 @@
 
   /* background-color: #e8e8e9; */
 }
-
-
-
 
 .note-preview span.todo {
   font-weight: 600;
@@ -63,4 +78,8 @@
 
 .note-preview .color-palette {
   translate: -10% -5%;
+}
+
+.note-preview iframe {
+  width: 100%;
 }

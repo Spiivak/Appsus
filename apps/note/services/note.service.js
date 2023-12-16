@@ -9,22 +9,64 @@ let gFilterBy = {
   color: '',
 }
 
-const tempNotes = [
-  {
-    id: 'n101',
-    createdAt: 1702080000000,
-    type: 'noteTxt',
-    isPinned: true,
-    style: {
-      backgroundColor: `#fff`,
+const tempNotes =  [
+    {
+      id: 'n101',
+      createdAt: 1702080000000,
+      type: 'noteTxt',
+      isPinned: true,
+      style: {
+        backgroundColor: '#fff',
+      },
+      info: {
+        title: 'Text Note',
+        txt: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      },
     },
-    info: {
-      title: 'Title - 1',
-      txt: 'lorem ipsum dolor sit amet con laoreet lore tell tellus et lore tell tellus et lore tellus',
+    {
+      id: 'n102',
+      createdAt: 1702080000001,
+      type: 'noteImg',
+      isPinned: false,
+      style: {
+        backgroundColor: '#f8f9fa',
+      },
+      info: {
+        title: 'Image Note',
+        imgUrl: 'https://via.placeholder.com/150',
+      },
     },
-  },
-  // ... (other temp notes)
-]
+    {
+      id: 'n103',
+      createdAt: 1702080000002,
+      type: 'noteTodos',
+      isPinned: false,
+      style: {
+        backgroundColor: '#e8e8e9',
+      },
+      info: {
+        title: 'Todo List',
+        todos: [
+          { id: 't101', txt: 'Buy groceries', isDone: false },
+          { id: 't102', txt: 'Read a book', isDone: true },
+          { id: 't103', txt: 'Go for a run', isDone: false },
+        ],
+      },
+    },
+    {
+      id: 'n104',
+      createdAt: 1702080000003,
+      type: 'noteVideo',
+      isPinned: true,
+      style: {
+        backgroundColor: '#fff3e2',
+      },
+      info: {
+        title: 'Video Note',
+        youtubeUrl: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+      },
+    },
+  ];
 
 function query() {
   return storageService.query(NOTES_KEY)
@@ -89,14 +131,14 @@ function getNextNoteId(noteId) {
 }
 
 function initializeNotes() {
-  let notes = localStorageService.loadFromStorage(NOTES_KEY);
+  let notes = localStorageService.loadFromStorage(NOTES_KEY)
   if (!notes || !notes.length) {
-    notes = tempNotes;
-    localStorageService.saveToStorage(NOTES_KEY, notes);
+    notes = tempNotes
+    localStorageService.saveToStorage(NOTES_KEY, notes)
   }
 }
 
-initializeNotes();
+initializeNotes()
 
 export const noteService = {
   query,

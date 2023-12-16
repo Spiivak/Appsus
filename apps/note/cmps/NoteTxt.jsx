@@ -46,7 +46,7 @@ export function NoteTxt({
           style={note.style}
         >
           <h2>{note.info.title}</h2>
-          <h4>{renderTextWithLineBreaks(note.info.txt)}</h4>
+          <p>{renderTextWithLineBreaks(note.info.txt)}</p>
 
           <PreviewButtons
             note={note}

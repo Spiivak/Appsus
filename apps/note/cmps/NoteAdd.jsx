@@ -6,10 +6,10 @@ export function NoteAdd({ addNote }) {
   const [showButtons, setShowButtons] = useState(true);
 
   const buttonConfigurations = [
-    { type: 'noteTxt', icon: 'ri-text' },
-    { type: 'noteTodos', icon: 'ri-checkbox-line' },
-    { type: 'noteImg', icon: 'ri-video-add-line' },
-    { type: 'noteVideo', icon: 'ri-image-add-line' },
+    { type: 'noteTxt', display: <span>Add a note...</span> },
+    { type: 'noteTodos', display: <i className='ri-checkbox-line'></i> },
+    { type: 'noteImg', display: <i className='ri-video-add-line'></i> },
+    { type: 'noteVideo', display: <i className='ri-image-add-line'></i> },
   ];
 
   const onTypeChange = (type) => {
@@ -24,23 +24,46 @@ export function NoteAdd({ addNote }) {
 
   return (
     <article className="note-add">
+      {/* Render 'noteTxt' type separately */}
       {showButtons && (
-        <div className="add-type-btns">
-          {buttonConfigurations.map((btn, idx) => (
-            <button
-              key={idx}
-              className={`btn type-btn ${
-                selectedType === btn.type ? 'active' : ''
-              }`}
-              onClick={() => onTypeChange(btn.type)}
-            >
-              <i className={`fa ${btn.icon}`}></i>
-            </button>
-          ))}
+        <div className="add-type-btns-notetxt">
+          {buttonConfigurations
+            .filter((btn) => btn.type === 'noteTxt')
+            .map((btn, idx) => (
+              <button
+                key={idx}
+                className={`btn type-btn ${
+                  selectedType === btn.type ? 'active' : ''
+                }`}
+                onClick={() => onTypeChange(btn.type)}
+              >
+                {btn.display}
+              </button>
+            ))}
         </div>
       )}
+
+      {/* Render other types */}
+      {showButtons && (
+        <div className="add-type-btns">
+          {buttonConfigurations
+            .filter((btn) => btn.type !== 'noteTxt')
+            .map((btn, idx) => (
+              <button
+                key={idx}
+                className={`btn type-btn ${
+                  selectedType === btn.type ? 'active' : ''
+                }`}
+                onClick={() => onTypeChange(btn.type)}
+              >
+                {btn.display}
+              </button>
+            ))}
+        </div>
+      )}
+
       {selectedType && (
-        <div>
+        <div className="controls-container">
           <button className="btn" onClick={goBack}>
             Back
           </button>

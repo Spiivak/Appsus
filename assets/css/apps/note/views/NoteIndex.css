@@ -8,5 +8,10 @@
 .note-index .note-header {
   grid-column: 2 / 3;
   justify-content: space-between;
-  padding: 16px;
+  /* padding: 16px; */
+}
+
+.main-note-container{
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
 }

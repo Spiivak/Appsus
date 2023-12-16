@@ -59,22 +59,27 @@ export function NoteIndex() {
       </div> */}
       <NoteHeader/>
       <NoteAsideToolBar/>
+
+      <section className='main-note-container'>
+      <section className="note-add-container">
       <NoteAdd addNote={addNote} />
+      </section>
       <NoteList
         notes={notes}
         changeBackgroundColor={changeBackgroundColor}
         deleteNote={deleteNote}
         editNote={editNote}
         todoToggle={todoToggle}
-      />
+        />
+      </section>
 
       {selectedNote && (
         <NoteEdit
-          selectedNote={selectedNote}
-          setSelectedNote={setSelectedNote}
-          saveNote={saveNote}
+        selectedNote={selectedNote}
+        setSelectedNote={setSelectedNote}
+        saveNote={saveNote}
         />
-      )}
+        )}
     </section>
   )
 }

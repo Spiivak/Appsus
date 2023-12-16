@@ -16,7 +16,7 @@ export function PreviewButtons({
   return (
     <section className="btn preview-btns" onClick={(ev) => ev.stopPropagation()}>
       <button className="btn delete-btn" onClick={handleDeleteNote}>
-        x
+      <i className="ri-delete-bin-line"></i>
       </button>
 
       <ColorButtons changeBackgroundColor={handleColorChange} />
