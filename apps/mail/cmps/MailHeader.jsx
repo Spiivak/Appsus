@@ -16,14 +16,16 @@ export function MailHeader({ filterBy, onSetSearchFilter, handleToggleMenu, user
             <button className="btn btn-bars" onClick={handleToggleMenu}>
                 <i className="fa-solid fa-bars"></i>
             </button>
-            <div className="left-side flex">
+
+            <div className="flex">
                 <Link to="/mail">
                     <img src="../assets/img/gmail.png" alt="" />
                 </Link>
             </div>
+
             <MailFilter filterBy={filterBy} onSetSearchFilter={onSetSearchFilter} />
 
-            <div className="left">
+            <div>
                 <button className="btn btn-about">
                     <i className="fa-regular fa-circle-question"></i>
                 </button>

@@ -5,8 +5,6 @@ export function MailAdd({ onAddMail, onToggleAddMail }) {
     const emptyMail = mailService.getEmptyMail('user@appsus.com', Date.now())
     const [newMail, setNewMail] = useState(emptyMail)
 
-    // console.log('onAddMail:', onAddMail)
-    // console.log('hello:', hello)
     const handleInputChange = (event) => {
         const field = event.target.name
         let { value } = event.target
@@ -41,7 +39,6 @@ export function MailAdd({ onAddMail, onToggleAddMail }) {
         onToggleAddMail()
     }
 
-    // console.log('newMail:', newMail)
     return (
         <section className="mail-add">
             <section className="mail-add-header flex align-center space-between">
@@ -61,6 +58,7 @@ export function MailAdd({ onAddMail, onToggleAddMail }) {
                         required
                     />
                 </section>
+
                 <input
                     type="text"
                     id="subject"
@@ -70,8 +68,7 @@ export function MailAdd({ onAddMail, onToggleAddMail }) {
                     placeholder="Subject"
                     required
                 />
-                {/* <section className="body-section"> */}
-                {/* <label htmlFor="body">Message:</label> */}
+
                 <textarea
                     type="text"
                     id="body"
@@ -81,8 +78,6 @@ export function MailAdd({ onAddMail, onToggleAddMail }) {
                     placeholder="Compose email"
                     required
                 />
-                {/* </section> */}
-
 
                 <button type="submit">Send</button>
             </form >
