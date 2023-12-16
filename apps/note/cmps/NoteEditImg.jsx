@@ -1,5 +1,5 @@
 const { useState, useEffect } = React
-import { ColorButtonsAdd } from './ColorButtons.jsx'
+import { ColorButtons } from './ColorButtons.jsx'
 
 export function NoteEditImg({ selectedNote, setSelectedNote, saveNote }) {
   const { info, style } = selectedNote
@@ -142,7 +142,7 @@ export function NoteEditImg({ selectedNote, setSelectedNote, saveNote }) {
             <button type="submit">
               <i className="fa-solid fa-plus"></i>
             </button>
-            <ColorButtonsAdd changeBackgroundColor={changeBackgroundColor} />
+            <ColorButtons changeBackgroundColor={changeBackgroundColor} />
           </section>
         </div>
       </form>

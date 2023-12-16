@@ -1,4 +1,4 @@
-import { ColorButtonsAdd } from './ColorButtons.jsx'
+import { ColorButtons } from './ColorButtons.jsx'
 
 export function PreviewButtons({
   note,
@@ -19,7 +19,7 @@ export function PreviewButtons({
         x
       </button>
 
-      <ColorButtonsAdd changeBackgroundColor={handleColorChange} />
+      <ColorButtons changeBackgroundColor={handleColorChange} />
     </section>
   )
 }

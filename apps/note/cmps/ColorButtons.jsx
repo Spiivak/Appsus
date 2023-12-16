@@ -1,6 +1,6 @@
-const { useRef, useState, useEffect } = React
+const { useRef, useState, useEffect } = React;
 
-export function ColorButtonsAdd({ changeBackgroundColor }) {
+export function ColorButtons({ changeBackgroundColor }) {
   const [isPaletteOpen, setIsPaletteOpen] = useState(false)
   const paletteRef = useRef(null)
 
@@ -11,32 +11,35 @@ export function ColorButtonsAdd({ changeBackgroundColor }) {
   ]
 
   const handleButtonClick = (color) => {
+    console.log('changeBackgroundColor:', changeBackgroundColor);
     changeBackgroundColor(color)
     setIsPaletteOpen(false)
   }
 
   const handlePaletteToggle = () => {
+    console.log('Palette button clicked!')
     setIsPaletteOpen((prev) => !prev)
   }
 
   const handleClickOutsidePalette = (event) => {
     if (!isPaletteOpen && !paletteRef.current.contains(event.target)) {
-      setIsPaletteOpen(false)
+      setIsPaletteOpen(false);
     }
   }
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutsidePalette)
+    console.log('isPaletteOpen:', isPaletteOpen)
+    document.addEventListener('click', handleClickOutsidePalette);
 
     return () => {
-      document.removeEventListener('click', handleClickOutsidePalette)
+      document.removeEventListener('click', handleClickOutsidePalette);
     }
   }, [isPaletteOpen])
 
   return (
     <section className="color-buttons">
       <button type="button" className="btn open-palette" onClick={handlePaletteToggle}>
-        <i className="fa-solid fa-brush"></i>
+        <i className="ri-palette-line"></i>
       </button>
       <div className={`color-palette ${isPaletteOpen ? 'open' : 'closed'}`} ref={paletteRef}>
         {colors.map((color, index) => (

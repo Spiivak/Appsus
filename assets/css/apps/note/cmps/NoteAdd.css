@@ -1,83 +1,37 @@
 .note-add {
-  position: relative;
-  margin-bottom: 1rem; /* Change 'margin-block-end' to 'margin-bottom' for consistency */
-  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 600px;
+  width: 100%;
+  margin: auto;
+  padding: 10px;
+
+  /* background: red; */
+}
+
+.add-type-btns {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.type-btn.active {
+  background-color: #f1f3f4;
+  color: #202124;
+}
+
+.selected-type-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.note-add form {
+.add-buttons-section {
   display: flex;
-  flex-direction: column;
+  width: 100%; /* Adjusted width to 100% */
   align-items: center;
-  border-radius: 15px;
-  width: 350px;
-  padding: 1rem; /* Adjust padding for consistency */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adjust box shadow for a subtle effect */
+  justify-content: space-between;
 }
 
-.note-add .add-type-btns {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  right: 50%; /* Simplify positioning */
-  top: 16px; /* Adjust top spacing */
-  display: flex;
-  gap: 0.3em;
-}
 
-.note-add .add-type-btns button {
-  font-size: 1.2em;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-  padding: 0.5em;
-  border-radius: 50%; /* Use border-radius for a circular button */
-}
-
-.note-add .title-input,
-.note-add .txt-input {
-  padding: 0.8rem;
-  width: 90%;
-  margin-right: auto; /* Adjust margin for input alignment */
-  background-color: #fff; /* Set a background color for better visibility */
-  border: 1px solid #ddd; /* Add a subtle border for input separation */
-  border-radius: 5px; /* Add a slight border-radius for a softer look */
-}
-
-.note-add .txt-input {
-  resize: none; /* Disable textarea resizing */
-}
-
-.note-add .todo-wrapper {
-  position: relative;
-  width: 92%;
-}
-
-.note-add .todo-wrapper .todo-input {
-  width: 100%;
-  background-color: #fff; /* Set a background color for better visibility */
-  border: 1px solid #ddd; /* Add a subtle border for input separation */
-  border-radius: 5px; /* Add a slight border-radius for a softer look */
-  padding: 0.5em;
-  margin-bottom: 0.5em; /* Adjust margin for input separation */
-}
-
-.note-add .todo-wrapper .todo-remove-btn {
-  cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 0;
-  border-radius: 50%;
-  transform: translate(0, -50%);
-  border: none;
-  padding: 0.4em;
-  background-color: #fff; /* Set a background color for better visibility */
-}
-
-.note-add .add-buttons {
-  width: 100%;
-  display: flex;
-  justify-content: space-between; /* Align buttons at the ends */
-  margin-top: 1em; /* Adjust margin for better spacing */
-}

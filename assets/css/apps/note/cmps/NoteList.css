@@ -1,23 +1,31 @@
 .note-list-section {
-  margin-inline-start: -10px;
-  margin-inline-end: 80px;
   padding: 0;
-
-  column-gap: 2.5em;
+  /* gap: 16px; */
+  column-gap: 3em;
+  row-gap: 16px;
   column-width: 200px;
 }
+
 .note-list {
   width: 100%;
   margin-inline-start: auto;
+  
+  padding-inline: 50px;
 }
 
-.note-list > li:first-of-type {
-  margin-block-start: -16px;
-}
 .note-list > li {
   margin-block-end: 1em;
+  background-color: #fff;
+  border-radius: 8px;
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  transition: transform 0.2s ease-in-out;
+}
+
+.note-list > li:hover {
+  transform: scale(1.03); /* Added hover effect */
 }
 
 .note-list-section ul {
   list-style: none;
+  padding: 0;
 }

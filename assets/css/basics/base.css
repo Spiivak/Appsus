@@ -35,15 +35,13 @@ img {
 }
 
 .btn {
-    all: unset;
+    background-color: transparent;
+    color: #5f6368;
+    border: none;
     cursor: pointer;
-    text-align: center;
-    color: #444746;
-    width: 32px;
-    height: 32px;
-}
-
-.btn:hover {
-    background-color: #3c40431e;
-    border-radius: 1000px;
-}
+    transition: color 0.3s ease;
+  }
+  
+  .btn:hover {
+    color: #202124;
+  }

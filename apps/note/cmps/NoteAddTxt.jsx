@@ -1,6 +1,6 @@
 const { useState } = React
 
-import { ColorButtonsAdd } from './ColorButtons.jsx'
+import { ColorButtons } from './ColorButtons.jsx'
 import { noteService } from '../services/note.service.js'
 
 const EmptyNote = () => ({
@@ -8,7 +8,7 @@ const EmptyNote = () => ({
   txt: '',
 })
 
-const NoteForm = ({ onSubmit, onChange, value, backgroundColor }) => (
+const NoteForm = ({ onSubmit, onChange, value, backgroundColor, changeBackgroundColor }) => (
   <form className="add-txt-form" style={{ backgroundColor }} onSubmit={onSubmit}>
     <input
       className="title-input"
@@ -36,14 +36,14 @@ const NoteForm = ({ onSubmit, onChange, value, backgroundColor }) => (
         <button className="btn" type="submit">
           <i className="fa-solid fa-plus"></i>
         </button>
-        {value.txt && <ColorButtonsAdd />}
+        {value.txt && <ColorButtons changeBackgroundColor={changeBackgroundColor} />}
     </div>
   </form>
 )
 
 export function NoteAddTxt({ addNote, type }) {
   const [noteInfo, setNoteInfo] = useState(EmptyNote)
-  const [backgroundColor, setBackgroundColor] = useState('#e9e3d4')
+  const [backgroundColor, setBackgroundColor] = useState('#fff')
 
   const onSubmitHandle = (ev) => {
     ev.preventDefault()
@@ -68,6 +68,7 @@ export function NoteAddTxt({ addNote, type }) {
       onChange={onChangeHandle}
       value={noteInfo}
       backgroundColor={backgroundColor}
+      changeBackgroundColor={changeBackgroundColor}
     />
   )
 }

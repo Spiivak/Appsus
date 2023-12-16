@@ -2,101 +2,90 @@
   position: fixed;
   background-color: #00000066;
   width: 100vw;
-  height: 100dvh;
+  height: 100vh;
 }
-
-.note-edit{
-  translate: 10% 10%;
-  width: 80vw;
-  height: 60dvh;
-}
-
-/* Above is the edit style */
 
 .note-edit {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70vw;
+  max-width: 400px;
+  height: 60vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
   border-radius: 15px;
-  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, .3);
+  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
 }
-
-
 
 .note-edit .title-input:focus,
 .note-edit .txt-input:focus-visible {
-  border: none;
   outline: none;
 }
 
-.note-edit .title-input {
-  padding: 1rem 3rem;
-  width: 80%;
-  font-size: clamp(1.3em, 2vw + 0.3em, 2em);
-  justify-self: start;
-  background-color: transparent;
-  border: none;
-}
-
+.note-edit .title-input,
 .note-edit .txt-input {
+  width: 80%;
+  max-width: 300px;
+  padding: 1rem;
   font-size: clamp(1em, 2vw + 0.3em, 1.6em);
-  padding: 1rem 3rem;
-  border: none;
-  resize: inherit;
-  width: 80.5%;
-  background-color: transparent;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
   border-radius: 7px;
+  margin-bottom: 10px;
 }
 
 .note-edit img {
-  height: 300px;
+  max-height: 200px;
   width: auto;
+  border-radius: 7px;
 }
 
 .note-edit .todo-wrapper {
   position: relative;
-  width: 92%;
+  width: 90%;
 }
 
 .note-edit .todo-wrapper .todo-input {
   width: 100%;
-  background-color: transparent;
-  border: none;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-bottom: 1px solid #ddd;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
 }
 
 .note-edit .todo-wrapper .todo-input:focus {
-  border: none;
   outline: none;
+  border-color: #555;
 }
 
 .note-edit .todo-wrapper .todo-remove-btn {
   cursor: pointer;
-
   position: absolute;
   top: 0;
   right: 0;
-
   border-radius: 50%;
-  translate: 0 -10%;
-
+  transform: translate(0, -50%);
   border: none;
   padding: 0.4em;
-  background-color: transparent;
+  background-color: #f8f9fa;
 }
 
 .note-edit .todo-wrapper .todo-remove-btn:hover {
-  background-color: blue;
+  background-color: #eee;
 }
 
 .note-edit .add-buttons {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-content: start;
-  justify-items: start;
-} 
+  display: flex;
+  margin-top: 1em;
+}
 
 .note-edit .color-palette {
-  translate: -50% 5%;
+  transform: translate(-50%, 5%);
 }

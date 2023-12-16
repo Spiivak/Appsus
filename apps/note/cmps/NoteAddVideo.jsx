@@ -1,20 +1,19 @@
 const { useState } = React
 
 import { noteService } from '../services/note.service.js'
-import { ColorButtonsAdd } from './ColorButtons.jsx'
+import { ColorButtons } from './ColorButtons.jsx'
 
 export function NoteAddVideo({ addNote, type }) {
   const [newNoteInfo, setNewNoteInfo] = useState({
     title: '',
-    youtubeUrl: '', // New property for YouTube video URL
+    youtubeUrl: '',
   })
-  const [backgroundColor, setBackgroundColor] = useState('#e9e3d4')
+  const [backgroundColor, setBackgroundColor] = useState('#fff')
   const [error, setError] = useState('')
 
   function onSubmitHandle(ev) {
     ev.preventDefault()
 
-    // Updated regex to accept various YouTube video URL formats
     const youtubeUrlRegex =
       /^(https?:\/\/)?(www\.)?(youtube\.com\/(.*\/)?(watch\?v=)?|youtu\.be\/)([^\?&"'>]+)/
 
@@ -30,7 +29,7 @@ export function NoteAddVideo({ addNote, type }) {
 
     setNewNoteInfo({
       title: '',
-      youtubeUrl: '', // Clear YouTube video URL after submission
+      youtubeUrl: '',
     })
     setError('')
   }
@@ -46,7 +45,7 @@ export function NoteAddVideo({ addNote, type }) {
 
   return (
     <React.Fragment>
-      <form style={{ backgroundColor }} onSubmit={onSubmitHandle}>
+      <form className="add-video-form" style={{ backgroundColor }} onSubmit={onSubmitHandle}>
         <label htmlFor="title" className="label">
           Title
         </label>
@@ -77,12 +76,12 @@ export function NoteAddVideo({ addNote, type }) {
         {error && <div className="error-message">{error}</div>}
 
         <div className="add-buttons-section">
-            <button className="btn" type="submit">
-              <i className="fa-solid fa-plus"></i>
-            </button>
-            <ColorButtonsAdd changeBackgroundColor={changeBackgroundColor} />
+          <button className="btn" type="submit">
+            <i className="fa-solid fa-plus"></i>
+          </button>
+          <ColorButtons changeBackgroundColor={changeBackgroundColor} />
         </div>
       </form>
     </React.Fragment>
-  )
+  );
 }

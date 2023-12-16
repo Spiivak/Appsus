@@ -2,7 +2,7 @@ const { useState } = React
 
 import { utilService } from '../../../services/util.service.js'
 import { noteService } from '../services/note.service.js'
-import { ColorButtonsAdd } from './ColorButtons.jsx'
+import { ColorButtons } from './ColorButtons.jsx'
 
 function TodoItem({ todo, onChange, onRemove, onAddNew, isSingleTodo }) {
 	const handleInputChange = (ev) => {
@@ -28,7 +28,7 @@ function TodoItem({ todo, onChange, onRemove, onAddNew, isSingleTodo }) {
 					className="todo-remove-btn"
 					onClick={onRemove}
 				>
-					<i className="fa-solid fa-x"></i>
+					<i className="ri-delete-bin-line"></i>
 				</button>
 			)}
 		</div>
@@ -45,7 +45,7 @@ export function NoteAddTodos({ addNote, type }) {
 	])
 
 	const [title, setTitle] = useState('')
-	const [backgroundColor, setBackgroundColor] = useState('#e9e3d4')
+	const [backgroundColor, setBackgroundColor] = useState('#white')
 
 	const onChangeTitleHandle = (ev) => {
 		const value = ev.target.value
@@ -94,41 +94,41 @@ export function NoteAddTodos({ addNote, type }) {
 		setBackgroundColor(colorHex)
 	}
 
-	return (
-		<React.Fragment>
-			<form style={{ backgroundColor }} onSubmit={onSubmitHandle}>
-				<input
-					required
-					className="title-input"
-					type="text"
-					placeholder="Title"
-					name="title"
-					id="title"
-					value={title}
-					onChange={onChangeTitleHandle}
-				/>
-				{todos.map((todo, index) => (
-					<TodoItem
-						key={todo.id}
-						todo={{ ...todo, lastId: todos[todos.length - 1].id }}
-						onChange={(ev) => onChangeTodoHandle(ev, todo.id)}
-						onRemove={() => removeTodo(todo.id)}
-						onAddNew={addTodo}
-						isSingleTodo={todos.length === 1}
-					/>
-				))}
+  return (
+    <React.Fragment>
+      <form className="add-todos-form" style={{ backgroundColor }} onSubmit={onSubmitHandle}>
+        <input
+          required
+          className="title-input"
+          type="text"
+          placeholder="Title"
+          name="title"
+          id="title"
+          value={title}
+          onChange={onChangeTitleHandle}
+        />
+        {todos.map((todo, index) => (
+          <TodoItem
+            key={todo.id}
+            todo={{ ...todo, lastId: todos[todos.length - 1].id }}
+            onChange={(ev) => onChangeTodoHandle(ev, todo.id)}
+            onRemove={() => removeTodo(todo.id)}
+            onAddNew={addTodo}
+            isSingleTodo={todos.length === 1}
+          />
+        ))}
 
-				<div className="add-buttons-section">
-					<section className="add-buttons">
-						<button className="btn" type="submit">
-							<i className="fa-solid fa-plus"></i>
-						</button>
-						<ColorButtonsAdd
-							changeBackgroundColor={changeBackgroundColor}
-						/>
-					</section>
-				</div>
-			</form>
-		</React.Fragment>
-	)
+        <div className="add-buttons-section">
+          <section className="add-buttons">
+            <button className="btn" type="submit">
+              <i className="fa-solid fa-plus"></i>
+            </button>
+            <ColorButtons
+              changeBackgroundColor={changeBackgroundColor}
+            />
+          </section>
+        </div>
+      </form>
+    </React.Fragment>
+  )
 }
