@@ -15,7 +15,6 @@
     height: 100%;
     z-index: 10;
     background: var(--main-clr);
-    /* transition: width 0.3s ease; */
 }
 
 .mail-aside-tool-bar.open {
@@ -55,9 +54,7 @@
 .menu-actions {
     margin-inline-start: 16px;
     padding-inline: 11px;
-    /* margin-inline-start: 21px; */
     justify-self: start;
-    /* padding-inline-start: inherit; */
     transition: margin-inline-start 0.3s ease
 }
 
@@ -81,20 +78,20 @@
 }
 
 .mail-aside-tool-bar .btn-compose {
-    margin-inline-start: -15px;
     width: 56px;
     height: 56px;
     margin-block: 0.6rem 1rem;
+    margin-inline-start: -15px;
+
     font-size: 1.5rem;
     color: #001d35;
-    border-radius: 16px;
     background-color: #c2e7ff;
+    border-radius: 16px;
     transition: .08s linear, min-width .15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .menu-actions div {
     gap: 10px;
-
 }
 
 .mail-aside-tool-bar .btn-compose:hover {
@@ -125,13 +122,10 @@
     margin-inline-start: 0;
 }
 
-
-/* Styles for the mobile menu */
 .mail-aside-tool-bar.menu-open .mail-list {
     margin-inline-start: 0;
     transition: margin-inline-start 0.3s ease;
 }
-
 
 @media (max-width: 700px) {
     .mail-aside-tool-bar {
@@ -170,5 +164,4 @@
         height: 56px;
         font-size: 1.5rem;
     }
-
 }

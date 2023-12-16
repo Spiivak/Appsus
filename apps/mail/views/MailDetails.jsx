@@ -3,7 +3,6 @@ import { mailService } from '../services/mail.service.js'
 const { useParams, useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
 
-// ROUTING
 export function MailDetails() {
     const params = useParams()
     const navigate = useNavigate()
@@ -38,18 +37,6 @@ export function MailDetails() {
     //         .then(setNextMailId)
     //     mailService.getNegmailId(params.mailId, -1)
     //         .then(setPrevMailId)
-    // }
-
-    // function onRemoveMail() {
-    //     mailService.remove(params.mailId)
-    //         .then(() => {
-    //             navigate('/mail')
-    //             // showSuccessMsg(`Mail successfully removed!`)
-    //         })
-    //         .catch(err => {
-    //             // showErrorMsg(`Error removing Mail: ${mailId}`)
-    //             console.log('err:', err)
-    //         })
     // }
 
     function onBack() {
@@ -100,46 +87,36 @@ export function MailDetails() {
     console.log('mail:', mail)
     return (
         <section className="mail-details">
-            <button title="back-button" className="btn btn-back" onClick={onBack}>
+            <button title="Back to Inbox" className="btn btn-back" onClick={onBack}>
                 <i className="ri-arrow-left-line"></i>
             </button>
+
             <section className="actions-section">
                 <section>
-                    <button title="delete-button" className="btn btn-delete" onClick={onDeleteMail}>
+                    <button title="Delete" className="btn btn-delete" onClick={onDeleteMail}>
                         <i className=" ri-delete-bin-line"></i>
                     </button>
                     {mail.isRead &&
-                        <button
-                            title="Mark as Unread"
-                            className="btn"
-                            onClick={() => {
-                                onMark('isRead')
-                            }}
-                        >
+                        <button title="Mark as Unread" className="btn"onClick={() => {onMark('isRead')}}>
                             <i className="ri-mail-unread-line"></i>
                         </button>
                     }
                     {!mail.isRead &&
-                        <button
-                            title="Mark as Read"
-                            className="btn"
-                            onClick={() => {
-                                onMark('isRead')
-                            }}
-                        >
+                        <button title="Mark as Read" className="btn" onClick={() => {onMark('isRead')}}>
                             <i className="ri-mail-open-line"></i>
                         </button>
                     }
-                    <button title="create-note" className="btn btn-createNote">
+                    <button title="Crerate Note" className="btn btn-createNote">
                         <i className="ri-sticky-note-line"></i>
                     </button>
                 </section>
+
                 <section>
                     <span>{`${mailIdx} of ${mailsLength}`}</span>
-                    <button title="older-mail" className="btn-prev-mail">
+                    <button title="Older Mail" className="btn-prev-mail">
                         <i className="ri-arrow-left-s-line"></i>
                     </button>
-                    <button title="newer-mail" className="btn-next-mail">
+                    <button title="Newer Mail" className="btn-next-mail">
                         <i className="ri-arrow-right-s-line"></i>
                     </button>
                 </section>
