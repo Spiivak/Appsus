@@ -59,19 +59,19 @@ export function MailList({
 
     return (
         <section className={`mail-list ${isMenuOpen ? 'menu-open' : ''}`}>
-            
+
             <MailListActions {...listProps} />
 
             <section className="mails-container">
-                {sortedMails.length > 0 ? (
-                    sortedMails.map((mail) => (
+                {sortedMails.length > 0 ?
+                    (sortedMails.map((mail) => (
                         <article key={mail.id} className="mail-item" onClick={() => onOpenDetails(mail.id)}>
                             <MailPreview mail={mail} showSentMails={showSentMails} onRemoveMail={onRemoveMail} onMark={onMark} />
                         </article>
                     ))
-                ) : (
-                    <span className="no-conversations-msg flex justify-center">{`No conversations in ${showSentMails ? 'Sent' : showDeletedMails ? 'Trash' : 'Inbox'}`}</span>
-                )}
+                    ) : (
+                        <span className="no-conversations-msg flex justify-center">{`No conversations in ${showSentMails ? 'Sent' : showDeletedMails ? 'Trash' : 'Inbox'}`}</span>
+                    )}
             </section>
 
         </section>

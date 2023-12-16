@@ -26,29 +26,19 @@ export function MailPreview({ mail, onRemoveMail, showSentMails, onMark }) {
     if (isHovered && !isMobileView) {
         displayedContent = (
             <div className="actions-container flex align-center">
-                <button
-                    className="btn"
-                    onClick={onDeleteBtn}
-                >
+                <button className="btn" onClick={onDeleteMail} >
                     <i className=" ri-delete-bin-line"></i>
                 </button>
                 {isRead &&
-                    <button
-                        className="btn"
-                        onClick={onMarkReadBtn}
-                    >
+                    <button className="btn" onClick={onChangeReadMark}>
                         <i className="ri-mail-unread-line"></i>
                     </button>
                 }
                 {!isRead &&
-                    <button
-                        className="btn"
-                        onClick={onMarkReadBtn}
-                    >
+                    <button className="btn" onClick={onChangeReadMark}>
                         <i className="ri-mail-open-line"></i>
                     </button>
                 }
-
             </div>
         )
     } else {
@@ -69,12 +59,12 @@ export function MailPreview({ mail, onRemoveMail, showSentMails, onMark }) {
         setIsHovered(false)
     }
 
-    function onDeleteBtn(ev) {
+    function onDeleteMail(ev) {
         ev.stopPropagation()
         onRemoveMail(mail.id)
     }
 
-    function onMarkReadBtn(ev) {
+    function onChangeReadMark(ev) {
         ev.stopPropagation()
         onMark(mail.id, 'isRead')
     }
@@ -92,29 +82,37 @@ export function MailPreview({ mail, onRemoveMail, showSentMails, onMark }) {
         <article
             className={`mail-preview ${dynClassBgc}`}
             onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-            <div className="mail-logo" style={{ backgroundColor: bgColors[utilService.getRandomInt(0, 5)] }}>{mail.from[0].toUpperCase()}</div>
-            <button
-                className={`btn btn-starred ${isStarred ? 'starred' : ''}`}
-                onClick={(onStarClick)}
+            onMouseLeave={handleMouseLeave}>
+
+            <div
+                className="mail-logo"
+                style={{ backgroundColor: bgColors[utilService.getRandomInt(0, 5)] }}
             >
+                {mail.from[0].toUpperCase()}
+            </div>
+
+            <button className={`btn btn-starred ${isStarred ? 'starred' : ''}`} onClick={(onStarClick)}>
                 <i className="fa-regular fa-star"></i>
             </button>
+
             {!showSentMails &&
                 <span className={`mail-from ${dynClassTxt}`}>
                     {mail.from}
                 </span>
             }
             {showSentMails &&
-                <span className="mail-from">{`To: ${mail.to}`}</span>
+                <span className="mail-from">
+                    {`To: ${mail.to}`}
+                </span>
             }
+
             <section className="mail-content">
                 <p className={`mail-subject ${dynClassTxt}`}>
                     {`${mail.subject} `}
                 </p>
                 <p className="mail-body">{mail.body}</p>
             </section>
+
             <span className={`mail-sentAt ${dynClassTxt}`}>{displayedContent}</span>
         </article >
     )
