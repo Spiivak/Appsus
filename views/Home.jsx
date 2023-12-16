@@ -10,7 +10,7 @@ export function Home() {
         </p>
         <div className="app-icons flex justify-center">
           <Link to="/mail">
-            <img className="app-icon" src="assets/img/gmail-logo.png" alt="Gmail Logo" />
+            <img className="app-icon" src="/assets/img/gmail-logo.png" alt="Gmail Logo" />
           </Link>
           <Link to="/note">
             <img className="app-icon" src="/assets/img/keep.png" alt="Keep Logo" />
