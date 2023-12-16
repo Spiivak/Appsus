@@ -8,7 +8,7 @@ export function NoteHeader() {
 					<i className="fa-solid fa-bars"></i>
 				</button>
 				<Link to="/note">
-					<img src="/assets/img/keep.png" alt="" />
+					<img src="assets/img/keep.png" alt="" />
 				</Link>
 			</div>
 
