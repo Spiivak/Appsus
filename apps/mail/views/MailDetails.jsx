@@ -1,4 +1,7 @@
 import { mailService } from '../services/mail.service.js'
+import { MailPreviewActions } from '../cmps/MailPreviewActions.jsx'
+import { MailSubject } from '../cmps/MailSubject.jsx'
+import { MailInfoSection } from '../cmps/MailInfoSection.jsx'
 
 const { useParams, useNavigate } = ReactRouterDOM
 const { useState, useEffect } = React
@@ -50,7 +53,6 @@ export function MailDetails() {
     }
 
     function getMailIdx() {
-        console.log('params.mailId:', params.mailId)
         mailService.queryNoFilter()
             .then(mails => {
                 const currentMailIndex = mails.findIndex(mail => mail.id === params.mailId)
@@ -87,62 +89,25 @@ export function MailDetails() {
     })
 
     if (!mail) return <div>Loading...</div>
-    console.log('mail:', mail)
+
     return (
         <section className="mail-details">
             <button title="Back to Inbox" className="btn btn-back" onClick={onBack}>
                 <i className="ri-arrow-left-line"></i>
             </button>
 
-            <section className="actions-section">
-                <section>
-                    <button title="Delete" className="btn btn-delete" onClick={onDeleteMail}>
-                        <i className=" ri-delete-bin-line"></i>
-                    </button>
-                    {mail.isRead &&
-                        <button title="Mark as Unread" className="btn" onClick={() => { onMark('isRead') }}>
-                            <i className="ri-mail-unread-line"></i>
-                        </button>
-                    }
-                    {!mail.isRead &&
-                        <button title="Mark as Read" className="btn" onClick={() => { onMark('isRead') }}>
-                            <i className="ri-mail-open-line"></i>
-                        </button>
-                    }
-                    <button title="Crerate Note" className="btn btn-createNote">
-                        <i className="ri-sticky-note-line"></i>
-                    </button>
-                </section>
+            <MailPreviewActions
+                onDeleteMail={onDeleteMail}
+                isRead={mail.isRead}
+                onMark={onMark}
+                mailIdx={mailIdx}
+                mailsLength={mailsLength}
+                navigateToMail={navigateToMail} />
 
-                <section>
-                    <span>{`${mailIdx} of ${mailsLength}`}</span>
-                    <button title="Older Mail" className="btn-prev-mail" onClick={() => navigateToMail(-1)}>
-                        <i className="ri-arrow-left-s-line"></i>
-                    </button>
-                    <button title="Newer Mail" className="btn-next-mail" onClick={() => navigateToMail(1)}>
-                        <i className="ri-arrow-right-s-line"></i>
-                    </button>
-                </section>
-            </section>
-            <section className="mail-subject">
-                <p>{mail.subject}</p>
-                <button
-                    className={`btn btn-starred ${mail.isStarred ? 'starred' : ''}`}
-                    onClick={() => {
-                        onMark('isStarred')
-                    }}
-                >
-                    {/* <button className={`btn btn-starred`}> */}
-                    <i className="fa-regular fa-star"></i>
-                </button>
-            </section>
-            <section className="info-section">
-                <section className="mail-from-section">
-                    <span className="from-name-only">{(mail.from).split('@')[0]}</span>
-                    <span className="from-full-mail">{`<${mail.from}>`}</span>
-                </section>
-                <span className="date">{formattedDate}</span>
-            </section>
+            <MailSubject subject={mail.subject} isStarred={mail.isStarred} onMark={onMark}/>
+
+            <MailInfoSection nameOnly={(mail.from).split('@')[0]} fullMail={mail.from} formattedDate={formattedDate}/>
+
             <section className="mail-body">
                 <p>{mail.body}</p>
             </section>

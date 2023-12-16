@@ -3,13 +3,16 @@ import { MailListActions } from "./MailListActions.jsx"
 
 const { useState } = React
 
-export function MailList({
-    mails, showSentMails, showDeletedMails, onRemoveMail, onOpenDetails,
-    onMark, onSetReadFilter, onSetSort, onEmptyTrash, isMenuOpen }) {
+export function MailList(props) {
+    const {
+        mails, showSentMails, showDeletedMails, onRemoveMail, onOpenDetails,
+        onMark, onSetReadFilter, onSetSort, onEmptyTrash, isMenuOpen
+    } = props
+
     const [filterBy, setFilterBy] = useState(false)
-    const [sortOption, setSortOption] = useState({ field: 'sentAt', order: 'desc' })
     const [showFilterDropdown, setShowFilterDropdown] = useState(false)
     const [showSortDropdown, setShowSortDropdown] = useState(false)
+    const [sortOption, setSortOption] = useState({ field: 'sentAt', order: 'desc' })
 
     const toggleFilterDropdown = () => {
         setShowFilterDropdown(!showFilterDropdown)
@@ -70,7 +73,9 @@ export function MailList({
                         </article>
                     ))
                     ) : (
-                        <span className="no-conversations-msg flex justify-center">{`No conversations in ${showSentMails ? 'Sent' : showDeletedMails ? 'Trash' : 'Inbox'}`}</span>
+                        <span className="no-conversations-msg flex justify-center">
+                            {`No conversations in ${showSentMails ? 'Sent' : showDeletedMails ? 'Trash' : 'Inbox'}`}
+                            </span>
                     )}
             </section>
 

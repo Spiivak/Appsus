@@ -31,7 +31,7 @@
     /* font-size: 1.2rem; */
 }
 
-.mail-details .actions-section {
+.mail-details .mail-preview-actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,7 +65,7 @@
     color: rgb(255, 208, 0);
 }
 
-.mail-details .info-section {
+.mail-details .mail-info-section {
     display: flex;
     justify-content: space-between;
 }
@@ -78,7 +78,7 @@
     margin-inline-start: 5px;
 }
 
-.mail-details .info-section .from-full-mail,
+.mail-details .mail-info-section .from-full-mail,
 span {
     font-size: 0.75rem;
     color: #5e5e5e;

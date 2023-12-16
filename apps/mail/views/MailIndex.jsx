@@ -13,7 +13,7 @@ export function MailIndex() {
     const [mails, setMails] = useState(null)
     const [unfilteredMails, setUnfilteredMails] = useState(null)
 
-    const [Mark, setMark] = useState(false)
+    const [mark, setMark] = useState(false)
     const [isAdd, setIsAdd] = useState(false)
     const [isMenuOpen, setMenuOpen] = useState(false)
     const [showSentMails, setShowSentMails] = useState(false)
@@ -30,7 +30,7 @@ export function MailIndex() {
     useEffect(() => {
         loadMails()
         setSearchParams(filterBy)
-    }, [filterBy, sortOption, showSentMails, showStarredMails, showDeletedMails, Mark])
+    }, [filterBy, sortOption, showSentMails, showStarredMails, showDeletedMails, mark])
 
     // load mails from DB by type
     function loadMails() {
@@ -130,7 +130,7 @@ export function MailIndex() {
                     })
                 })
 
-                showSuccessMsg(`Conversation marked as read/unread!`)
+                showSuccessMsg(`Conversation marked successfully!`)
             })
             .catch(err => {
                 showErrorMsg(`Error marking mail: ${mailId}`)
