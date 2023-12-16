@@ -92,13 +92,13 @@ export function MailList({
                     </button>
                 }
             </section>
-            {/* <section className="mails-container"> */}
-            {sortedMails.map((mail) =>
-                <article key={mail.id} className="mail-item" onClick={() => onOpenDetails(mail.id)}>
-                    <MailPreview mail={mail} isSent={isSent} onRemoveMail={onRemoveMail} onMark={onMark} />
-                </article>
-            )}
-            {/* </section> */}
+            <section className="mails-container">
+                {sortedMails.map((mail) =>
+                    <article key={mail.id} className="mail-item" onClick={() => onOpenDetails(mail.id)}>
+                        <MailPreview mail={mail} isSent={isSent} onRemoveMail={onRemoveMail} onMark={onMark} />
+                    </article>
+                )}
+            </section>
 
         </section>
     )

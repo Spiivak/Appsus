@@ -1,15 +1,26 @@
 .mail-list {
     /* display: grid; */
+    overflow-y: auto;
     position: relative;
     border-radius: 16px;
     grid-column: 2;
     grid-row: 2;
+    margin-block-end: 20px;
+}
+
+.mails-container {
+    border-radius: 16px;
 }
 
 .mail-list .mail-list-actions {
-    position: relative;
-    height: 62px;
-    border-radius: 100px;
+    /* position: relative; */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+     height: 62px;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
 }
 
 .mail-list .btn-select-filter {
@@ -35,12 +46,13 @@
     position: absolute;
     padding-block: 5px;
     left: 1rem;
-    top: 3rem;;
+    top: 3rem;
+    ;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1;
     border-radius: 5px;
-    color : #202124;
+    color: #202124;
 }
 
 .mail-list .filter-dropdown button {
@@ -62,12 +74,13 @@
     position: absolute;
     padding-block: 5px;
     left: 1rem;
-    top: 3rem;;
+    top: 3rem;
+    ;
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     z-index: 1;
     border-radius: 5px;
-    color : #202124;
+    color: #202124;
 }
 
 .mail-list .sort-dropdown button {
@@ -91,6 +104,12 @@
     padding: 5px;
 }
 
+@media (min-width: 7000px) {
+    .mail-list {
+        overflow-y: hidden;
+    }
+}
+
 @media (max-width: 700px) {
     .mail-list-actions {
         display: none;
@@ -102,4 +121,4 @@
         box-shadow: rgba(100, 121, 143, 0.12) 0px -1px 0px 0px inset;
     }
 
-} 
+}
