@@ -15,34 +15,32 @@ export const mailService = {
     getLoggedInUser,
     getInboxMails,
     getSentMails,
-    getStarredMails,
-    getDeletedMails,
     getEmptyMail,
-    getDefaultFilter,
     getFilterFromQueryString,
 }
 
-function query(filterBy) {
+// query functions
+function query(filter) {
     return storageService.query(MAIL_KEY)
         .then(mails => {
-            if (filterBy.to) {
-                mails = mails.filter(mail => mail.to === filterBy.to)
-            } else if (filterBy.from) {
-                mails = mails.filter(mail => mail.from === filterBy.from)
-            }
-
-            if (filterBy.starred) {
-                mails = mails.filter(mail => mail.isStarred === true)
-            }
-            
-            if (filterBy.isDeleted) {
+            if (filter.isDeleted) {
                 mails = mails.filter(mail => mail.removedAt !== null)
             } else {
                 mails = mails.filter(mail => mail.removedAt === null)
             }
 
-            if (filterBy.filterBy.search) {
-                const regex = new RegExp(filterBy.filterBy.search, 'i')
+            if (filter.to) {
+                mails = mails.filter(mail => mail.to === filter.to)
+            } else if (filter.from) {
+                mails = mails.filter(mail => mail.from === filter.from)
+            }
+            
+            if (filter.starred) {
+                mails = mails.filter(mail => mail.isStarred === true)
+            }
+
+            if (filter.filterBy.search) {
+                const regex = new RegExp(filter.filterBy.search, 'i')
                 mails = mails.filter(mail => (
                     regex.test(mail.subject) ||
                     regex.test(mail.from) ||
@@ -51,9 +49,9 @@ function query(filterBy) {
                 ))
             }
 
-            if (filterBy.filterBy.isRead === true) {
+            if (filter.filterBy.isRead === true) {
                 mails = mails.filter(mail => mail.isRead === true)
-            } else if (filterBy.filterBy.isRead === false) {
+            } else if (filter.filterBy.isRead === false) {
                 mails = mails.filter(mail => mail.isRead === false)
             }
 
@@ -76,14 +74,7 @@ function getSentMails({ filterBy, email }) {
     return query({ filterBy, from: email });
 }
 
-function getStarredMails({ filterBy, starred }) {
-    return query({ filterBy, starred})
-}
-
-function getDeletedMails({ filterBy, isDeleted }) {
-    return query({ filterBy, isDeleted})
-}
-
+// CRUD functions
 function get(mailId) {
     return storageService.get(MAIL_KEY, mailId)
 }
@@ -111,10 +102,6 @@ function getEmptyMail(from = '', sentAt = null) {
         from,
         to: '',
     }
-}
-
-function getDefaultFilter() {
-    return { search: '', isRead: false }
 }
 
 function getFilterFromQueryString(searchParams) {

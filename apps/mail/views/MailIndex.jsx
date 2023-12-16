@@ -42,11 +42,11 @@ export function MailIndex() {
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
         } else if (isStarred) {
-            mailService.getStarredMails({ filterBy, starred: isStarred })
+            mailService.query({ filterBy, starred: isStarred })
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
         } else if (isDeleted) {
-            mailService.getDeletedMails({ filterBy, isDeleted: true })
+            mailService.query({ filterBy, isDeleted: true })
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
         }
