@@ -1,18 +1,24 @@
-const { NavLink } = ReactRouterDOM
 const { useState, useEffect } = React
 
+import { MailMenuClose } from "./MailMenuClose.jsx"
+import { MailMenuOpen } from "./MailMenuOpen.jsx"
 // const isMenuOpenn = true;
 
 export function MailAsideToolBar({
     unreadMailsCount,
     onToggleAddMail,
+    isMenuOpen,
     onChangeToInboxMails,
     onChangeToSentMails,
     onChangeToStarredMails,
-    onChangeToDeletedMails }) {
-    const [isMenuOpen, setMenuOpen] = useState(false)
-    const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 700)
+    onChangeToDeletedMails, 
+    handleToggleMenu }) {
 
+    const [menuOpen, setMenuOpen] = useState(isMenuOpen)
+    const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 700)
+    const [hoverTimeout, setHoverTimeout] = useState(null)
+    console.log('isMenuOpen start:', isMenuOpen)
+    console.log('menuOpen start:', menuOpen)
     useEffect(() => {
         const handleResize = () => {
             setIsMobileView(window.innerWidth <= 700)
@@ -23,94 +29,64 @@ export function MailAsideToolBar({
         return () => {
             window.removeEventListener('resize', handleResize)
         }
-    }, [])
+    }, [isMenuOpen])
 
-    const handleToggleMenu = () => {
-        if (isMobileView) {
-            setMenuOpen(!isMenuOpen)
-          }
+    const setIsMenuOpen = () => {
+        handleToggleMenu()
     }
 
+    // const handleToggleMenu = () => {
+    //     if (isMobileView) {
+    //         setMenuOpen(!menuOpen)
+    //     }
+    // }
 
     const menuProps = isMobileView
-    ? {}
-    : {
-        onMouseEnter: () => setMenuOpen(true),
-        onMouseLeave: () => setMenuOpen(false),
-      }
+        ? {}
+        : {
+            onMouseEnter: () => {
+                setHoverTimeout(
+                    setTimeout(() => {
+                        setMenuOpen(true)
+                    }, 300)
+                )
+            },
+            onMouseLeave: () => {
+                clearTimeout(hoverTimeout)
+                setMenuOpen(false)
+            },
+        }
+
+
+    console.log('menuOpen before:', menuOpen)
+    console.log('isMenuOpen before:', isMenuOpen)
+
+    const mailMenuProps = {
+        unreadMailsCount,
+        onToggleAddMail,
+        onChangeToInboxMails,
+        onChangeToStarredMails,
+        onChangeToSentMails,
+        onChangeToDeletedMails,
+        setMenuOpen,
+        setIsMenuOpen,
+    }
 
     return (
-        <aside
-            className={`mail-aside-tool-bar ${isMenuOpen ? 'open' : ''}`}
-            {...menuProps}
-        >
-            {/* <button className="btn btn-bars" onClick={handleToggleMenu}>
-                <i className="fa-solid fa-bars"></i>
-            </button> */}
+        <aside className={`mail-aside-tool-bar ${isMenuOpen ? 'open' : ''}`}
+            {...menuProps}>
 
             {!isMenuOpen &&
-                <div className="menu-actions grid justify-center align-center">
-                    <button className="btn btn-compose" onClick={onToggleAddMail}>
-                        <i className="fa-regular fa-pen-to-square"></i>
-                    </button>
-
-                    <NavLink to="/mail">
-                        <button className={`btn btn-inbox ${unreadMailsCount > 0 ? 'unread' : ''}`} onClick={onChangeToInboxMails}>
-                            <i className="fa-solid fa-inbox"></i>
-                        </button>
-                    </NavLink>
-
-                    <button className="btn btn-starred" onClick={onChangeToStarredMails}>
-                        <i className="fa-regular fa-star"></i>
-                    </button>
-
-                    <button className="btn btn-sent" onClick={onChangeToSentMails}>
-                        <i className="ri-send-plane-2-line"></i>
-                    </button>
-
-                    <button className="btn btn-trash" onClick={onChangeToDeletedMails}>
-                        <i className="ri-delete-bin-line"></i>
-                    </button>
-                    <p></p>
-                </div>
+                <MailMenuClose {...mailMenuProps} />
+            }
+            {/* {!isMenuOpen && 
+                <MailMenuClose {...mailMenuProps} />} */
             }
             {isMenuOpen &&
-                <div className="menu-actions grid justify-center align-center">
-                    <div className="flex justify-center align-center" onClick={onToggleAddMail}>
-                        <button className="btn btn-compose flex align-center" >
-                            <i className="fa-regular fa-pen-to-square"></i><span>Compose</span>
-                        </button>
-                    </div>
-
-                    <NavLink to="/mail">
-                        <div className="aciton flex justify-center align-center" onClick={onChangeToInboxMails}>
-                            <button className="btn btn-inbox">
-                                <i className="fa-solid fa-inbox"></i>
-                            </button>
-                            <span className="txt-span">{`Inbox (${unreadMailsCount})`}</span>
-                        </div>
-                    </NavLink>
-
-                    <div className="aciton flex justify-center align-center" onClick={onChangeToStarredMails}>
-                        <button className="btn btn-starred">
-                            <i className="fa-regular fa-star"></i>
-                        </button>
-                        <span className="txt-span">Starred</span>
-                    </div>
-                    <div className="aciton flex justify-center align-center" onClick={onChangeToSentMails}>
-                        <button className="btn btn-sent" >
-                            <i className="ri-send-plane-2-line"></i>
-                        </button>
-                        <span className="txt-span">Sent</span>
-                    </div>
-                    <div className="aciton flex justify-center align-center" onClick={onChangeToDeletedMails}>
-                        <button className="btn btn-trash" >
-                            <i className="ri-delete-bin-line"></i>
-                        </button>
-                        <span className="txt-span">Trash</span>
-                    </div>
-                    <p></p>
-                </div>
+                <MailMenuOpen {...mailMenuProps} />
+            }
+            {/* {isMenuOpen && 
+                <MailMenuOpen {...mailMenuProps} />} */
             }
         </aside>
     )

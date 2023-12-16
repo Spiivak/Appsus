@@ -2,10 +2,10 @@ import { MailFilter } from "../cmps/MailFilter.jsx"
 
 const { Link, NavLink } = ReactRouterDOM
 
-export function MailHeader({ filterBy, onSetSearchFilter }) {
+export function MailHeader({ filterBy, onSetSearchFilter, onOpenMenu }) {
     return (
-        <header className="mail-header grid column justify-center align-center">
-            <button className="btn btn-bars">
+        <header className="mail-header grid justify-center align-center">
+            <button className="btn btn-bars" onClick={onOpenMenu}>
                 <i className="fa-solid fa-bars"></i>
             </button>
             <div className="left-side flex">

@@ -1,11 +1,4 @@
 .mail-add {
-    position: fixed;
-    bottom: 0;
-    right: 56px;
-    width: 500px;
-    height: 500px;
-    /* margin: 20px auto; */
-
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -91,4 +84,23 @@
     align-self: stretch;
     font-family: sans-serif;
     outline: none;
+}
+
+@media (max-width: 700px) {
+    .mail-add {
+        position: absolute;
+        z-index: 10;
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+@media (min-width: 700px) {
+    .mail-add {
+        position: fixed;
+        bottom: 0;
+        right: 56px;
+        width: 400px;
+        height: 400px;
+    }
 }
