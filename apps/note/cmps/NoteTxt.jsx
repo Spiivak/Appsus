@@ -1,7 +1,7 @@
 const { useState } = React
 
 import { PreviewButtons } from './PreviewButtons.jsx'
-import { NoteForm } from './NoteForm.jsx' // Add a separate NoteForm component
+import { NoteForm } from './NoteAddTxt.jsx'
 
 export function NoteTxt({
   note,
