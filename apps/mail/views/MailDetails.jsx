@@ -32,13 +32,6 @@ export function MailDetails() {
             })
     }
 
-    // function setNegMails() {
-    //     mailService.getNegmailId(params.mailId, 1)
-    //         .then(setNextMailId)
-    //     mailService.getNegmailId(params.mailId, -1)
-    //         .then(setPrevMailId)
-    // }
-
     function onBack() {
         navigate('/mail')
     }
@@ -64,6 +57,16 @@ export function MailDetails() {
                 const mailsLength = mails.length
                 setMailIdx(currentMailIndex + 1)
                 setMailsLength(mailsLength)
+            })
+    }
+
+    function navigateToMail(offset) {
+        mailService.queryNoFilter()
+            .then(mails => {
+                if (mailIdx + offset >= 1 && mailIdx + offset <= mailsLength) {
+                    const nextMailId = mails[mailIdx + offset - 1].id
+                    navigate(`/mail/${nextMailId}`)
+                }
             })
     }
 
@@ -97,12 +100,12 @@ export function MailDetails() {
                         <i className=" ri-delete-bin-line"></i>
                     </button>
                     {mail.isRead &&
-                        <button title="Mark as Unread" className="btn"onClick={() => {onMark('isRead')}}>
+                        <button title="Mark as Unread" className="btn" onClick={() => { onMark('isRead') }}>
                             <i className="ri-mail-unread-line"></i>
                         </button>
                     }
                     {!mail.isRead &&
-                        <button title="Mark as Read" className="btn" onClick={() => {onMark('isRead')}}>
+                        <button title="Mark as Read" className="btn" onClick={() => { onMark('isRead') }}>
                             <i className="ri-mail-open-line"></i>
                         </button>
                     }
@@ -113,10 +116,10 @@ export function MailDetails() {
 
                 <section>
                     <span>{`${mailIdx} of ${mailsLength}`}</span>
-                    <button title="Older Mail" className="btn-prev-mail">
+                    <button title="Older Mail" className="btn-prev-mail" onClick={() => navigateToMail(-1)}>
                         <i className="ri-arrow-left-s-line"></i>
                     </button>
-                    <button title="Newer Mail" className="btn-next-mail">
+                    <button title="Newer Mail" className="btn-next-mail" onClick={() => navigateToMail(1)}>
                         <i className="ri-arrow-right-s-line"></i>
                     </button>
                 </section>
