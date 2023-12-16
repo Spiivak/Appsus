@@ -2,14 +2,14 @@
 
  .mail-index {
     height: 100dvh;
-    /* background-color: var(--main-clr); */
+    /* overflow-y: hidden; */
 
  }
 
  @media (min-width: 700px) {
-   .mail-index {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      grid-template-rows: auto 1fr;
-   }
+    .mail-index {
+       display: grid;
+       grid-template-columns: auto 1fr;
+       grid-template-rows: auto 1fr;
+    }
  }

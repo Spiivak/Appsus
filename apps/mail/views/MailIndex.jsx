@@ -17,6 +17,7 @@ export function MailIndex() {
     const [isSent, setIsSent] = useState(false)
     const [isStarred, setIsStarred] = useState(false)
     const [isDeleted, setIsDeleted] = useState(false)
+    const [isMenuOpen, setMenuOpen] = useState(false)
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromQueryString(searchParams))
@@ -107,7 +108,6 @@ export function MailIndex() {
 
     const onMark = (mailId, prop) => {
         console.log('prop:', prop)
-        let mailMark
         mailService.get(mailId)
             .then(mail => {
                 mail[prop] = !mail[prop]
@@ -209,13 +209,17 @@ export function MailIndex() {
         setSortOption(prevSortOption => ({ ...prevSortOption, ...newSort }))
     }
 
+    const handleToggleMenu = () => {
+        setMenuOpen(prevMenuOpen => !prevMenuOpen)
+    }
+
     if (!mails) return <div>Loading...</div>
 
     const unreadMailsCount = mails.reduce((count, mail) => (mail.isRead ? count : count + 1), 0)
 
     return (
         <section className="mail-index">
-            <MailHeader filterBy={filterBy} onSetSearchFilter={onSetSearchFilter} />
+            <MailHeader filterBy={filterBy} onSetSearchFilter={onSetSearchFilter} onOpenMenu={handleToggleMenu}/>
             <MailAsideToolBar
                 unreadMailsCount={unreadMailsCount}
                 onToggleAddMail={onToggleAddMail}
@@ -223,6 +227,8 @@ export function MailIndex() {
                 onChangeToSentMails={onChangeToSentMails}
                 onChangeToStarredMails={onChangeToStarredMails}
                 onChangeToDeletedMails={onChangeToDeletedMails}
+                isMenuOpen={isMenuOpen}
+                handleToggleMenu={handleToggleMenu}
             />
             {!params.mailId &&
                 <MailList
@@ -235,6 +241,7 @@ export function MailIndex() {
                     onSetSort={onSetSort}
                     onEmptyTrash={onEmptyTrash}
                     isDeleted={isDeleted}
+                    isMenuOpen={isMenuOpen}
                 />}
             {params.mailId &&
                 <Outlet onRemoveMail={onRemoveMail} onToggleMark={onToggleMark} onMark={onMark} />

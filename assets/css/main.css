@@ -26,6 +26,7 @@
 @import './cmps/AppAsideToolBar.css';
 @import './cmps/AppAsideNav.css';
 
+@import './apps/mail/cmps/UserModal.css';
 @import './apps/mail/cmps/MailHeader.css';
 @import './apps/mail/cmps/MailAsideToolBar.css';
 @import './apps/mail/cmps/MailList.css';

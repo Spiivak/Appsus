@@ -1,11 +1,4 @@
 .mail-add {
-    position: fixed;
-    bottom: 0;
-    right: 56px;
-    width: 500px;
-    height: 500px;
-    /* margin: 20px auto; */
-
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -18,8 +11,7 @@
 .mail-add .mail-add-header {
     padding-inline: 16px;
     padding-block: 10px;
-    display: flex;
-    justify-content: space-between;
+
     background-color: #f2f6fc;
     color: #041e49
 }
@@ -32,30 +24,31 @@
 }
 
 .mail-add form .to-section {
-    display: grid;
-    justify-items: stretch;
-    align-items: stretch;
-    grid-auto-flow: column;
+    /* justify-items: stretch;
+    align-items: stretch; */
     grid-template-columns: auto 1fr;
     align-items: center;
     color: #444746
 }
 
 .mail-add form button {
-    margin-block: 16px;
     justify-self: start;
+
+    margin-block: 16px;
     padding-inline: 16px;
     height: 36px;
+
     border-radius: 20px;
-    border: none;
     font-size: 14px;
     color: whitesmoke;
     background-color: #0b57d0;
+    border: none;
     cursor: pointer;
 }
 
 .mail-add input, textarea {
     padding-block: 10px;
+    width: 100%;
     border: none;
     outline: none;
 }
@@ -71,7 +64,6 @@
 
 .mail-add form > input {
     box-shadow:  rgba(100, 121, 143, 0.12) 0px -1px 0px 0px inset, rgba(100, 121, 143, 0.5) 0px 1px 0px 0px;
-        
 }
 
 .mail-add form > input, textarea {
@@ -91,4 +83,24 @@
     align-self: stretch;
     font-family: sans-serif;
     outline: none;
+}
+
+@media (max-width: 700px) {
+    .mail-add {
+        position: absolute;
+        top: 0;
+        z-index: 10;
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+@media (min-width: 700px) {
+    .mail-add {
+        position: fixed;
+        bottom: 0;
+        right: 56px;
+        width: 400px;
+        height: 400px;
+    }
 }

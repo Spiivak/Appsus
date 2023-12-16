@@ -1,1 +1,33 @@
- /* home */
+.home-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.home-content {
+    text-align: center;
+}
+
+.home-title {
+    font-size: 2rem;
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.home-description {
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+    color: #555;
+}
+
+.app-icons {
+    gap: 20px;
+}
+
+.app-icon {
+    width: 100px;
+    height: 100px;
+}

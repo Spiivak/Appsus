@@ -23,7 +23,6 @@ export const mailService = {
 }
 
 function query(filterBy) {
-    console.log('filterBy query:', filterBy)
     return storageService.query(MAIL_KEY)
         .then(mails => {
             if (filterBy.to) {

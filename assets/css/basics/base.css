@@ -12,8 +12,6 @@ body {
 }
 
 main {
-    /* display: grid; */
-    /* align-content: stretch; */
     background-color: white;
     border-radius: 16px;
     margin-bottom: 16px;
@@ -40,13 +38,16 @@ img {
 }
 
 .btn {
-    background-color: transparent;
-    color: #5f6368;
-    border: none;
+    all: unset;
     cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  
-  .btn:hover {
-    color: #202124;
-  }
+    text-align: center;
+    color: #444746;
+    width: 32px;
+    height: 32px;
+}
+
+.btn:hover {
+    background-color: #3c40431e;
+    border-radius: 1000px;
+
+}
