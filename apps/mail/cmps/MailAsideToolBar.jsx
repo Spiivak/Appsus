@@ -17,8 +17,7 @@ export function MailAsideToolBar({
     const [menuOpen, setMenuOpen] = useState(isMenuOpen)
     const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 700)
     const [hoverTimeout, setHoverTimeout] = useState(null)
-    console.log('isMenuOpen start:', isMenuOpen)
-    console.log('menuOpen start:', menuOpen)
+
     useEffect(() => {
         const handleResize = () => {
             setIsMobileView(window.innerWidth <= 700)
@@ -57,9 +56,6 @@ export function MailAsideToolBar({
             },
         }
 
-
-    console.log('menuOpen before:', menuOpen)
-    console.log('isMenuOpen before:', isMenuOpen)
 
     const mailMenuProps = {
         unreadMailsCount,
