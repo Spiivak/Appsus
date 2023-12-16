@@ -5,12 +5,25 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMark }) {
     const bgColors = ['#4285F4', '#34A853', '#FBBC05', '#EA4335', '#673AB7']
     const [isHovered, setIsHovered] = useState(false)
     const [isStarred, setIsStarred] = useState(mail.isStarred ? true : false)
+    const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 700)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobileView(window.innerWidth <= 700)
+        }
+
+        window.addEventListener('resize', handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
 
     const sentDate = new Date(mail.sentAt)
     const isRead = mail.isRead
     let displayedContent
 
-    if (isHovered) {
+    if (isHovered && !isMobileView) {
         displayedContent = (
             <div className="actions-container flex align-center">
                 <button

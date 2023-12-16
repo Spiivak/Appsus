@@ -1,5 +1,5 @@
 const { NavLink } = ReactRouterDOM
-const { useState } = React
+const { useState, useEffect } = React
 
 export function MailAsideToolBar({
     unreadMailsCount,
@@ -9,24 +9,38 @@ export function MailAsideToolBar({
     onChangeToStarredMails,
     onChangeToDeletedMails }) {
     const [isMenuOpen, setMenuOpen] = useState(false)
+    const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 700)
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobileView(window.innerWidth <= 700)
+        }
+
+        window.addEventListener('resize', handleResize)
+
+        return () => {
+            window.removeEventListener('resize', handleResize)
+        }
+    }, [])
 
     const handleToggleMenu = () => {
-        setMenuOpen(!isMenuOpen)
+        if (isMobileView) {
+            setMenuOpen(!isMenuOpen)
+          }
     }
 
-    const handleMouseEnter = () => {
-        setMenuOpen(true)
-    }
 
-    const handleMouseLeave = () => {
-        setMenuOpen(false)
-    }
+    const menuProps = isMobileView
+    ? {}
+    : {
+        onMouseEnter: () => setMenuOpen(true),
+        onMouseLeave: () => setMenuOpen(false),
+      }
 
     return (
         <aside
             className={`mail-aside-tool-bar ${isMenuOpen ? 'open' : ''}`}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
+            {...menuProps}
         >
             <button className="btn btn-bars" onClick={handleToggleMenu}>
                 <i className="fa-solid fa-bars"></i>
