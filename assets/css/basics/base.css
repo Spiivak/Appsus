@@ -8,8 +8,6 @@ body {
 }
 
 main {
-    /* display: grid; */
-    /* align-content: stretch; */
     background-color: white;
     border-radius: 16px;
     margin-bottom: 16px;

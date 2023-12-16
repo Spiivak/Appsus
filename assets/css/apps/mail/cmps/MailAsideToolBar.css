@@ -23,11 +23,6 @@
     position: absolute;
 }
 
-.mail-aside-tool-bar.open .mail-list {
-    margin-inline-start: 58px;
-    /* position: absolute; */
-}
-
 .mail-aside-tool-bar.open .menu-actions>*:not(:first-child):hover {
     background-color: #d3e3fd;
 }

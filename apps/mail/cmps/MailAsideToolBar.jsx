@@ -11,7 +11,7 @@ export function MailAsideToolBar({
     onChangeToInboxMails,
     onChangeToSentMails,
     onChangeToStarredMails,
-    onChangeToDeletedMails, 
+    onChangeToDeletedMails,
     handleToggleMenu }) {
 
     const [menuOpen, setMenuOpen] = useState(isMenuOpen)
@@ -28,7 +28,7 @@ export function MailAsideToolBar({
         return () => {
             window.removeEventListener('resize', handleResize)
         }
-    }, [isMenuOpen])
+    }, [])
 
     const setIsMenuOpen = () => {
         handleToggleMenu()
@@ -75,15 +75,17 @@ export function MailAsideToolBar({
             {!isMenuOpen &&
                 <MailMenuClose {...mailMenuProps} />
             }
-            {/* {!isMenuOpen && 
-                <MailMenuClose {...mailMenuProps} />} */
-            }
+            {/* {!isMenuOpen &&
+                <MailMenuClose {...mailMenuProps} />
+            } */}
+
             {isMenuOpen &&
                 <MailMenuOpen {...mailMenuProps} />
             }
-            {/* {isMenuOpen && 
-                <MailMenuOpen {...mailMenuProps} />} */
-            }
+            {/* {isMenuOpen &&
+                <MailMenuOpen {...mailMenuProps} />
+            } */}
+
         </aside>
     )
 

@@ -241,6 +241,7 @@ export function MailIndex() {
                     onSetSort={onSetSort}
                     onEmptyTrash={onEmptyTrash}
                     isDeleted={isDeleted}
+                    isMenuOpen={isMenuOpen}
                 />}
             {params.mailId &&
                 <Outlet onRemoveMail={onRemoveMail} onToggleMark={onToggleMark} onMark={onMark} />

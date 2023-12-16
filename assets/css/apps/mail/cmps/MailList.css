@@ -101,6 +101,15 @@
     padding: 5px;
 }
 
+.mail-list .no-conversations-msg {
+    padding: 20px;
+}
+
+
+.mail-list.menu-open {
+    margin-inline-start: 68px;
+}
+
 @media (min-width: 7000px) {
     .mail-list {
         overflow-y: hidden;

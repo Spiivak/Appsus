@@ -4,7 +4,7 @@ const { useState } = React
 
 export function MailList({
     mails, isSent, isDeleted, onRemoveMail, onOpenDetails,
-    onMark, onSetReadFilter, onSetSort, onEmptyTrash }) {
+    onMark, onSetReadFilter, onSetSort, onEmptyTrash, isMenuOpen }) {
     const [filterBy, setFilterBy] = useState(false)
     const [sortOption, setSortOption] = useState({ field: 'sentAt', order: 'desc' })
     const [showFilterDropdown, setShowFilterDropdown] = useState(false)
@@ -44,7 +44,7 @@ export function MailList({
     })
 
     return (
-        <section className="mail-list">
+        <section className={`mail-list ${isMenuOpen ? 'menu-open' : ''}`}>
             <section className="mail-list-actions">
                 <button className="btn btn-select-filter" onClick={toggleFilterDropdown}>
                     {!filterBy && <i className="fa-regular fa-square"></i>}
@@ -100,7 +100,7 @@ export function MailList({
                         </article>
                     ))
                 ) : (
-                    <span className="no-conversations-msg">{`No conversations in ${isSent ? 'Sent' : isDeleted ? 'Trash' : 'Inbox'}`}</span>
+                    <span className="no-conversations-msg flex justify-center">{`No conversations in ${isSent ? 'Sent' : isDeleted ? 'Trash' : 'Inbox'}`}</span>
                 )}
             </section>
 
