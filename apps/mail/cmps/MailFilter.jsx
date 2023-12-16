@@ -2,13 +2,11 @@
 const { useState, useEffect } = React
 
 export function MailFilter({ filterBy, onSetSearchFilter }) {
-    const [isActive, setIsActive] = useState(false)
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
 
     useEffect(() => {
         onSetSearchFilter(filterByToEdit)
     }, [filterByToEdit])
-
 
     function handleChange({ target }) {
         const field = target.name
@@ -27,13 +25,7 @@ export function MailFilter({ filterBy, onSetSearchFilter }) {
             default:
                 break;
         }
-
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
-        // console.log('filterByToEdit:', filterByToEdit)
-    }
-
-    function onAddActive() {
-        setIsActive(true)
     }
 
     return (
@@ -46,7 +38,6 @@ export function MailFilter({ filterBy, onSetSearchFilter }) {
                 placeholder="Search mail" 
                 value={filterByToEdit.search}
                 onChange={handleChange}
-                onClick={onAddActive}
             />
             <button className="btn btn-filter"><i className="fa-solid fa-sliders"></i></button>
         </section>

@@ -2,7 +2,6 @@ const { useState, useEffect } = React
 
 import { MailMenuClose } from "./MailMenuClose.jsx"
 import { MailMenuOpen } from "./MailMenuOpen.jsx"
-// const isMenuOpenn = true;
 
 export function MailAsideToolBar({
     unreadMailsCount,

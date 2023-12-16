@@ -6,7 +6,6 @@ export function UserModal({ user, onClose }) {
         <h2>User Information</h2>
         <p>Name: <span>{user.fullname}</span></p>
         <p>Email: <span>{user.email}</span></p>
-        {/* Add other user information as needed */}
         <button onClick={onClose}>Close</button>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { utilService } from '../../../services/util.service.js'
 const { useState, useEffect } = React
 
-export function MailPreview({ mail, onRemoveMail, isSent, onMark }) {
+export function MailPreview({ mail, onRemoveMail, showSentMails, onMark }) {
     const bgColors = ['#4285F4', '#34A853', '#FBBC05', '#EA4335', '#673AB7']
     const [isHovered, setIsHovered] = useState(false)
     const [isStarred, setIsStarred] = useState(mail.isStarred ? true : false)
@@ -101,12 +101,12 @@ export function MailPreview({ mail, onRemoveMail, isSent, onMark }) {
             >
                 <i className="fa-regular fa-star"></i>
             </button>
-            {!isSent &&
+            {!showSentMails &&
                 <span className={`mail-from ${dynClassTxt}`}>
                     {mail.from}
                 </span>
             }
-            {isSent &&
+            {showSentMails &&
                 <span className="mail-from">{`To: ${mail.to}`}</span>
             }
             <section className="mail-content">

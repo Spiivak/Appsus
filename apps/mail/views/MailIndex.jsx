@@ -14,10 +14,10 @@ export function MailIndex() {
 
     const [Mark, setMark] = useState(false)
     const [isAdd, setIsAdd] = useState(false)
-    const [isSent, setIsSent] = useState(false)
-    const [isStarred, setIsStarred] = useState(false)
-    const [isDeleted, setIsDeleted] = useState(false)
     const [isMenuOpen, setMenuOpen] = useState(false)
+    const [showSentMails, setShowSentMails] = useState(false)
+    const [showStarredMails, setShowStarredMails] = useState(false)
+    const [showDeletedMails, setShowDeletedMails] = useState(false)
 
     const [searchParams, setSearchParams] = useSearchParams()
     const [filterBy, setFilterBy] = useState(mailService.getFilterFromQueryString(searchParams))
@@ -29,33 +29,34 @@ export function MailIndex() {
     useEffect(() => {
         loadMails()
         setSearchParams(filterBy)
-    }, [filterBy, sortOption, isSent, isStarred, isDeleted, Mark])
+    }, [filterBy, sortOption, showSentMails, showStarredMails, showDeletedMails, Mark])
 
+    // load mails from DB by type
     function loadMails() {
         const { email } = mailService.getLoggedInUser()
-        if (!isSent && !isStarred && !isDeleted) {
+        if (!showSentMails && !showStarredMails && !showDeletedMails) {
             mailService.getInboxMails({ filterBy, email })
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
-        } else if (isSent) {
+        } else if (showSentMails) {
             mailService.getSentMails({ filterBy, email })
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
-        } else if (isStarred) {
+        } else if (showStarredMails) {
             mailService.query({ filterBy, starred: isStarred })
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
-        } else if (isDeleted) {
+        } else if (showDeletedMails) {
             mailService.query({ filterBy, isDeleted: true })
                 .then(mails => setMails(mails))
                 .catch(err => console.log('err:', err))
         }
     }
 
+    // Remove mail to Trash
     const onRemoveMail = (mailId) => {
         mailService.get(mailId)
             .then(mail => {
-                console.log('mail.removedAt:', mail.removedAt)
                 if (!mail.removedAt) {
                     mail.removedAt = Date.now()
                     return mailService.save(mail)
@@ -73,6 +74,7 @@ export function MailIndex() {
             })
     }
 
+    // Remove Mail from DB
     function onFinalRemoveMail(mailId) {
         mailService.remove(mailId)
             .then(() => {
@@ -87,8 +89,8 @@ export function MailIndex() {
             })
     }
 
+    // Remove All Mails from DB - Via Btn
     const onEmptyTrash = () => {
-        console.log('isDeleted:', isDeleted)
         mailService.getDeletedMails({ filterBy, isDeleted: true })
             .then(trashMails => {
                 console.log("trashMails:", trashMails)
@@ -97,7 +99,7 @@ export function MailIndex() {
                 }, Promise.resolve())
             })
             .then(() => {
-                setIsDeleted(false)
+                setShowDeletedMails(false)
                 showSuccessMsg(`Trash successfully emptied!`)
             })
             .catch(err => {
@@ -106,8 +108,8 @@ export function MailIndex() {
             })
     }
 
+    // Change Mail mark in DB
     const onMark = (mailId, prop) => {
-        console.log('prop:', prop)
         mailService.get(mailId)
             .then(mail => {
                 mail[prop] = !mail[prop]
@@ -131,6 +133,11 @@ export function MailIndex() {
             })
     }
 
+    const onToggleMark = () => {
+        setMark(prevMark => !prevMark)
+    }
+
+    // Change FilterBy
     function onSetSearchFilter(filterBy) {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
@@ -140,6 +147,7 @@ export function MailIndex() {
         setFilterBy(prevFilter => ({ ...prevFilter, ...filterBy }))
     }
 
+    // Navigate to MailDetails Cmp
     function onOpenDetails(mailId) {
         navigate(`/mail/${mailId}`)
         mailService.get(mailId)
@@ -156,14 +164,15 @@ export function MailIndex() {
                         return mail
                     })
                 })
-                showSuccessMsg(`Mail successfully marked as read/unread!`)
+                showSuccessMsg(`Mail successfully marked`)
             })
             .catch(err => {
-                showErrorMsg(`Error marking mail as read/unread: ${mailId}`)
+                showErrorMsg(`Error marking mail: ${mailId}`)
                 console.log('err:', err)
             })
     }
 
+    // Save new Mail to DB
     const onAddMail = (newMail) => {
         mailService.save(newMail)
             .then(() => {
@@ -177,32 +186,29 @@ export function MailIndex() {
         setIsAdd(isAdd => !isAdd)
     }
 
-    const onToggleMark = () => {
-        setMark(prevMark => !prevMark)
-    }
-
     const onChangeToSentMails = () => {
-        setIsStarred(false)
-        setIsDeleted(false)
-        setIsSent(true)
+        setShowStarredMails(false)
+        setShowDeletedMails(false)
+        setShowSentMails(true)
     }
 
+    // Render List According to mails filter
     const onChangeToInboxMails = () => {
-        setIsSent(false)
-        setIsStarred(false)
-        setIsDeleted(false)
+        setShowSentMails(false)
+        setShowStarredMails(false)
+        setShowDeletedMails(false)
     }
 
     const onChangeToStarredMails = () => {
-        setIsSent(false)
-        setIsDeleted(false)
-        setIsStarred(true)
+        setShowSentMails(false)
+        setShowDeletedMails(false)
+        setShowStarredMails(true)
     }
 
     const onChangeToDeletedMails = () => {
-        setIsSent(false)
-        setIsStarred(false)
-        setIsDeleted(true)
+        setShowSentMails(false)
+        setShowStarredMails(false)
+        setShowDeletedMails(true)
     }
 
     function onSetSort(newSort) {
@@ -216,10 +222,16 @@ export function MailIndex() {
     if (!mails) return <div>Loading...</div>
 
     const unreadMailsCount = mails.reduce((count, mail) => (mail.isRead ? count : count + 1), 0)
+    const user = mailService.getLoggedInUser()
 
     return (
         <section className="mail-index">
-            <MailHeader filterBy={filterBy} onSetSearchFilter={onSetSearchFilter} onOpenMenu={handleToggleMenu}/>
+            <MailHeader
+                filterBy={filterBy}
+                onSetSearchFilter={onSetSearchFilter}
+                handleToggleMenu={handleToggleMenu}
+                user={user}
+            />
             <MailAsideToolBar
                 unreadMailsCount={unreadMailsCount}
                 onToggleAddMail={onToggleAddMail}
@@ -233,18 +245,22 @@ export function MailIndex() {
             {!params.mailId &&
                 <MailList
                     mails={mails}
-                    isSent={isSent}
-                    onRemoveMail={onRemoveMail}
+                    showSentMails={showSentMails}
+                    showDeletedMails={showDeletedMails}
                     onMark={onMark}
+                    onRemoveMail={onRemoveMail}
                     onOpenDetails={onOpenDetails}
                     onSetReadFilter={onSetReadFilter}
                     onSetSort={onSetSort}
                     onEmptyTrash={onEmptyTrash}
-                    isDeleted={isDeleted}
                     isMenuOpen={isMenuOpen}
                 />}
             {params.mailId &&
-                <Outlet onRemoveMail={onRemoveMail} onToggleMark={onToggleMark} onMark={onMark} />
+                <Outlet
+                    onRemoveMail={onRemoveMail}
+                    onToggleMark={onToggleMark}
+                    onMark={onMark}
+                />
             }
             {isAdd &&
                 <MailAdd
