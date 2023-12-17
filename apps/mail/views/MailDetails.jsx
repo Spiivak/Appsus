@@ -106,7 +106,7 @@ export function MailDetails() {
 
             <MailSubject subject={mail.subject} isStarred={mail.isStarred} onMark={onMark}/>
 
-            <MailInfoSection nameOnly={(mail.from).split('@')[0]} fullMail={mail.from} formattedDate={formattedDate}/>
+            <MailInfoSection nameOnly={(mail.from).split('@')[0]} fullName={mail.from} formattedDate={formattedDate}/>
 
             <section className="mail-body">
                 <p>{mail.body}</p>

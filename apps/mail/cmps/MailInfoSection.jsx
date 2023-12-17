@@ -1,4 +1,5 @@
 export function MailInfoSection({nameOnly, fullName, formattedDate}) {
+    console.log('nameOnly:', nameOnly)
     return (
         <section className="mail-info-section flex space-between">
             <section className="mail-from-section">

@@ -77,7 +77,6 @@ export function MailPreview({ mail, onRemoveMail, showSentMails, onMark }) {
 
     const dynClassTxt = (!mail.isRead) ? 'un-read-txt' : ''
     const dynClassBgc = (!mail.isRead) ? 'un-read-bgc' : ''
-
     return (
         <article
             className={`mail-preview grid ${dynClassBgc}`}
