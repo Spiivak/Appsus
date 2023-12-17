@@ -1,0 +1,23 @@
+.note-preview .preview-btns {
+  margin-top: 8px;
+  display: flex;
+  gap: 0.5em;
+  /* position: absolute; */
+  /* bottom: 0.5rem; */
+  /* left: 0.5rem; */
+  opacity: 0;
+  /* background-color: red; */
+  transition: opacity 0.3s ease;
+}
+
+.note-preview:hover .preview-btns
+ {
+  opacity: 1;
+}
+
+.btn-save {
+  width: 80px;
+
+}
+
+
