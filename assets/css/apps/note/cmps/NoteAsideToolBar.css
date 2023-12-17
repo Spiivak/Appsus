@@ -31,12 +31,8 @@
     border-bottom-left-radius: 0;
     display: flex;
     align-items: center;
-    /* justify-content: first baseline; */
     width: 280px;
     height: 48px;
-    /* padding-left: 12px; */
-    /* width: 100%; */
-    /* padding: 0 64px; */
 }
 
 .note-aside-tool-bar:hover span {
@@ -51,12 +47,5 @@
 }
 
 .note-aside-tool-bar:hover button:hover{
-
     background-color: #F1F3F4;
-
 }
-
-/* .note-aside-tool-bar:hover .main-note-container {
-    grid-template-columns: 280px 1fr 54px;
-    grid-auto-flow: row;
-} */
