@@ -137,13 +137,11 @@ export function NoteEditImg({ selectedNote, setSelectedNote, saveNote }) {
           </React.Fragment>
         )}
 
-        <div className="add-buttons-section">
-          <section className="add-buttons">
-            <button type="submit">
-              <i className="fa-solid fa-plus"></i>
+        <div className="add-buttons-section justify-center">
+            <button className='btn btn-save' type="submit">
+              Save
             </button>
             <ColorButtons changeBackgroundColor={changeBackgroundColor} />
-          </section>
         </div>
       </form>
     </section>
