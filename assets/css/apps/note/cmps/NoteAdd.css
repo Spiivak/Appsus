@@ -12,6 +12,19 @@
   /* place-items: center; */
 }
 
+.btn-txt-note {
+  width: 100%;
+  text-align: left;
+}
+
+.btn-txt-note:hover {
+  background-color: transparent;
+}
+
+.btn-txt-note button {
+  display: flex;
+}
+
 .note-add-section {
   display: grid;
   place-items: center;
@@ -71,5 +84,6 @@ i {
 .add-buttons-section {
   display: flex;
 }
+
 
 
