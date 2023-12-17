@@ -13,7 +13,8 @@ function TodoItem({ todo, onChange, onRemove, onAddNew, isSingleTodo }) {
 	}
 
 	return (
-		<div className="todo-wrapper">
+		<div className="todo-wrapper flex">
+			<i className="ri-add-fill"></i>
 			<input
 				type="text"
 				placeholder="Todo"
@@ -25,7 +26,7 @@ function TodoItem({ todo, onChange, onRemove, onAddNew, isSingleTodo }) {
 			{!isSingleTodo && (
 				<button
 					type="button"
-					className="todo-remove-btn"
+					className="btn todo-remove-btn"
 					onClick={onRemove}
 				>
 					<i className="ri-delete-bin-line"></i>
@@ -97,10 +98,11 @@ export function NoteAddTodos({ addNote, type }) {
 	return (
 		<React.Fragment>
 			<form
-				className="add-todos-form"
+				className="add-todos-form flex column"
 				style={{ backgroundColor }}
 				onSubmit={onSubmitHandle}
 			>
+
 				<input
 					required
 					className="title-input"
@@ -111,26 +113,30 @@ export function NoteAddTodos({ addNote, type }) {
 					value={title}
 					onChange={onChangeTitleHandle}
 				/>
-				{todos.map((todo, index) => (
-					<TodoItem
-						key={todo.id}
-						todo={{ ...todo, lastId: todos[todos.length - 1].id }}
-						onChange={(ev) => onChangeTodoHandle(ev, todo.id)}
-						onRemove={() => removeTodo(todo.id)}
-						onAddNew={addTodo}
-						isSingleTodo={todos.length === 1}
-					/>
-				))}
+					
+					{todos.map((todo, index) => (
+						<TodoItem
+							key={todo.id}
+							todo={{
+								...todo,
+								lastId: todos[todos.length - 1].id,
+							}}
+							onChange={(ev) => onChangeTodoHandle(ev, todo.id)}
+							onRemove={() => removeTodo(todo.id)}
+							onAddNew={addTodo}
+							isSingleTodo={todos.length === 1}
+						/>
+					))}
 
 				<div className="add-buttons-section">
 					<div className="add-buttons flex">
 						<button className="note-btn btn" type="submit">
 							<i className="fa-solid fa-plus"></i>
 						</button>
-						
-							<ColorButtons
-								changeBackgroundColor={changeBackgroundColor}
-							/>
+
+						<ColorButtons
+							changeBackgroundColor={changeBackgroundColor}
+						/>
 					</div>
 				</div>
 			</form>

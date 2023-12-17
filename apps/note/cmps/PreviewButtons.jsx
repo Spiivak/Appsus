@@ -36,7 +36,7 @@ export function PreviewButtons({
   
 
   return (
-    <section className="preview-btns" onClick={(ev) => ev.stopPropagation()}>
+    <section className="preview-btns flex align-center" onClick={(ev) => ev.stopPropagation()}>
       <button title='Delete Note' className="btn delete-btn" onClick={handleDeleteNote}>
       <i className="ri-delete-bin-line"></i>
       </button>

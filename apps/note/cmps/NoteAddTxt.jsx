@@ -12,7 +12,7 @@ export function NoteForm({ onSubmit, onChange, value, backgroundColor, changeBac
 
  return (
   
-  <form className="add-txt-form" style={{ backgroundColor }} onSubmit={onSubmit}>
+  <form className="add-txt-form flex column" style={{ backgroundColor }} onSubmit={onSubmit}>
     <input
       className="title-input"
       required

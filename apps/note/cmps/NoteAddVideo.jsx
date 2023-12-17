@@ -46,13 +46,10 @@ export function NoteAddVideo({ addNote, type }) {
 	return (
 		<React.Fragment>
 			<form
-				className="add-video-form"
+				className="add-video-form flex column"
 				style={{ backgroundColor }}
 				onSubmit={onSubmitHandle}
 			>
-				<label htmlFor="title" className="label">
-					Title
-				</label>
 				<input
 					required
 					className="title-input"
@@ -63,10 +60,6 @@ export function NoteAddVideo({ addNote, type }) {
 					id="title"
 					value={newNoteInfo.title}
 				/>
-
-				<label htmlFor="youtubeUrl" className="label">
-					YouTube Video URL
-				</label>
 				<input
 					onChange={onChangeHandle}
 					className="videoUrl-input"

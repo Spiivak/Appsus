@@ -83,7 +83,7 @@ export function NoteAddImg({ addNote, type }) {
 	return (
 		<React.Fragment>
 			<form
-				className="add-img-form"
+				className="add-img-form flex column"
 				style={{ backgroundColor }}
 				onSubmit={onSubmitHandle}
 			>
