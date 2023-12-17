@@ -102,6 +102,11 @@
     padding: 20px;
 }
 
+.mail-list i {
+    display: contents;
+
+}
+
 
 .mail-list.menu-open {
     margin-inline-start: 68px;
