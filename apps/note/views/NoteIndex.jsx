@@ -7,6 +7,8 @@ import { NoteEdit } from '../cmps/NoteEdit.jsx'
 import { NoteList } from '../cmps/NoteList.jsx'
 import { NoteHeader } from '../cmps/NoteHeader.jsx'
 import { noteUtilsService } from '../services/note.utils.service.js'
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
+
 
 export function NoteIndex() {
 	const [notes, setNotes] = useState(null)

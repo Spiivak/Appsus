@@ -1,4 +1,5 @@
 import { noteService } from './note.service.js'
+import { showSuccessMsg, showErrorMsg } from "../../../services/event-bus.service.js"
 
 export const noteUtilsService = {
   loadNotes,
@@ -27,18 +28,15 @@ function loadNotes(setNotes) {
 
 function addNote(note, setNotes) {
   console.log('NoteIndex.addNote', note)
-  noteService.save(note).then((note) => {
-    setNotes((prevNotes) => [...prevNotes, note])
-  })
+  noteService.save(note)
+  .then((note) => setNotes((prevNotes) => [...prevNotes, note]))
+  .then(showSuccessMsg('Added note'))
 }
 
 function deleteNote(note, setNotes) {
   const noteId = note.id
-  noteService.remove(noteId).then((note) => {
-    setNotes((prevNotes) => {
-      return prevNotes.filter((prevNote) => prevNote.id !== noteId)
-    })
-  })
+  noteService.remove(noteId).then((note) => setNotes((prevNotes) =>  prevNotes.filter((prevNote) => prevNote.id !== noteId)))
+  .then(showSuccessMsg('Deleted note'))
 }
 
 function editNote(note, setSelectedNote) {
@@ -56,6 +54,7 @@ function saveNote(note, setNotes, setSelectedNote) {
       return prevNotes
     })
   })
+  .then(showSuccessMsg('Saved note'))
 }
 
 function setFilterBy(title, type, color) {

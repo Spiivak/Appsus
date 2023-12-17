@@ -57,6 +57,7 @@ export function NoteAddTxt({ addNote, type }) {
     const emptyNote = noteService.getEmptyNote()
     const newNote = { ...emptyNote, info: { ...emptyNote.info, ...noteInfo }, style: { backgroundColor } }
     addNote(newNote)
+    
     setNoteInfo(EmptyNote)
   }
 
