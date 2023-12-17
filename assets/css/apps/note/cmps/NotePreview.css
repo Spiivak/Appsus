@@ -1,5 +1,5 @@
 .note-preview {
-  width: 100%;
+  min-height: 130px;
   position: relative;
   break-inside: avoid;
   border-radius: 8px;
@@ -15,22 +15,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.note-preview .preview-btns {
-  display: flex;
-  gap: 0.5em;
-  position: absolute;
-  bottom: 0.5rem;
-  left: 0.5rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.note-preview:hover .preview-btns {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  background-color: rgb(66, 64, 64);
-  opacity: 1;
-}
-
 .note-preview button:not(.color-palette) {
   height: 32px;
   width: 32px;
@@ -44,11 +28,12 @@
 }
 
 .note-preview p {
+  margin: 0;
   /* padding: 12px 16px; */
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0;
-  line-height: 1.5rem;
+  /* line-height: 1.5rem; */
   word-wrap: break-word;
 }
 

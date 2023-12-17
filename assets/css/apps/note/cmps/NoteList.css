@@ -12,8 +12,8 @@
   transition: transform 0.2s ease-in-out;
 }
 
-.note-list > article:hover {
-  transform: scale(1.03);
+.note-list > article {
+  cursor: pointer;
 }
 
 .note-list-section ul {

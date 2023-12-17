@@ -41,11 +41,13 @@ export function NoteIndex() {
 	//* -------------------------------------------------------------------------- //
 
 	function todoToggle(note, todo) {
-		noteUtilsService.todoToggle(note, todo, setNotes)
+    noteUtilsService.todoToggle(note, todo, setNotes)
 	}
 
 	function changeBackgroundColor(colorHex, note) {
-		noteUtilsService.changeBackgroundColor(colorHex, note, setNotes)
+		if (note && note.id) noteUtilsService.changeBackgroundColor(colorHex, note, setNotes)
+    else console.error("invalid note object: " + note)
+
 	}
 
 	if (!notes) return <div>Loading... </div>
