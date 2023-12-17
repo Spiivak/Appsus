@@ -1,62 +1,62 @@
 // noteedittodos.jsx
 
-const { useState, useEffect } = React;
+const { useState, useEffect } = React
 
 export function NoteEditTodos({ selectedNote, setSelectedNote, saveNote }) {
-  const [currNote, setCurrNote] = useState(selectedNote);
+  const [currNote, setCurrNote] = useState(selectedNote)
   const [newTodoInfo, setNewTodoInfo] = useState({
     todos: currNote.todos || [],
-  });
+  })
   const [backgroundColor, setBackgroundColor] = useState(
     currNote.style.backgroundColor
-  );
+  )
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.style.overflow = 'hidden';
+    window.scrollTo(0, 0)
+    document.body.style.overflow = 'hidden'
     return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, []);
+      document.body.style.overflow = 'auto'
+    }
+  }, [])
 
   function onSubmitHandle(ev) {
-    ev.preventDefault();
-    ev.stopPropagation();
-    let emptyNote = currNote;
-    emptyNote.todos = newTodoInfo.todos;
-    emptyNote.style = { backgroundColor };
-    saveNote(emptyNote);
+    ev.preventDefault()
+    ev.stopPropagation()
+    let emptyNote = currNote
+    emptyNote.todos = newTodoInfo.todos
+    emptyNote.style = { backgroundColor }
+    saveNote(emptyNote)
   }
 
   function onChangeHandle(ev) {
-    const target = ev.target;
-    const field = target.name;
-    const value = target.value;
+    const target = ev.target
+    const field = target.name
+    const value = target.value
 
-    setNewTodoInfo({ ...newTodoInfo, [field]: value });
+    setNewTodoInfo({ ...newTodoInfo, [field]: value })
   }
 
   function changeBackgroundColor(colorHex) {
-    setBackgroundColor(colorHex);
+    setBackgroundColor(colorHex)
   }
 
   function addTodo() {
     setNewTodoInfo({
       ...newTodoInfo,
       todos: [...newTodoInfo.todos, { text: '', completed: false }],
-    });
+    })
   }
 
   function updateTodo(index, field, value) {
-    const updatedTodos = [...newTodoInfo.todos];
-    updatedTodos[index] = { ...updatedTodos[index], [field]: value };
-    setNewTodoInfo({ ...newTodoInfo, todos: updatedTodos });
+    const updatedTodos = [...newTodoInfo.todos]
+    updatedTodos[index] = { ...updatedTodos[index], [field]: value }
+    setNewTodoInfo({ ...newTodoInfo, todos: updatedTodos })
   }
 
   function removeTodo(index) {
-    const updatedTodos = [...newTodoInfo.todos];
-    updatedTodos.splice(index, 1);
-    setNewTodoInfo({ ...newTodoInfo, todos: updatedTodos });
+    const updatedTodos = [...newTodoInfo.todos]
+    updatedTodos.splice(index, 1)
+    setNewTodoInfo({ ...newTodoInfo, todos: updatedTodos })
   }
 
   return (
@@ -68,14 +68,11 @@ export function NoteEditTodos({ selectedNote, setSelectedNote, saveNote }) {
         onSubmit={onSubmitHandle}
       >
         {/* Add your title input here if needed */}
-        <div className="add-buttons-section">
-          <button className="note-btn" type="submit">
-            Save
-          </button>
-          <ColorButtons changeBackgroundColor={changeBackgroundColor} />
-          <button className="note-btn" type="button" onClick={addTodo}>
-            Add Todo
-          </button>
+        <div className="add-buttons-section justify-center">
+            <button className='btn btn-save' type="submit">
+              Save
+            </button>
+            <ColorButtons changeBackgroundColor={changeBackgroundColor} />
         </div>
         {newTodoInfo.todos.map((todo, index) => (
           <div key={index}>
@@ -96,5 +93,5 @@ export function NoteEditTodos({ selectedNote, setSelectedNote, saveNote }) {
         ))}
       </form>
     </section>
-  );
+  )
 }

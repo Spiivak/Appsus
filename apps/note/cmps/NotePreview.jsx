@@ -19,6 +19,7 @@ export function NotePreview({
   todoToggle,
   from,
 }) {
+  
   const NoteComponent = componentMap[note.type]
 
   if (!NoteComponent) {
