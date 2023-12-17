@@ -50,18 +50,3 @@ img {
     background-color: #3c40431e;
     border-radius: 1000px;
 }
-
-
-.note-btn {
-    all: unset;
-    cursor: pointer;
-    text-align: center;
-    color: #444746;
-    /* width: 32px; */
-    /* height: 32px; */
-}
-
-.note-btn:hover {
-    background-color: #3c40431e;
-    border-radius: 1000px;
-}

@@ -1,5 +1,6 @@
 .note-preview {
   min-height: 130px;
+  /* max-width: 300px; */
   position: relative;
   break-inside: avoid;
   border-radius: 8px;
@@ -7,34 +8,13 @@
   transition: box-shadow 0.3s ease;
   overflow: hidden;
   margin-bottom: 16px;
-
   padding: 16px;
 }
 
-.note-preview:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-.note-preview button:not(.color-palette) {
-  height: 32px;
-  width: 32px;
-
-  color: white;
-  border: none;
-  /* border-radius: 50%; */
-  color: #5f6368;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
 .note-preview p {
-  margin: 0;
-  /* padding: 12px 16px; */
   font-size: 1rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  /* line-height: 1.5rem; */
   word-wrap: break-word;
+  color: #202124c8;
 }
 
 .note-preview h2 {
@@ -42,19 +22,13 @@
   color: #202124;
   letter-spacing: .00625em;
   font-size: 1.125rem;
-  font-weight: 500;
+  font-weight: 550;
   line-height: 1.5rem;
   word-wrap: break-word;
 }
 
-.note-preview button:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-
-  /* background-color: #e8e8e9; */
-}
-
-.note-preview span.todo {
-  font-weight: 600;
+.note-preview, .note-list > li {
+  box-sizing: border-box;
 }
 
 .note-preview span.done {
@@ -62,7 +36,9 @@
 }
 
 .note-preview .color-palette {
-  translate: -10% -5%;
+  position: absolute;
+  z-index: 555555;
+  translate: 100% -5%;
 }
 
 .note-preview iframe {
