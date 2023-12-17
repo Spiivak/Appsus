@@ -1,7 +1,8 @@
-const { useRef, useState, useEffect } = React;
+const { useRef, useState, useEffect } = React
 
 export function ColorButtons({ changeBackgroundColor }) {
   const [isPaletteOpen, setIsPaletteOpen] = useState(false)
+  const [palettePosition, setPalettePosition] = useState({ top: 0, left: 0 })
   const paletteRef = useRef(null)
 
   const colors = [
@@ -11,40 +12,45 @@ export function ColorButtons({ changeBackgroundColor }) {
   ]
 
   const handleButtonClick = (color) => {
-    console.log('changeBackgroundColor:', changeBackgroundColor);
     changeBackgroundColor(color)
     setIsPaletteOpen(false)
   }
 
-  const handlePaletteToggle = () => {
-    console.log('Palette button clicked!')
+  const handlePaletteToggle = (event) => {
+    const { top, left } = event.currentTarget.getBoundingClientRect()
+    setPalettePosition({ top: event.clientY - top, left: event.clientX - left })
     setIsPaletteOpen((prev) => !prev)
   }
 
   const handleClickOutsidePalette = (event) => {
     if (!isPaletteOpen && !paletteRef.current.contains(event.target)) {
-      setIsPaletteOpen(false);
+      setIsPaletteOpen(false)
     }
   }
 
   useEffect(() => {
-    console.log('isPaletteOpen:', isPaletteOpen)
-    document.addEventListener('click', handleClickOutsidePalette);
+    document.addEventListener('click', handleClickOutsidePalette)
 
     return () => {
-      document.removeEventListener('click', handleClickOutsidePalette);
+      document.removeEventListener('click', handleClickOutsidePalette)
     }
   }, [isPaletteOpen])
 
   return (
     <section className="color-buttons">
-      <div className="pallete-btn flex">
-
-      <button type="button" className="btn open-palette" onClick={handlePaletteToggle}>
+      <button
+      title="Color Palette"
+        type="button"
+        className="btn open-palette"
+        onClick={handlePaletteToggle}
+      >
         <i className="ri-palette-line"></i>
       </button>
-      </div>
-      <div className={`color-palette ${isPaletteOpen ? 'open' : 'closed'}`} ref={paletteRef}>
+      <div
+        className={`color-palette ${isPaletteOpen ? 'open' : 'closed'}`}
+        ref={paletteRef}
+        style={{ top: palettePosition.top, left: palettePosition.left }}
+      >
         {colors.map((color, index) => (
           <button
             key={index}
