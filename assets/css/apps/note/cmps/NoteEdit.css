@@ -1,24 +1,30 @@
 .note-edit-prev-wrapper {
   position: fixed;
-  background-color: #00000066;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #00000066;
+  z-index: 1000;
 }
 
 .note-edit {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70vw;
-  max-width: 400px;
-  height: 60vh;
+  position: relative;
+  width: fit-content;
+  min-width: 400px;
+  height: fit-content;
+  padding: 1rem;
+
+
   display: flex;
-  flex-direction: column;
+  /* justify-content: center; */
   align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
   border-radius: 15px;
-  box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   background-color: #fff;
 }
 
@@ -29,8 +35,7 @@
 
 .note-edit .title-input,
 .note-edit .txt-input {
-  width: 80%;
-  max-width: 300px;
+  width: 100%;
   padding: 1rem;
   font-size: clamp(1em, 2vw + 0.3em, 1.6em);
   background-color: #f8f9fa;
@@ -43,37 +48,29 @@
   max-height: 200px;
   width: auto;
   border-radius: 7px;
+  margin-bottom: 10px;
 }
 
 .note-edit .todo-wrapper {
-  position: relative;
-  width: 90%;
+  width: 100%;
 }
 
 .note-edit .todo-wrapper .todo-input {
-  width: 100%;
+  width: calc(100% - 2em);
   background-color: #f8f9fa;
   border: 1px solid #ced4da;
-  border-bottom: 1px solid #ddd;
   padding: 0.5em;
   margin-bottom: 0.5em;
-}
-
-.note-edit .todo-wrapper .todo-input:focus {
-  outline: none;
-  border-color: #555;
+  display: inline-block;
 }
 
 .note-edit .todo-wrapper .todo-remove-btn {
   cursor: pointer;
-  position: absolute;
-  top: 0;
-  right: 0;
   border-radius: 50%;
-  transform: translate(0, -50%);
   border: none;
   padding: 0.4em;
   background-color: #f8f9fa;
+  margin-left: 0.5em;
 }
 
 .note-edit .todo-wrapper .todo-remove-btn:hover {
@@ -83,9 +80,18 @@
 .note-edit .add-buttons {
   width: 100%;
   display: flex;
+  justify-content: space-between;
   margin-top: 1em;
 }
 
 .note-edit .color-palette {
-  transform: translate(-50%, 5%);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.video-input-wrapper input {
+  margin-top: 8px;
+  width: 522px;
 }
